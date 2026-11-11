@@ -206,7 +206,7 @@ td.prev{color:#a0a7b4}
   </div>
   <div class="grid2">
     <div class="card"><h2>NPS por supervisor</h2><div class="tblwrap free"><table id="nr-sup-t"></table></div></div>
-    <div class="card"><h2>Estado de los planes de acción</h2><div id="nr-planes"></div></div>
+    <div class="card"><h2>Estado de los planes de acción</h2><div id="nr-planes"></div><h3 style="margin-top:18px">¿Sirvieron las intervenciones?</h3><div id="nr-efecto"></div></div>
   </div>
   <div class="grid2">
     <div class="card"><h2>Drivers primarios en detractores</h2><p class="muted" style="margin-top:-4px">Encuestas detractoras que marcaron cada driver</p><div id="nr-dp"></div></div>
@@ -240,7 +240,7 @@ td.prev{color:#a0a7b4}
   </div>
   <div class="grid2">
     <div class="card"><h2>RMD por supervisor</h2><p class="muted" style="margin-top:-4px">Según el vendedor de cada cliente en Chess</p><div class="tblwrap free"><table id="rr-sup-t"></table></div></div>
-    <div class="card"><h2>Estado de los planes de acción</h2><div id="rr-planes"></div></div>
+    <div class="card"><h2>Estado de los planes de acción</h2><div id="rr-planes"></div><h3 style="margin-top:18px">¿Sirvieron las intervenciones?</h3><div id="rr-efecto"></div></div>
   </div>
   <div class="grid2">
     <div class="card"><h2>Motivos en calificaciones detractoras</h2><div id="rr-mot"></div></div>
@@ -594,6 +594,7 @@ function buildRows(){
     return { id, kind:'nps', cod:e.c, nombre: e.n || ci.rs || '', fecha:e.f, mes:(e.f||'').slice(0,7), score:e.s, cat:e.k, drivers:e.dr||[], cmt:e.cm||'', ...ci };
   });
   addRepit(S.npsRows, r => r.cod);
+  linkCliente(S.npsRows, r => r.cod);
   S.npsRows.sort((a,b)=> b.fecha.localeCompare(a.fecha) || a.nombre.localeCompare(b.nombre));
   // RMD
   buildNameIdx();
@@ -610,6 +611,7 @@ function buildRows(){
   // envíos por cliente/mes
   S.rmdEnv = Object.entries(S.rmdEnvRaw||{}).map(([k,v]) => { const [ck, ym] = k.split('_'); const cod = ck[0]==='c' ? ck.slice(1) : null;
     return { cod, mes: `${ym.slice(0,4)}-${ym.slice(4,6)}`, e:v.e||0, p:v.p||0, ...cliInfo(cod) }; });
+  linkCliente(S.rmdRows, r => r.cod || ('n'+nameKey(r.nombre)));
   S.rmdRows.sort((a,b)=> b.fecha.localeCompare(a.fecha) || a.nombre.localeCompare(b.nombre));
   S.cruce = Object.entries(cruce).map(([k,v])=>({k,...v})).sort((a,b)=> a.st.localeCompare(b.st) || a.n.localeCompare(b.n));
 }
@@ -773,6 +775,49 @@ function respOptions(sector, cur){
   if (cur && !list.some(r=>r.n===cur)) h += `<option selected>${esc(cur)}</option>`;
   return h;
 }
+/* ----- intervenciones: qué pasó antes y después de un plan ----- */
+function linkCliente(rows, keyFn){
+  const by = {}; rows.forEach(r => (by[keyFn(r)] ||= []).push(r));
+  Object.values(by).forEach(l => { l.sort((a,b)=>a.fecha.localeCompare(b.fecha)); l.forEach(r => r.cli = l); });
+}
+const RANK = { D:0, N:1, P:2 };
+const hasPlan = (kind,r) => { const sg = segOf(kind, r.id); return !!(sg && (sg.plan || sg.status)); };
+function despues(r){ return r.cli.filter(x => x.fecha > r.fecha); }
+function efecto(r){   // solo para filas con intervención
+  const af = despues(r); if (!af.length) return null;
+  if (r.kind==='nps'){ const nx = af[0]; const d = RANK[nx.cat] - RANK[r.cat]; return { st: d>0 ? 'mejoro' : d<0 ? 'empeoro' : 'igual', af }; }
+  const det = af.filter(x=>x.cat==='D').length; return { st: det ? 'repitio' : 'mejoro', af, det, avg: rmdOf(af).avg };
+}
+const EF_TXT = { mejoro:['✅ MEJORÓ','pill-ok'], igual:['➖ SIGUE IGUAL','pill-mid'], empeoro:['⚠ EMPEORÓ','pill-bad'], repitio:['⚠ VOLVIÓ A CALIFICAR MAL','pill-bad'] };
+function intervHtml(r){
+  const sc = KIND[r.kind].catShort; let h = '';
+  // 1) esta fila tiene plan → qué respondió después
+  if (hasPlan(r.kind, r)){
+    const ef = efecto(r);
+    if (!ef) h += `<div class="hist" style="background:#eef6ff">🛠 Con intervención · <span class="muted">todavía no volvió a responder</span></div>`;
+    else if (r.kind==='nps') h += `<div class="hist" style="background:#eef6ff">🛠 Después de la intervención respondió: ${ef.af.slice(0,3).map(x=>`${fmtDM(x.fecha)} <span class="h${x.cat}">${x.score} ${sc[x.cat]}</span>`).join(' → ')} <span class="${EF_TXT[ef.st][1]}">${EF_TXT[ef.st][0]}</span></div>`;
+    else h += `<div class="hist" style="background:#eef6ff">🛠 Después de la intervención: ${ef.af.length} calif. · prom ${fmtN(ef.avg,1)}★ · ${ef.det} detractora${ef.det===1?'':'s'} <span class="${EF_TXT[ef.st][1]}">${EF_TXT[ef.st][0]}</span></div>`;
+  }
+  // 2) el cliente ya tuvo una intervención anterior
+  const prev = r.cli.filter(x => x.fecha < r.fecha && hasPlan(r.kind, x));
+  if (prev.length){
+    const last = prev.at(-1); const sg = segOf(r.kind, last.id) || {};
+    const tip = prev.map(x => { const g = segOf(r.kind,x.id)||{}; return `${fmtDate(x.fecha)} (${r.kind==='rmd'?fmtN(x.score,1)+'★':x.score}): ${g.plan||'(sin plan)'} · ${g.status||'sin status'}${g.resp?' · '+g.resp:''}`; }).join('\n');
+    h += `<div class="hist" style="background:#fff4e5" title="${esc(tip)}">🛠 <b>Ya tuvo ${prev.length} intervención${prev.length>1?'es':''}</b> · última ${fmtDM(last.fecha)}: <i>${esc((sg.plan||'').slice(0,90))}${(sg.plan||'').length>90?'…':''}</i> <span class="muted">(${esc(sg.status||'sin status')})</span></div>`;
+  }
+  return h;
+}
+function efectoTabla(kind, list){
+  const iv = list.filter(r => hasPlan(kind, r));
+  const c = { mejoro:0, igual:0, empeoro:0, repitio:0, sin:0 };
+  iv.forEach(r => { const e = efecto(r); c[e ? e.st : 'sin']++; });
+  const row = (l,v,cls) => `<tr><td>${l}</td><td class="r"><span class="${cls}">${v}</span></td></tr>`;
+  if (!iv.length) return '<p class="muted">Todavía no hay intervenciones cargadas en el período.</p>';
+  return `<table><tr><th>${kind==='nps'?'Después de la intervención, la siguiente respuesta…':'Después de la intervención…'}</th><th class="r">Clientes</th></tr>` +
+    row('✅ Mejoró' + (kind==='rmd'?' (no volvió a calificar mal)':' de categoría'), c.mejoro, 'pill-ok') +
+    (kind==='nps' ? row('➖ Siguió igual', c.igual, 'pill-mid') + row('⚠ Empeoró', c.empeoro, 'pill-bad') : row('⚠ Volvió a calificar mal', c.repitio, 'pill-bad')) +
+    row('Todavía no volvió a responder', c.sin, 'pill-off') + `<tr style="background:#f6f7f9"><td><b>Total intervenidos</b></td><td class="r"><b>${iv.length}</b></td></tr></table>`;
+}
 function histHtml(r){
   if (r.repTot < 2) return '';
   const sc = KIND[r.kind].catShort;
@@ -790,7 +835,7 @@ function rowHtml(r){
   const cliente = `<td style="min-width:200px"><b>${esc(r.nombre)}</b>${r.fant?`<div class="muted" style="font-size:11px">${esc(r.fant)}</div>`:''}
       <div class="who">${r.cod?'Cód. '+esc(r.cod):''}${r.ruta?' · Ruta '+esc(r.ruta):''}${r.sub?' · '+esc(r.sub):''}${r.loc?' · '+esc(r.loc):''}</div>
       ${r.anu?'<span class="badge b-anu">ANULADO</span>':''}${kind==='rmd' && r.match==='amb'?'<span class="badge b-venc" title="Hay más de un cliente con ese nombre en Chess. Resolvé en ANALISTA → Cruce">CÓDIGO DUDOSO</span>':''}${!r.enChess?'<span class="badge b-venc">SIN CRUCE CHESS</span>':''}
-      ${histHtml(r)}</td>`;
+      ${histHtml(r)}${intervHtml(r)}</td>`;
   const vend = `<td style="min-width:130px">${esc(r.vend?r.vend+' · ':'')}${esc(r.vendNom)}<div class="who">${esc(r.sup)}</div></td>`;
   if (kind==='nps'){
     const drv = r.drivers.map(d => `<span class="drv"><b>${esc(d[0])}</b>${d[1] && d[1]!=='Ninguno' ? ' › '+esc(d[1]) : ''}</span>`).join('');
@@ -846,6 +891,7 @@ function patchRow(kind, id){
   if (tr.contains(document.activeElement)){ const sm = semaforo(r); tr.className = 'r-'+sm; tr.firstElementChild.className = 'sem sem-'+sm; return; }
   tr.outerHTML = rowHtml(r);
 }
+function patchClient(kind, id){ const r = KIND[kind].rows().find(x=>x.id===id); (r && r.cli ? r.cli : [{id}]).forEach(x => patchRow(kind, x.id)); }
 async function saveField(kind, id, f, val){
   if (!S.user){ askUser(); return; }
   const store = S.segs[KIND[kind].seg]; const cur = store[id] || {};
@@ -854,7 +900,7 @@ async function saveField(kind, id, f, val){
   if (!cur.cu){ upd.cu = S.user; upd.ct = Date.now(); }
   store[id] = Object.assign({}, cur, upd);
   try{ await DB.update(`${KIND[kind].seg}/${id}`, upd); toast('Guardado ✓'); } catch(e){ console.error(e); toast('⚠ Error al guardar'); }
-  patchRow(kind, id); renderRevKpis(kind, filtered(kind));
+  patchClient(kind, id); renderRevKpis(kind, filtered(kind));
 }
 
 /* ===================== NPS RESUMEN ===================== */
@@ -915,7 +961,7 @@ function renderNpsRes(){
   const cnt = fn => { const m={}; det.forEach(r => new Set(r.drivers.map(fn).filter(x=>x && x!=='Ninguno')).forEach(x => m[x]=(m[x]||0)+1)); return Object.entries(m).sort((a,b)=>b[1]-a[1]); };
   $('#nr-dp').innerHTML = bars(cnt(d=>d[0]), 20, 'Sin detractores en el período.');
   $('#nr-ds').innerHTML = bars(cnt(d=>d[1]), 12, 'Sin detractores en el período.');
-  $('#nr-planes').innerHTML = planesHtml('nps', list);
+  $('#nr-planes').innerHTML = planesHtml('nps', list); $('#nr-efecto').innerHTML = efectoTabla('nps', list);
 }
 $('#nr-per').onchange = () => { ls.set('nps_nrPer', $('#nr-per').value); renderNpsRes(); };
 $('#nr-sup').onchange = () => { ls.set('nps_nrSup', $('#nr-sup').value); renderNpsRes(); };
@@ -978,7 +1024,7 @@ function renderRmdRes(){
   $('#rr-mot').innerHTML = bars(Object.entries(mot).sort((a,b)=>b[1]-a[1]), 15, 'La base no trae motivos. Exportá con el nivel “Motivo Puntuación” para verlos acá.');
   const top = {}; det.forEach(r => { const k = r.nombre + (r.cod?` (${r.cod})`:''); top[k]=(top[k]||0)+1; });
   $('#rr-top').innerHTML = bars(Object.entries(top).sort((a,b)=>b[1]-a[1]), 12, 'Sin calificaciones detractoras en el período.');
-  $('#rr-planes').innerHTML = planesHtml('rmd', list);
+  $('#rr-planes').innerHTML = planesHtml('rmd', list); $('#rr-efecto').innerHTML = efectoTabla('rmd', list);
 }
 $('#rr-per').onchange = () => { ls.set('nps_rrPer', $('#rr-per').value); renderRmdRes(); };
 $('#rr-sup').onchange = () => { ls.set('nps_rrSup', $('#rr-sup').value); renderRmdRes(); };
@@ -1239,20 +1285,38 @@ $('#btnExport').onclick = () => {
 };
 
 /* ===================== usuario ===================== */
+function userNames(sec){
+  const rs = responsables();
+  if (sec==='Ventas') return [...new Set(rs.filter(r=>r.s==='Ventas').map(r=>r.n.toUpperCase()).concat(supervisores()))].sort();
+  if (sec==='Logística') return rs.filter(r=>r.s==='Logística').map(r=>r.n.toUpperCase()).sort();
+  return ['ANALISTA'];
+}
 function askUser(){
   if (document.querySelector('.overlay')) return;
   const ov = document.createElement('div'); ov.className = 'overlay';
+  const prevSec = ls.get('nps_user_sec', 'Ventas');
   ov.innerHTML = `<div class="modal"><h2>¿Quién sos?</h2><p class="muted" style="margin-top:-6px">Queda registrado en cada carga.</p>
-    <select id="uSel" style="width:100%;margin-bottom:8px">${supervisores().map(s=>`<option>${esc(s)}</option>`).join('')}<option>ANALISTA</option><option value="__otro">Otro…</option></select>
+    <label class="f" style="margin-bottom:8px">Sector<select id="uSec" style="width:100%"><option>Ventas</option><option>Logística</option><option>Otro</option></select></label>
+    <label class="f" style="margin-bottom:8px">Nombre<select id="uSel" style="width:100%"></select></label>
     <input id="uOtro" placeholder="Nombre y apellido" style="width:100%;display:none;margin-bottom:8px">
+    <p class="muted" id="uHint" style="font-size:12px;margin:0 0 8px"></p>
     <div class="row" style="justify-content:flex-end"><button class="btn" id="uOk">Entrar</button></div></div>`;
   document.body.appendChild(ov);
-  const sel = ov.querySelector('#uSel'), otro = ov.querySelector('#uOtro');
-  if (S.user && [...sel.options].some(o=>o.value===S.user)) sel.value = S.user;
+  const sec = ov.querySelector('#uSec'), sel = ov.querySelector('#uSel'), otro = ov.querySelector('#uOtro'), hint = ov.querySelector('#uHint');
+  sec.value = ['Ventas','Logística','Otro'].includes(prevSec) ? prevSec : 'Ventas';
+  const fill = () => {
+    const names = userNames(sec.value); const keep = sel.value || S.user;
+    sel.innerHTML = names.map(n=>`<option>${esc(n)}</option>`).join('') + '<option value="__otro">Otro (escribir)…</option>';
+    if ([...sel.options].some(o=>o.value===keep)) sel.value = keep; else sel.selectedIndex = 0;
+    otro.style.display = sel.value==='__otro' ? '' : 'none';
+    hint.textContent = sec.value==='Logística' && !names.length ? 'Todavía no hay responsables de Logística cargados (se cargan en ANALISTA → Responsables). Elegí “Otro” y escribí tu nombre.' : '';
+  };
+  ov._fill = fill; fill();
+  sec.onchange = () => { sel.value=''; fill(); };
   sel.onchange = () => otro.style.display = sel.value==='__otro' ? '' : 'none';
   ov.querySelector('#uOk').onclick = () => {
     const u = sel.value==='__otro' ? otro.value.trim().toUpperCase() : sel.value; if (!u) return;
-    S.user = u; ls.set('nps_user', u); $('#userChip').textContent = '👤 ' + u; ov.remove();
+    S.user = u; ls.set('nps_user', u); ls.set('nps_user_sec', sec.value); $('#userChip').textContent = '👤 ' + u; ov.remove();
     if (!ls.get('nps_filtros_init', false) && supervisores().includes(u)){ FST.nps.sup = u; FST.rmd.sup = u; ls.set('nps_f_nps', FST.nps); ls.set('nps_f_rmd', FST.rmd); ls.set('nps_filtros_init', true); renderAll(); }
   };
 }
@@ -1281,7 +1345,7 @@ function renderHeader(){
   $('#baseInfo').innerHTML = `📋 NPS: ${ne ? ne+' enc.' : red('sin base')} · RMD: ${nd ? nr+' calif.' : red('sin base')} · Clientes: ${nc ? nc : red('sin base')}`;
 }
 let rT = null;
-function renderAll(){ clearTimeout(rT); rT = setTimeout(() => { buildRows(); renderHeader(); renderTab(); }, 30); }
+function renderAll(){ clearTimeout(rT); rT = setTimeout(() => { buildRows(); renderHeader(); renderTab(); const ov=document.querySelector('.overlay'); if (ov && ov._fill) ov._fill(); }, 30); }
 
 (async function start(){
   buildFilterBar('nps'); buildFilterBar('rmd');
@@ -1298,14 +1362,14 @@ function renderAll(){ clearTimeout(rT); rT = setTimeout(() => { buildRows(); ren
     const old = S.segs[key]; S.segs[key] = v||{};
     const kind = key==='seg' ? 'nps' : 'rmd';
     if (curTab===kind+'-rev' && ready[key]){
-      new Set([...Object.keys(old), ...Object.keys(S.segs[key])]).forEach(id => { if (JSON.stringify(old[id])!==JSON.stringify(S.segs[key][id])) patchRow(kind, id); });
+      new Set([...Object.keys(old), ...Object.keys(S.segs[key])]).forEach(id => { if (JSON.stringify(old[id])!==JSON.stringify(S.segs[key][id])) patchClient(kind, id); });
       renderRevKpis(kind, filtered(kind));
     } else renderAll();
     ready[key] = true;
   }));
   $('#userChip').textContent = '👤 ' + (S.user || 'elegir usuario');
   showTab(curTab);
-  if (!S.user) setTimeout(askUser, 400);
+  if (!S.user) setTimeout(askUser, 900);
 })();
 </script>
 </body>
