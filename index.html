@@ -1,0 +1,1312 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seguimiento NPS - RMD</title>
+<link rel="icon" href="data:image/png;base64,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">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root{
+  --bg:#f3f4f6; --card:#fff; --ink:#1f2328; --mute:#667085; --line:#e3e6eb;
+  --navy:#2b2f36; --navy2:#3a3f48; --acc:#f07f1d; --grey:#8c8f94;
+  --prom:#1e9e5a; --neu:#9aa3b2; --det:#d64545;
+  --s-rojo:#d64545; --s-naranja:#ef8a17; --s-amarillo:#e9c21b; --s-verde:#1e9e5a; --s-gris:#c3c9d3;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:14px}
+.brand{background:linear-gradient(90deg,#0d0f12 0%,#1a1d22 100%);display:flex;align-items:center;gap:16px;padding:12px 22px;flex-wrap:wrap}
+.brand img{height:46px;filter:drop-shadow(0 0 1px rgba(255,255,255,.25))}
+.brand .ttl{display:flex;flex-direction:column;line-height:1.15}
+.brand .ttl b{color:#fff;font-size:20px;letter-spacing:2px;font-weight:800}
+.brand .ttl span{color:var(--acc);font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-top:3px}
+.brand .hright{margin-left:auto;display:flex;gap:8px;align-items:center;font-size:12px;flex-wrap:wrap}
+.chip{background:#2a2e35;color:#d5d8de;padding:5px 10px;border-radius:20px;white-space:nowrap;border:1px solid #363b44}
+.chip.click{cursor:pointer}.chip.click:hover{background:#353a42}
+nav{border-top:1px solid #2c3037;border-bottom:3px solid var(--acc)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle}
+nav{background:#1a1d22;display:flex;gap:6px;padding:6px 20px;flex-wrap:wrap;position:sticky;top:0;z-index:20;align-items:center}
+nav button{background:transparent;color:#d5d8de;border:0;padding:7px 13px;border-radius:6px;font-weight:600;cursor:pointer;font-size:13px}
+nav button:hover{background:var(--navy2)}
+nav button.on{background:var(--navy2);color:#fff;box-shadow:inset 0 -3px 0 var(--acc)}
+nav .grp{display:flex;align-items:center;gap:2px;border:1px solid #4a505a;border-radius:8px;padding:2px 4px 2px 10px}
+nav .grp>span{color:var(--acc);font-weight:800;font-size:12px;margin-right:4px;letter-spacing:.5px}
+main{padding:18px 20px;max-width:1750px;margin:0 auto}
+.tab{display:none}.tab.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:16px}
+.card h2{font-size:16px;margin:0 0 10px}
+.card h3{font-size:14px;margin:14px 0 6px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px}
+.muted{color:var(--mute)}
+.btn{background:var(--navy);color:#fff;border:0;border-radius:6px;padding:8px 14px;font-weight:600;cursor:pointer;font-size:13px;text-decoration:none;display:inline-block}
+.btn.sec{background:#e8ebf0;color:var(--ink)}
+.btn.acc{background:var(--acc);color:#fff}
+input,select,textarea{font:inherit;font-size:13px;border:1px solid #cfd4dc;border-radius:6px;padding:6px 8px;background:#fff;color:var(--ink)}
+textarea{resize:vertical}
+label.f{display:flex;flex-direction:column;gap:3px;font-size:11px;font-weight:600;color:var(--mute);text-transform:uppercase;letter-spacing:.3px}
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.filters select,.filters input[type=search]{min-width:140px;max-width:240px}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:120px}
+.kpi .v{font-size:22px;font-weight:700}
+.kpi .l{font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.3px}
+.kpi.click{cursor:pointer}.kpi.click:hover{border-color:var(--acc)}
+.kpi.sel{outline:2px solid var(--acc)}
+.tblwrap{overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff;max-height:calc(100vh - 300px)}
+.tblwrap.free{max-height:none}
+table{border-collapse:collapse;width:100%}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#eef0f3;font-size:11px;text-transform:uppercase;letter-spacing:.3px;color:#3d4450;position:sticky;top:0;z-index:2;white-space:nowrap}
+.rev td{font-size:12.5px}
+.rev textarea{width:100%;min-width:170px;min-height:46px;font-size:12px}
+.rev select,.rev input[type=date]{font-size:12px;width:100%;min-width:110px}
+.sem{width:6px;padding:0!important}
+.sem-rojo{background:var(--s-rojo)}.sem-naranja{background:var(--s-naranja)}.sem-amarillo{background:var(--s-amarillo)}.sem-verde{background:var(--s-verde)}.sem-gris{background:var(--s-gris)}
+tr.r-rojo{background:#fdf2f2}
+.cat{display:inline-block;padding:2px 8px;border-radius:12px;font-weight:700;font-size:11px;color:#fff}
+.cat-D{background:var(--det)}.cat-N{background:var(--neu)}.cat-P{background:var(--prom)}
+.score{font-weight:700;font-size:15px}
+.stars{color:#f5a623;letter-spacing:1px;font-size:12px}
+.drv{display:block;font-size:11.5px;margin-bottom:3px;line-height:1.3}
+.drv b{font-weight:600}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:4px;margin:2px 3px 0 0}
+.b-rep{background:#ede4ff;color:#5a2db3}
+.b-anu{background:#222;color:#fff}
+.b-venc{background:#fde7cf;color:#a14f00}
+.hist{margin-top:3px;font-size:11px;line-height:1.5;background:#f6f2ff;border-radius:5px;padding:3px 6px}
+.hist .c{font-weight:700;text-decoration:underline}
+.hD{color:var(--det);font-weight:700}.hN{color:#6b7380;font-weight:700}.hP{color:var(--prom);font-weight:700}
+.cm{font-style:italic;color:#3d4450;font-size:12px;max-width:260px}
+.who{font-size:10.5px;color:var(--mute)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px}
+.legend span{display:flex;align-items:center;gap:6px}
+.sq{width:14px;height:14px;border-radius:3px;display:inline-block}
+.bar{display:flex;height:16px;border-radius:4px;overflow:hidden;background:#eef0f3;min-width:160px}
+.bar div{height:100%}
+.hbar{height:12px;background:var(--det);border-radius:3px}
+.pill-ok{background:#dff3e8;color:#11663a;font-weight:700;border-radius:5px;padding:2px 7px}
+.pill-bad{background:#fbe1e1;color:#9b1c1c;font-weight:700;border-radius:5px;padding:2px 7px}
+.pill-mid{background:#fff3d0;color:#7a5a00;font-weight:700;border-radius:5px;padding:2px 7px}
+.pill-off{background:#eef0f3;color:#667085;border-radius:5px;padding:2px 7px}
+.info p,.info li{line-height:1.55}
+.formula{background:#f6f7f9;border-left:4px solid var(--acc);padding:10px 14px;border-radius:6px;font-weight:600}
+.steps{white-space:pre-wrap;background:#f6f7f9;border-radius:8px;padding:12px 14px;line-height:1.55}
+.overlay{position:fixed;inset:0;background:rgba(30,33,38,.55);display:flex;align-items:center;justify-content:center;z-index:50}
+.modal{background:#fff;border-radius:12px;padding:22px;width:min(420px,92vw)}
+.modal h2{margin:0 0 12px;font-size:17px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.warn{background:#fff6e0;border:1px solid #f3d98b;border-radius:8px;padding:10px 12px;font-size:13px}
+.okbox{background:#e6f6ec;border:1px solid #a9dcbc;border-radius:8px;padding:10px 12px;font-size:13px}
+.toast{position:fixed;bottom:18px;right:18px;background:var(--navy);color:#fff;padding:10px 16px;border-radius:8px;opacity:0;transition:.3s;z-index:60;pointer-events:none}
+.toast.on{opacity:1}
+.nowrap{white-space:nowrap}
+.r{text-align:right}
+td.prev{color:#a0a7b4}
+.more{text-align:center;padding:12px}
+.sect{font-size:12px;font-weight:800;color:var(--acc);letter-spacing:.6px;margin:4px 0 10px;text-transform:uppercase}
+@media (max-width:700px){main{padding:12px}.grid2{grid-template-columns:1fr}.brand .ttl b{font-size:16px}}
+</style>
+</head>
+<body>
+<div class="brand">
+  <img src="data:image/png;base64,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" alt="">
+  <div class="ttl"><b>LOGÍSTICA TOTAL SRL</b><span>Seguimiento NPS · RMD</span></div>
+  <div class="hright">
+    <span class="chip" id="baseInfo"></span>
+    <span class="chip" id="conn"><span class="dot" style="background:#999"></span>conectando…</span>
+    <span class="chip click" id="userChip" title="Cambiar usuario">👤 —</span>
+  </div>
+</div>
+<nav id="nav">
+  <button data-t="info">INFO</button>
+  <div class="grp"><span>NPS</span><button data-t="nps-rev">Revisión</button><button data-t="nps-res">Resumen</button></div>
+  <div class="grp"><span>RMD</span><button data-t="rmd-rev">Revisión</button><button data-t="rmd-res">Resumen</button></div>
+  <button data-t="adm">ANALISTA 🔒</button>
+</nav>
+<div id="banner" style="display:none;background:#fde2e2;color:#8a1c1c;padding:10px 20px;font-weight:600"></div>
+
+<main>
+<!-- ================= INFO ================= -->
+<section class="tab info" id="t-info">
+  <div class="grid2">
+    <div class="card">
+      <div class="sect">NPS</div>
+      <h2>¿Qué es el NPS?</h2>
+      <p>El <b>NPS (Net Promoter Score)</b> mide la lealtad de los clientes según la calificación que le dan a CMQ y a cada distribuidor como proveedores, considerando la experiencia completa que tienen con nosotros.</p>
+      <p>Las encuestas se hacen a través de <b>BEES</b>: <i>“Del 0 al 10, ¿qué tan probable es que recomiendes Cervecería y Maltería Quilmes a otro negocio como el tuyo?”</i></p>
+      <ul>
+        <li><span class="cat cat-D">DETRACTOR</span> <b>0 a 6</b>: no están satisfechos con los productos, el servicio o la compañía.</li>
+        <li><span class="cat cat-N">NEUTRO</span> <b>7 y 8</b>.</li>
+        <li><span class="cat cat-P">PROMOTOR</span> <b>9 y 10</b>: clientes leales, compran más y nos recomiendan.</li>
+      </ul>
+      <div class="formula">NPS = % PROMOTORES − % DETRACTORES</div>
+      <p class="muted">Ej.: 100 encuestados → 60 promotores, 10 neutros, 30 detractores → NPS = 60% − 30% = <b>30</b>.</p>
+      <p>Cada encuesta trae <b>drivers</b>: el <b>primario</b> es el tema (Entrega, Vendedor, App BEES, Precios…) y el <b>secundario</b> el motivo puntual.</p>
+      <p><a id="lnkTablero" class="btn acc" target="_blank" rel="noopener" href="#">📊 Abrir tablero NPS (Power BI)</a></p>
+      <h3>Cómo descargar la base NPS</h3>
+      <div class="steps" id="infoDescarga"></div>
+    </div>
+    <div class="card">
+      <div class="sect">RMD</div>
+      <h2>¿Qué es el RMD?</h2>
+      <div class="steps" id="infoRmd"></div>
+      <p style="margin-top:12px"><a id="lnkTableroRmd" class="btn acc" target="_blank" rel="noopener" href="#">📊 Abrir tablero RMD (Power BI)</a></p>
+      <h3>Cómo descargar la base RMD</h3>
+      <div class="steps" id="infoDescargaRmd"></div>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h2>Escala de colores (Revisión NPS y RMD)</h2>
+      <table>
+        <tr><td class="sem sem-rojo"></td><td><b>Rojo – Falta completar.</b> Detractor (NPS) o calificación detractora (RMD) sin plan completo. <b>Obligatorio.</b></td></tr>
+        <tr><td class="sem sem-naranja"></td><td><b>Naranja – Compromiso vencido.</b> Tiene plan, la fecha compromiso pasó y sigue abierto.</td></tr>
+        <tr><td class="sem sem-amarillo"></td><td><b>Amarillo – En curso.</b> Plan cargado en Pendiente / En gestión dentro de fecha (o carga opcional incompleta).</td></tr>
+        <tr><td class="sem sem-verde"></td><td><b>Verde – Cerrado.</b> Status Resuelto o Sin solución.</td></tr>
+        <tr><td class="sem sem-gris"></td><td><b>Gris – Opcional.</b> Neutros, promotores o calificaciones positivas sin carga.</td></tr>
+      </table>
+      <p class="muted" style="margin-top:10px">Un plan está <b>completo</b> con: Plan de acción, Sector, Responsable, Status y Fecha compromiso (la fecha no hace falta si el status es Resuelto o Sin solución).</p>
+    </div>
+    <div class="card">
+      <h2>Cómo se trabaja</h2>
+      <ol>
+        <li>Entrá a <b>Revisión</b> de NPS o RMD y filtrá por tu supervisor.</li>
+        <li>Prioridad: filas en <b style="color:var(--s-rojo)">rojo</b>.</li>
+        <li>Si el cliente figura <span class="badge b-rep">REPITE</span>, abajo de su nombre ves todas sus respuestas (la actual subrayada).</li>
+        <li>Cargá Comentario, Plan de acción, Sector (Ventas / Logística), Responsable, Fecha compromiso y Status. Se guarda solo al salir de cada campo.</li>
+        <li>Al resolver, pasá a <b>Resuelto</b> (o <b>Sin solución</b>).</li>
+      </ol>
+      <div class="formula" id="infoObj"></div>
+      <p class="muted" id="infoMeta"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NPS REVISIÓN ================= -->
+<section class="tab" id="t-nps-rev">
+  <div class="kpis" id="nps-kpis"></div>
+  <div class="card" style="padding:12px 14px"><div class="filters" id="nps-filters"></div></div>
+  <div class="tblwrap"><table class="rev" id="nps-tbl"><thead></thead><tbody></tbody></table><div class="more" id="nps-more"></div></div>
+  <p class="muted" id="nps-count"></p>
+</section>
+
+<!-- ================= NPS RESUMEN ================= -->
+<section class="tab" id="t-nps-res">
+  <div class="card" style="padding:12px 14px"><div class="filters">
+    <label class="f">Período<select id="nr-per"></select></label>
+    <label class="f">Supervisor<select id="nr-sup"></select></label>
+    <span class="muted" id="nr-obj" style="font-size:12px"></span>
+    <button class="btn acc" style="margin-left:auto" onclick="exportRes('nps')">⬇ Excel del resumen</button>
+  </div></div>
+  <div class="kpis" id="nr-kpis"></div>
+  <div class="card">
+    <h2>NPS por mes</h2>
+    <div class="legend" style="margin-bottom:8px"><span><i class="sq" style="background:var(--prom)"></i>Promotores</span><span><i class="sq" style="background:var(--neu)"></i>Neutros</span><span><i class="sq" style="background:var(--det)"></i>Detractores</span></div>
+    <div class="tblwrap free"><table id="nr-mes"></table></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h2>NPS por supervisor</h2><div class="tblwrap free"><table id="nr-sup-t"></table></div></div>
+    <div class="card"><h2>Estado de los planes de acción</h2><div id="nr-planes"></div></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h2>Drivers primarios en detractores</h2><p class="muted" style="margin-top:-4px">Encuestas detractoras que marcaron cada driver</p><div id="nr-dp"></div></div>
+    <div class="card"><h2>Top motivos (driver secundario) en detractores</h2><div id="nr-ds"></div></div>
+  </div>
+  <div class="card"><h2>NPS por vendedor</h2><p class="muted" style="margin-top:-4px">Ojo con pocos casos: con 2 o 3 encuestas un solo detractor mueve mucho el NPS.</p><div class="tblwrap free"><table id="nr-ven"></table></div></div>
+</section>
+
+<!-- ================= RMD REVISIÓN ================= -->
+<section class="tab" id="t-rmd-rev">
+  <div id="rmd-warn"></div>
+  <div class="kpis" id="rmd-kpis"></div>
+  <div class="card" style="padding:12px 14px"><div class="filters" id="rmd-filters"></div></div>
+  <div class="tblwrap"><table class="rev" id="rmd-tbl"><thead></thead><tbody></tbody></table><div class="more" id="rmd-more"></div></div>
+  <p class="muted" id="rmd-count"></p>
+</section>
+
+<!-- ================= RMD RESUMEN ================= -->
+<section class="tab" id="t-rmd-res">
+  <div class="card" style="padding:12px 14px"><div class="filters">
+    <label class="f">Período<select id="rr-per"></select></label>
+    <label class="f">Supervisor (detalle por cliente)<select id="rr-sup"></select></label>
+    <span class="muted" id="rr-obj" style="font-size:12px"></span>
+    <button class="btn acc" style="margin-left:auto" onclick="exportRes('rmd')">⬇ Excel del resumen</button>
+  </div></div>
+  <div id="rr-warn"></div>
+  <div class="kpis" id="rr-kpis"></div>
+  <div class="card">
+    <h2>RMD por mes (totales del distribuidor)</h2>
+    <div class="tblwrap free"><table id="rr-mes"></table></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h2>RMD por supervisor</h2><p class="muted" style="margin-top:-4px">Según el vendedor de cada cliente en Chess</p><div class="tblwrap free"><table id="rr-sup-t"></table></div></div>
+    <div class="card"><h2>Estado de los planes de acción</h2><div id="rr-planes"></div></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h2>Motivos en calificaciones detractoras</h2><div id="rr-mot"></div></div>
+    <div class="card"><h2>Clientes con más calificaciones detractoras</h2><div id="rr-top"></div></div>
+  </div>
+  <div class="card"><h2>RMD por vendedor</h2><p class="muted" style="margin-top:-4px">Ordenado por cantidad de calificaciones detractoras</p><div class="tblwrap free"><table id="rr-ven"></table></div></div>
+</section>
+
+<!-- ================= ANALISTA ================= -->
+<section class="tab" id="t-adm">
+  <div id="admLock" class="card" style="max-width:380px">
+    <h2>🔒 Acceso analista</h2>
+    <div class="row"><input type="password" id="admPass" placeholder="Contraseña"><button class="btn" id="admGo">Entrar</button></div>
+    <p style="color:var(--det);display:none" id="admErr">Contraseña incorrecta</p>
+  </div>
+  <div id="admBody" style="display:none">
+    <div class="grid2">
+      <div class="card"><h2>NPS · % detractores con plan completo</h2><p class="muted" style="margin-top:-4px">Objetivo 100% desde <b class="iniTxt"></b>. Meses previos como referencia.</p><div class="tblwrap free"><table id="comp-nps"></table></div></div>
+      <div class="card"><h2>RMD · % calificaciones detractoras con plan completo</h2><p class="muted" style="margin-top:-4px">Objetivo 100% desde <b class="iniTxt"></b>.</p><div class="tblwrap free"><table id="comp-rmd"></table></div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h2>1 · Cargar BASE DISTRI (NPS)</h2>
+        <p class="muted">Excel del tablero NPS, año completo, solo Logística Total. Se carga apenas elegís el archivo. Los seguimientos se conservan.</p>
+        <input type="file" id="upNps" accept=".xlsx,.xls">
+        <div id="upNpsMsg" style="margin-top:8px"></div>
+      </div>
+      <div class="card">
+        <h2>2 · Cargar base RMD</h2>
+        <p class="muted">Excel “Apertura Clientes RMD”. Reemplaza la base RMD anterior; los seguimientos se conservan (atados a fecha + cliente).</p>
+        <input type="file" id="upRmd" accept=".xlsx,.xls">
+        <div id="upRmdMsg" style="margin-top:8px"></div>
+      </div>
+      <div class="card">
+        <h2>3 · Cargar TOTAL CLIENTES (Chess)</h2>
+        <p class="muted">Bajada “Total Clientes” de Chess (activos y anulados, como Clientes_8.xlsx). Da vendedor, ruta, subcanal y localidad de cada cliente; los anulados se marcan con la etiqueta ANULADO.</p>
+        <input type="file" id="upCli" accept=".xlsx,.xls">
+        <div id="upCliMsg" style="margin-top:8px"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sect">RMD</div>
+      <h2>¿Qué es el RMD y cómo se usa en este archivo?</h2>
+      <div class="grid2">
+        <div>
+          <div class="steps" id="admRmdInfo"></div>
+          <h3>Cómo lee el archivo la base RMD</h3>
+          <ul class="muted" style="line-height:1.55">
+            <li>Formato esperado: apertura <b>Código Cliente → Nombre → Motivo → Fecha</b>, todo expandido. Se usan solo las filas con fecha (cada una es un cliente en un día); los subtotales “Total” se ignoran.</li>
+            <li>Con esas filas se arman los <b>totales por día y por mes</b> (enviadas, puntuadas, % respuesta, RMD promedio, detractoras) y el <b>% de respuesta por vendedor y supervisor</b>.</li>
+            <li>Solo las calificaciones <b>respondidas</b> pasan a Revisión. Es <b>detractora</b> si la base la cuenta en #PUNTUACIONES_DETRACTORAS (1 a 3 ★).</li>
+            <li>El <b>motivo</b> se muestra solo en calificaciones de menos de 5 ★ (en las de 5 ★ la base trae “Productos dañados” por defecto y no significa nada).</li>
+            <li>El código BEES (473112000…) se convierte al código de Chess sacándole el prefijo 47311200. Si se carga una base vieja sin código, se cruza por Razón Social y los dudosos se resuelven en “Cruce RMD ↔ Chess”.</li>
+          </ul>
+        </div>
+        <div style="display:grid;gap:10px">
+          <label class="f">Texto “¿Qué es el RMD?” (se muestra en INFO)<textarea id="cfgRmdInfo" rows="11"></textarea></label>
+          <label class="f">Pasos para descargar la base RMD<textarea id="cfgRmdDesc" rows="7"></textarea></label>
+          <label class="f">Link al tablero RMD<input type="url" id="cfgRmdLink"></label>
+          <div><button class="btn" id="cfgRmdSave">Guardar textos RMD</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Cruce RMD ↔ Chess</h2>
+      <p class="muted" style="margin-top:-4px">Clientes del RMD que no cruzaron por nombre o que tienen más de un código en Chess. Escribí el código de Chess correcto y guardá (queda guardado para siempre para ese nombre).</p>
+      <div id="cruce"></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h2>4 · Configuración general</h2>
+        <div style="display:grid;gap:10px">
+          <div class="row">
+            <label class="f">Objetivo NPS<input type="number" id="cfgObj" step="0.1" style="width:120px"></label>
+            <label class="f">Objetivo RMD (prom.)<input type="number" id="cfgObjRmd" step="0.01" style="width:120px"></label>
+            <label class="f">Objetivo % respuesta RMD<input type="number" id="cfgObjResp" step="1" style="width:120px"></label>
+          </div>
+          <p class="muted" style="margin:0;font-size:12px">Vacío = sin objetivo (no se pinta verde/rojo).</p>
+          <label class="f">Inicio del seguimiento (mes desde el que se exige 100%)<input type="month" id="cfgIni" style="max-width:180px"></label>
+          <label class="f">Link al tablero NPS<input type="url" id="cfgLink"></label>
+          <label class="f">Pasos para descargar la base NPS<textarea id="cfgDesc" rows="7"></textarea></label>
+          <div><button class="btn" id="cfgSave">Guardar configuración</button></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>5 · Responsables</h2>
+        <p class="muted" style="margin-top:-4px">Opciones del desplegable “Responsable” según el sector elegido.</p>
+        <table id="tblResp"></table>
+        <div class="row" style="margin-top:10px">
+          <input id="newRespName" placeholder="Nombre y apellido">
+          <select id="newRespSec"><option>Ventas</option><option>Logística</option></select>
+          <button class="btn" id="addResp">Agregar</button>
+        </div>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h2>6 · Vendedor → Supervisor</h2>
+        <p class="muted" style="margin-top:-4px">Una línea por vendedor: <code>número;SUPERVISOR</code>. Los que no estén quedan “Sin supervisor”.</p>
+        <textarea id="cfgSup" rows="12" style="width:100%;font-family:Consolas,monospace"></textarea>
+        <div style="margin-top:8px"><button class="btn" id="supSave">Guardar</button></div>
+      </div>
+      <div class="card">
+        <h2>7 · Exportar y estado</h2>
+        <p><button class="btn acc" id="btnExport">⬇ Descargar Excel con seguimiento (NPS + RMD)</button></p>
+        <div id="admMeta" class="muted"></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<div class="toast" id="toast"></div>
+
+<script>
+/* =====================================================================
+   CONFIGURACIÓN FIREBASE  (Realtime Database)
+   Pegá acá el objeto de configuración del proyecto NUEVO.
+   Mientras quede en null funciona en MODO LOCAL (solo este navegador).
+   ===================================================================== */
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyBWJt69R-Y-llZQ3TIU_tnv1527SWEYiF0",
+  authDomain: "nps-rmd-logisticatotalsrl.firebaseapp.com",
+  databaseURL: "https://nps-rmd-logisticatotalsrl-default-rtdb.firebaseio.com",
+  projectId: "nps-rmd-logisticatotalsrl",
+  storageBucket: "nps-rmd-logisticatotalsrl.firebasestorage.app",
+  messagingSenderId: "427908739811",
+  appId: "1:427908739811:web:3ca8d7791fcce720d1cbd6"
+};
+/* Ejemplo:
+const FIREBASE_CONFIG = {
+  apiKey: "AIza...", authDomain: "xxx.firebaseapp.com",
+  databaseURL: "https://xxx-default-rtdb.firebaseio.com",
+  projectId: "xxx", storageBucket: "xxx.appspot.com", messagingSenderId: "...", appId: "..."
+};
+*/
+const ROOT = 'nps';
+const ADMIN_PASS = '2026';
+const DIST_PREFIX = '47311200';
+const STATUS = ['Pendiente','En gestión','Resuelto','Sin solución'];
+const CERRADOS = ['Resuelto','Sin solución'];
+const SECTORES = ['Ventas','Logística'];
+const MESES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+const LIMIT = 300;
+const TABLERO = 'https://app.powerbi.com/groups/me/apps/e0c7db8f-18b9-4fe0-b168-09ca41e48352/reports/18389f1f-6f7c-447a-b9b4-3ccdf17ac411/ReportSectiond11dbe88006b02575542?ctid=cef04b19-7776-4a94-b89b-375c77a8f936&experience=power-bi';
+
+const DEFAULT_SUP = `1;CORSINO PEDRO
+7;CORSINO PEDRO
+9;CORSINO PEDRO
+10;CORSINO PEDRO
+11;CORSINO PEDRO
+12;CORSINO PEDRO
+13;CORSINO PEDRO
+21;CORSINO PEDRO
+26;CORSINO PEDRO
+97;CORSINO PEDRO
+3;MORENO FERNANDO
+8;MORENO FERNANDO
+14;MORENO FERNANDO
+15;MORENO FERNANDO
+16;MORENO FERNANDO
+17;MORENO FERNANDO
+18;MORENO FERNANDO
+25;MORENO FERNANDO
+99;MORENO FERNANDO
+100;MORENO FERNANDO
+2;ANTUAL PAULA
+4;ANTUAL PAULA
+5;ANTUAL PAULA
+24;ANTUAL PAULA
+95;ANTUAL PAULA
+6;SECO ROBERTO ENRIQUE
+19;SECO ROBERTO ENRIQUE
+20;SECO ROBERTO ENRIQUE
+96;SECO ROBERTO ENRIQUE
+98;SECO ROBERTO ENRIQUE`;
+
+const DEFAULT_CFG = {
+  objetivo: null, objRmd: null, objResp: null,
+  inicio: '2026-11',
+  link: TABLERO, rmdLink: TABLERO,
+  descarga: `1. Abrir el tablero NPS de Power BI (botón de arriba).
+2. Ir a la página de la base por distribuidor (BASE DISTRI).
+3. Filtros: DISTRIBUIDOR = LOGISTICA TOTAL SRL · AÑO = año actual completo · CD/DISTRI = DISTRI.
+4. En la tabla: “...” (Más opciones) → Exportar datos → .xlsx.
+5. Cargarlo en ANALISTA → 1 · Cargar BASE DISTRI.`,
+  rmdDesc: `1. Abrir el tablero (botón de arriba) e ir a la página de RMD.
+2. Filtros: DISTRIBUIDOR = LOGISTICA TOTAL SRL · AÑO = año actual.
+3. En la apertura elegir, en este orden: Código Cliente → Nombre Cliente → Motivo Puntuación → Fecha Puntuación.
+4. En la matriz usar “Expandir todo un nivel hacia abajo” hasta llegar a la fecha (que se vean todos los niveles).
+5. “...” → Exportar datos → .xlsx.
+6. Cargarlo en ANALISTA → 2 · Cargar base RMD.`,
+  rmdInfo: `RMD (Rate My Delivery) es la calificación que el cliente le da a cada ENTREGA desde BEES, de 1 a 5 estrellas, después de recibir el pedido. Mide la experiencia de entrega (lo que hace Logística: puntualidad, pedido completo, trato del equipo de entrega).
+
+• RMD enviadas: encuestas enviadas al cliente (una por entrega).
+• RMD puntuadas: las que el cliente respondió.
+• % Respuesta = puntuadas / enviadas.
+• #RMD: promedio de estrellas de las calificaciones.
+• Puntuaciones detractoras: calificaciones bajas (en la base aparecen con 1 a 3 estrellas).
+
+Objetivo del seguimiento: gestionar cada calificación detractora (entender qué falló en la entrega y cerrar el tema con el cliente) e impulsar que los clientes califiquen.
+
+(Texto editable desde ANALISTA – ajustalo a la definición del manual.)`,
+  supMap: DEFAULT_SUP,
+  responsables: {},
+  rmdMap: {}
+};
+
+/* ===================== utilidades ===================== */
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ls = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v==null ? d : JSON.parse(v); }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+const norm = s => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g,'').trim().toUpperCase().replace(/\s+/g,' ');
+const normName = s => String(s ?? '').normalize('NFD').replace(/[̀-ͯ]/g,'').toUpperCase().replace(/[^A-Z0-9?]+/g,' ').trim().replace(/\s+/g,' ');
+const nameKey = s => normName(s).replace(/\?/g,'_').replace(/ /g,'_').slice(0,70);
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2200); }
+const pad = n => String(n).padStart(2,'0');
+function fmtDate(iso){ if(!iso) return ''; const [y,m,dd]=iso.slice(0,10).split('-'); return `${dd}/${m}/${y.slice(2)}`; }
+function fmtDM(iso){ if(!iso) return ''; const [y,m,dd]=iso.slice(0,10).split('-'); return `${dd}/${m}`; }
+function mesLbl(ym){ if(!ym) return ''; const [y,m]=ym.split('-'); return `${MESES[+m-1]}-${y.slice(2)}`; }
+function fmtTs(ts){ if(!ts) return ''; const d=new Date(ts); return `${pad(d.getDate())}/${pad(d.getMonth()+1)} ${pad(d.getHours())}:${pad(d.getMinutes())}`; }
+function todayISO(){ const d=new Date(); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
+const fmtN = (v,dec=1) => v==null||isNaN(v) ? '–' : (Math.round(v*10**dec)/10**dec).toLocaleString('es-AR');
+const pct = (a,b) => b ? a/b*100 : null;
+function loadScript(src){ return new Promise((ok,ko)=>{ const s=document.createElement('script'); s.src=src; s.onload=ok; s.onerror=ko; document.head.appendChild(s); }); }
+function showBanner(msg){ const b=$('#banner'); b.textContent=msg; b.style.display=''; }
+const BANNER_LS = '⚠ Este navegador no está guardando los datos (modo local). Lo que cargues se pierde al recargar. Abrí el archivo con Chrome o Edge con doble clic desde la carpeta, no desde una vista previa.';
+
+/* ===================== capa de datos (Firebase / local) ===================== */
+const DB = {
+  mode: 'local', ref: null, tree: {}, listeners: [],
+  async init(){
+    if (FIREBASE_CONFIG && FIREBASE_CONFIG.databaseURL){
+      try{
+        await loadScript('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js');
+        await loadScript('https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js');
+        firebase.initializeApp(FIREBASE_CONFIG);
+        this.ref = firebase.database(); this.mode = 'firebase';
+        this.ref.ref('.info/connected').on('value', s => setConn(s.val() ? 'ok' : 'off'));
+        return;
+      }catch(e){ console.error(e); showBanner('No se pudo conectar a Firebase. Se usa modo local.'); }
+    }
+    this.tree = ls.get('nps_local_tree', {});
+    try{ localStorage.setItem('nps_t','1'); localStorage.removeItem('nps_t'); }catch(e){ showBanner(BANNER_LS); }
+    setConn('local');
+  },
+  _get(path){ return path.split('/').reduce((o,k)=> o==null ? undefined : o[k], this.tree); },
+  _save(){ try{ localStorage.setItem('nps_local_tree', JSON.stringify(this.tree)); }catch(e){ showBanner(BANNER_LS); } },
+  _fire(path){ this.listeners.forEach(l => { if (path.startsWith(l.path) || l.path.startsWith(path)) l.cb(this._get(l.path) ?? null); }); },
+  on(path, cb){
+    if (this.mode==='firebase') return this.ref.ref(`${ROOT}/${path}`).on('value', s => cb(s.val()));
+    this.listeners.push({path, cb}); cb(this._get(path) ?? null);
+  },
+  async set(path, val){
+    if (this.mode==='firebase') return this.ref.ref(`${ROOT}/${path}`).set(val);
+    const ks = path.split('/'); let o = this.tree;
+    ks.slice(0,-1).forEach(k => { if (typeof o[k] !== 'object' || o[k]==null) o[k] = {}; o = o[k]; });
+    if (val==null) delete o[ks.at(-1)]; else o[ks.at(-1)] = JSON.parse(JSON.stringify(val));
+    this._save(); this._fire(path);
+  },
+  async update(path, obj){
+    if (this.mode==='firebase') return this.ref.ref(`${ROOT}/${path}`).update(obj);
+    const cur = this._get(path) || {};
+    await this.set(path, Object.assign({}, cur, obj));
+  }
+};
+function setConn(s){
+  const m = {ok:['#2ecc71','Firebase en línea'], off:['#e74c3c','Sin conexión'], local:['#f2b705','MODO LOCAL (sin Firebase)']}[s];
+  $('#conn').innerHTML = `<span class="dot" style="background:${m[0]}"></span>${m[1]}`;
+}
+
+/* ===================== estado ===================== */
+const S = {
+  enc:{}, rmd:{}, rmdDia:{}, rmdEnvRaw:{}, rmdEnv:[], cli:{}, segs:{seg:{}, segRmd:{}}, cfg:{...DEFAULT_CFG}, meta:{},
+  npsRows:[], rmdRows:[], supMap:{}, user: ls.get('nps_user', null), admin:false, cruce:[]
+};
+try{ S.admin = sessionStorage.getItem('nps_admin')==='1'; }catch(e){}
+
+const KIND = {
+  nps: { seg:'seg', rows:()=>S.npsRows, cats:{D:'DETRACTOR',N:'NEUTRO',P:'PROMOTOR'}, catShort:{D:'Det',N:'Neu',P:'Pro'} },
+  rmd: { seg:'segRmd', rows:()=>S.rmdRows, cats:{D:'DETRACTORA',P:'POSITIVA'}, catShort:{D:'Det',P:'OK'} }
+};
+const segOf = (kind,id) => S.segs[KIND[kind].seg][id];
+
+function parseSupMap(txt){
+  const m = {};
+  String(txt||'').split(/\r?\n/).forEach(l => { const [v,s] = l.split(/[;,\t]/); if (v && s && v.trim()) m[String(parseInt(v))] = s.trim().toUpperCase(); });
+  return m;
+}
+function supervisores(){ return [...new Set(Object.values(S.supMap))].sort(); }
+function responsables(){ return Object.entries(S.cfg.responsables||{}).map(([k,v])=>({k, ...v})).sort((a,b)=>a.n.localeCompare(b.n)); }
+function cliInfo(cod){
+  const c = cod!=null ? S.cli['c'+cod] : null;
+  if (!c) return { vend:'', vendNom: cod!=null ? 'No está en Chess' : 'Sin cruce con Chess', sup: cod!=null ? 'SIN SUPERVISOR' : 'SIN CRUCE CHESS', ruta:'', sub:'', loc:'', anu:false, enChess:false, fant:'' };
+  const vend = c.v!=null ? String(c.v) : '';
+  return { vend, vendNom: c.vn || (vend ? 'Vend. '+vend : 'Sin vendedor'), sup: S.supMap[vend] || 'SIN SUPERVISOR', ruta:c.r||'', sub:c.sc||'', loc:c.lo||'', anu:!!c.an, enChess:true, fant:c.fa||'', rs:c.rs||'' };
+}
+
+/* ----- cruce RMD por nombre ----- */
+let nameIdx = null;
+function buildNameIdx(){
+  nameIdx = {};
+  for (const k in S.cli){ const c = S.cli[k]; const n = normName(c.rs); if (!n) continue; (nameIdx[n] ||= []).push(k.slice(1)); }
+}
+function matchName(nombre){
+  const n = normName(nombre); const key = nameKey(nombre);
+  const man = (S.cfg.rmdMap||{})[key];
+  if (man) return { cod: String(man), st:'man', cands:[String(man)] };
+  let cands = nameIdx[n] || [];
+  if (!cands.length && n.includes('?')){
+    const rx = new RegExp('^' + n.replace(/[.*+^${}()|[\]\\]/g,'\\$&').replace(/\?/g,'.') + '$');
+    for (const k in nameIdx) if (rx.test(k)) cands = cands.concat(nameIdx[k]);
+  }
+  if (!cands.length && n.length >= 18){ // Chess corta la razón social: probar por prefijo
+    for (const k in nameIdx){ if (k.length >= 18 && (n.startsWith(k) || k.startsWith(n))) cands = cands.concat(nameIdx[k]); }
+    if (!cands.length && n.includes('?')){
+      for (const k in nameIdx){ if (k.length < 18) continue; const a = n.slice(0, k.length); if (a.length===k.length && [...a].every((ch,i)=> ch==='?' || ch===k[i])) cands = cands.concat(nameIdx[k]); }
+    }
+  }
+  cands = [...new Set(cands)];
+  if (cands.length===1) return { cod: cands[0], st:'ok', cands };
+  if (cands.length > 1){
+    const act = cands.filter(c => !S.cli['c'+c]?.an);
+    if (act.length===1) return { cod: act[0], st:'ok', cands };
+    return { cod: (act[0]||cands[0]), st:'amb', cands };
+  }
+  return { cod: null, st:'no', cands:[] };
+}
+
+/* ----- construcción de filas ----- */
+function addRepit(rows, keyFn, kind){
+  const by = {};
+  rows.forEach(r => (by[keyFn(r)] ||= []).push(r));
+  Object.values(by).forEach(list => {
+    list.sort((a,b)=> a.fecha.localeCompare(b.fecha));
+    list.forEach((r,i) => { r.repIdx = i+1; r.repTot = list.length; r.hist = list; });
+  });
+}
+function buildRows(){
+  S.supMap = parseSupMap(S.cfg.supMap);
+  // NPS
+  S.npsRows = Object.entries(S.enc||{}).map(([id,e]) => {
+    const ci = cliInfo(e.c);
+    return { id, kind:'nps', cod:e.c, nombre: e.n || ci.rs || '', fecha:e.f, mes:(e.f||'').slice(0,7), score:e.s, cat:e.k, drivers:e.dr||[], cmt:e.cm||'', ...ci };
+  });
+  addRepit(S.npsRows, r => r.cod);
+  S.npsRows.sort((a,b)=> b.fecha.localeCompare(a.fecha) || a.nombre.localeCompare(b.nombre));
+  // RMD
+  buildNameIdx();
+  const cruce = {};
+  S.rmdRows = Object.entries(S.rmd||{}).map(([id,x]) => {
+    const m = x.c ? { cod:String(x.c), st:'cod', cands:[String(x.c)] } : matchName(x.n);
+    const ci = cliInfo(m.cod);
+    if (m.st==='no' || m.st==='amb'){ const k = nameKey(x.n); (cruce[k] ||= { n:x.n, st:m.st, cands:m.cands, veces:0 }).veces++; }
+    return { id, kind:'rmd', cod:m.cod, match:m.st, nombre:x.n, fecha:x.f, mes:x.f.slice(0,7), score:x.s, p:x.p||0, e:x.e||0, d:x.d||0,
+      cat: (x.d>0 || x.s<=3) ? 'D' : 'P', mo: x.mo||[], ...ci };
+  });
+  S.rmdRows.forEach(r => { r.repTot = 1; r.repIdx = 1; });
+  addRepit(S.rmdRows.filter(r => r.cat==='D'), r => r.cod || ('n'+nameKey(r.nombre)));   // en RMD “repite” = más de una calificación detractora
+  // envíos por cliente/mes
+  S.rmdEnv = Object.entries(S.rmdEnvRaw||{}).map(([k,v]) => { const [ck, ym] = k.split('_'); const cod = ck[0]==='c' ? ck.slice(1) : null;
+    return { cod, mes: `${ym.slice(0,4)}-${ym.slice(4,6)}`, e:v.e||0, p:v.p||0, ...cliInfo(cod) }; });
+  S.rmdRows.sort((a,b)=> b.fecha.localeCompare(a.fecha) || a.nombre.localeCompare(b.nombre));
+  S.cruce = Object.entries(cruce).map(([k,v])=>({k,...v})).sort((a,b)=> a.st.localeCompare(b.st) || a.n.localeCompare(b.n));
+}
+
+/* ===================== completitud / semáforo ===================== */
+function isComplete(sg){
+  if (!sg) return false;
+  return !!(sg.plan && sg.plan.trim() && sg.sector && sg.resp && sg.status && (CERRADOS.includes(sg.status) || sg.fc));
+}
+function anyData(sg){ return !!(sg && (sg.cmt || sg.plan || sg.sector || sg.resp || sg.fc || sg.status)); }
+function semaforo(r){
+  const sg = segOf(r.kind, r.id);
+  const comp = isComplete(sg);
+  if (comp && CERRADOS.includes(sg.status)) return 'verde';
+  if (comp) return (sg.fc && sg.fc < todayISO()) ? 'naranja' : 'amarillo';
+  if (r.cat==='D') return 'rojo';
+  return anyData(sg) ? 'amarillo' : 'gris';
+}
+function npsOf(list){
+  const n=list.length, P=list.filter(r=>r.cat==='P').length, N=list.filter(r=>r.cat==='N').length, D=list.filter(r=>r.cat==='D').length;
+  return {n,P,N,D, nps: n ? (P-D)/n*100 : null};
+}
+function rmdOf(list){
+  const p = list.reduce((a,r)=>a+r.p,0), w = list.reduce((a,r)=>a+r.score*r.p,0), d = list.reduce((a,r)=>a+(r.d|| (r.cat==='D'?1:0)),0);
+  return { cal:p, avg: p ? w/p : null, det:d, filas:list.length };
+}
+function objPill(v, obj, dec=1, suf=''){
+  if (v==null || isNaN(v)) return '<span class="pill-off">–</span>';
+  if (obj==null || obj==='' || isNaN(+obj)) return `<b>${fmtN(v,dec)}${suf}</b>`;
+  return `<span class="${v >= +obj ? 'pill-ok' : 'pill-bad'}">${fmtN(v,dec)}${suf}</span>`;
+}
+const npsPill = v => objPill(v, S.cfg.objetivo, 1);
+function pctPill(a,b,prev){
+  if (!b) return '<span class="pill-off">–</span>';
+  const p = Math.round(a/b*100);
+  const cls = prev ? 'pill-off' : (p>=100 ? 'pill-ok' : p>=70 ? 'pill-mid' : 'pill-bad');
+  return `<span class="${cls}">${p}%</span> <span class="muted" style="font-size:11px">${a}/${b}</span>`;
+}
+const stars = s => { const n = Math.round(s); return '★'.repeat(n) + '<span style="color:#d9dce1">' + '★'.repeat(5-n) + '</span>'; };
+
+/* ===================== períodos ===================== */
+function fillPeriodo(sel, rows, keep){
+  const v = keep ?? sel.value;
+  const ms = [...new Set(rows.map(r=>r.mes))].sort();
+  sel.innerHTML = `<option value="ini">Desde inicio seguimiento (${mesLbl(S.cfg.inicio)})</option><option value="all">Todo el año</option>` +
+    ms.slice().reverse().map(m=>`<option value="${m}">${mesLbl(m)}</option>`).join('');
+  sel.value = [...sel.options].some(o=>o.value===v) ? v : 'ini';
+}
+const inPeriodo = (mes, p) => p==='all' ? true : p==='ini' ? mes >= (S.cfg.inicio||'0000') : mes === p;
+
+/* ===================== REVISIÓN (genérica NPS / RMD) ===================== */
+const FDEF = {
+  nps: [
+    ['per','Período','sel'],['cat','Categoría','sel'],['dp','Driver primario','sel'],['ds','Driver secundario','sel'],
+    ['sup','Supervisor','sel'],['ven','Vendedor','sel'],['sem','Semáforo','sel'],['st','Status','sel'],['sec','Sector','sel'],['q','Buscar','q'],['rep','Solo repitentes','chk']
+  ],
+  rmd: [
+    ['per','Período','sel'],['cat','Calificación','sel'],['mot','Motivo','sel'],['cru','Cruce Chess','sel'],
+    ['sup','Supervisor','sel'],['ven','Vendedor','sel'],['sem','Semáforo','sel'],['st','Status','sel'],['sec','Sector','sel'],['q','Buscar','q'],['rep','Solo repitentes','chk']
+  ]
+};
+const FST = { nps: ls.get('nps_f_nps', {}), rmd: ls.get('nps_f_rmd', { cat:'D' }) };
+const LIM = { nps: LIMIT, rmd: LIMIT };
+const fid = (kind,k) => `${kind}-f-${k}`;
+const fval = (kind,k) => { const el = document.getElementById(fid(kind,k)); return !el ? '' : el.type==='checkbox' ? el.checked : el.value; };
+
+function buildFilterBar(kind){
+  $(`#${kind}-filters`).innerHTML = FDEF[kind].map(([k,l,t]) =>
+    t==='chk' ? `<label class="f" style="flex-direction:row;align-items:center;gap:6px;text-transform:none;font-size:12px"><input type="checkbox" id="${fid(kind,k)}"> ${l}</label>`
+    : t==='q' ? `<label class="f">${l}<input type="search" id="${fid(kind,k)}" placeholder="cliente, código, texto…"></label>`
+    : `<label class="f" id="${fid(kind,k)}-lbl">${l}<select id="${fid(kind,k)}"></select></label>`).join('') +
+    `<button class="btn sec" id="${kind}-clear">Limpiar</button><button class="btn acc" id="${kind}-xls" title="Exporta lo que estás viendo con los filtros aplicados">⬇ Excel</button>`;
+  $(`#${kind}-xls`).onclick = () => exportRev(kind);
+  FDEF[kind].forEach(([k,,t]) => {
+    const el = document.getElementById(fid(kind,k));
+    el.addEventListener(t==='q' ? 'input' : 'change', () => {
+      FDEF[kind].forEach(([kk]) => FST[kind][kk] = fval(kind,kk)); ls.set('nps_f_'+kind, FST[kind]);
+      LIM[kind] = LIMIT;
+      if (['dp','sup'].includes(k)) refreshFilters(kind);
+      renderRev(kind);
+    });
+  });
+  $(`#${kind}-clear`).onclick = () => { FST[kind] = { per:'ini' }; ls.set('nps_f_'+kind, FST[kind]); FDEF[kind].forEach(([k,,t]) => { const el=document.getElementById(fid(kind,k)); if (t==='chk') el.checked=false; else el.value=''; }); refreshFilters(kind); renderRev(kind); };
+  // tabla
+  const hd = kind==='nps'
+    ? ['','Fecha','Cliente','Vendedor / Sup.','Score','Drivers (primario › secundario)','Comentario del cliente']
+    : ['','Fecha','Cliente','Vendedor / Sup.','Calificación','Detalle'];
+  $(`#${kind}-tbl thead`).innerHTML = '<tr>' + hd.concat(['Comentario seguimiento','Plan de acción','Sector','Responsable','Fecha compr.','Status','Última carga']).map(h=>`<th>${h}</th>`).join('') + '</tr>';
+  $(`#${kind}-tbl`).addEventListener('change', e => {
+    const el = e.target; const f = el.dataset.f; if (!f) return;
+    saveField(kind, el.closest('tr').dataset.id, f, el.value);
+  });
+  $(`#${kind}-kpis`).addEventListener('click', e => {
+    const k = e.target.closest('[data-k]'); if (!k) return;
+    const [f, v] = k.dataset.k.split(':');
+    const el = document.getElementById(fid(kind,f));
+    if (el.type==='checkbox') el.checked = !el.checked; else el.value = el.value===v ? '' : v;
+    el.dispatchEvent(new Event('change'));
+  });
+  $(`#${kind}-more`).addEventListener('click', e => { if (e.target.matches('button')){ LIM[kind] += LIMIT; renderRev(kind); } });
+}
+function setOpts(sel, values, allLbl, keep){
+  const v = sel.value || keep || '';
+  sel.innerHTML = `<option value="">${allLbl}</option>` + values.map(x => typeof x==='string' ? `<option>${esc(x)}</option>` : `<option value="${esc(x.v)}">${esc(x.l)}</option>`).join('');
+  sel.value = [...sel.options].some(o=>o.value===v) ? v : '';
+}
+function refreshFilters(kind){
+  const rows = KIND[kind].rows(); const F = FST[kind]; const g = k => document.getElementById(fid(kind,k));
+  fillPeriodo(g('per'), rows, g('per').value || F.per);
+  if (kind==='nps'){
+    setOpts(g('cat'), [{v:'D',l:'Detractor'},{v:'N',l:'Neutro'},{v:'P',l:'Promotor'},{v:'DN',l:'Detractor + Neutro'}], 'Todas', F.cat);
+    setOpts(g('dp'), [...new Set(rows.flatMap(r=>r.drivers.map(d=>d[0])))].filter(Boolean).sort(), 'Todos', F.dp);
+    const dp = g('dp').value;
+    setOpts(g('ds'), [...new Set(rows.flatMap(r=>r.drivers.filter(d=>!dp || d[0]===dp).map(d=>d[1])))].filter(x=>x && x!=='Ninguno').sort(), 'Todos', F.ds);
+  } else {
+    setOpts(g('cat'), [{v:'D',l:'Detractora (1-3 ★)'},{v:'P',l:'Positiva'}], 'Todas', F.cat);
+    const mots = [...new Set(rows.flatMap(r=>r.mo))].filter(Boolean).sort();
+    setOpts(g('mot'), mots, 'Todos', F.mot); document.getElementById(fid(kind,'mot')+'-lbl').style.display = mots.length ? '' : 'none';
+    setOpts(g('cru'), [{v:'ok',l:'Con cliente Chess'},{v:'no',l:'Sin cruce / dudoso'}], 'Todos', F.cru);
+  }
+  setOpts(g('sup'), [...new Set(rows.map(r=>r.sup))].sort(), 'Todos', F.sup);
+  const sup = g('sup').value; const vs = {};
+  rows.filter(r=>!sup || r.sup===sup).forEach(r => vs[r.vend||'-'] = r.vendNom);
+  setOpts(g('ven'), Object.entries(vs).sort((a,b)=>a[1].localeCompare(b[1])).map(([v,l])=>({v, l:(v!=='-'?v+' · ':'')+l})), 'Todos', F.ven);
+  setOpts(g('sem'), [{v:'rojo',l:'🔴 Falta completar'},{v:'naranja',l:'🟠 Vencido'},{v:'amarillo',l:'🟡 En curso'},{v:'verde',l:'🟢 Cerrado'},{v:'gris',l:'⚪ Opcional sin carga'}], 'Todos', F.sem);
+  setOpts(g('st'), STATUS.concat([]).map(s=>s).concat([{v:'-',l:'Sin status'}]), 'Todos', F.st);
+  setOpts(g('sec'), SECTORES.concat([{v:'-',l:'Sin sector'}]), 'Todos', F.sec);
+  if (F.q && !g('q').value) g('q').value = F.q;
+  g('rep').checked = !!F.rep;
+}
+function filtered(kind){
+  const v = k => fval(kind,k);
+  const per=v('per'), cat=v('cat'), sup=v('sup'), ven=v('ven'), sem=v('sem'), st=v('st'), sec=v('sec'), rep=v('rep'), q=norm(v('q'));
+  const dp=v('dp'), ds=v('ds'), mot=v('mot'), cru=v('cru');
+  return KIND[kind].rows().filter(r => {
+    if (!inPeriodo(r.mes, per)) return false;
+    if (cat){ if (cat==='DN' ? r.cat==='P' : r.cat!==cat) return false; }
+    if (kind==='nps' && (dp || ds) && !r.drivers.some(d => (!dp || d[0]===dp) && (!ds || d[1]===ds))) return false;
+    if (kind==='rmd'){
+      if (mot && !r.mo.includes(mot)) return false;
+      if (cru==='ok' && !(r.enChess && r.match!=='amb')) return false;
+      if (cru==='no' && r.enChess && r.match!=='amb') return false;
+    }
+    if (sup && r.sup!==sup) return false;
+    if (ven && (r.vend||'-')!==ven) return false;
+    const sg = segOf(kind, r.id) || {};
+    if (st){ if (st==='-' ? sg.status : sg.status!==st) return false; }
+    if (sec){ if (sec==='-' ? sg.sector : sg.sector!==sec) return false; }
+    if (rep && r.repTot<2) return false;
+    if (sem && semaforo(r)!==sem) return false;
+    if (q){ const hay = norm([r.cod,r.nombre,r.fant,r.cmt,r.vendNom,sg.cmt,sg.plan,sg.resp,(r.drivers||[]).flat().join(' '),(r.mo||[]).join(' ')].join(' ')); if (!hay.includes(q)) return false; }
+    return true;
+  });
+}
+function respOptions(sector, cur){
+  const list = responsables().filter(r => !sector || r.s===sector);
+  let h = '<option value=""></option>';
+  if (!sector){
+    SECTORES.forEach(sec => { const l = list.filter(r=>r.s===sec); if (l.length) h += `<optgroup label="${sec}">` + l.map(r=>`<option${r.n===cur?' selected':''}>${esc(r.n)}</option>`).join('') + '</optgroup>'; });
+  } else h += list.map(r=>`<option${r.n===cur?' selected':''}>${esc(r.n)}</option>`).join('');
+  if (cur && !list.some(r=>r.n===cur)) h += `<option selected>${esc(cur)}</option>`;
+  return h;
+}
+function histHtml(r){
+  if (r.repTot < 2) return '';
+  const sc = KIND[r.kind].catShort;
+  const MAXH = 8; let hs = r.hist;
+  if (hs.length > MAXH){ const i = hs.indexOf(r); const from = Math.max(0, Math.min(i - 4, hs.length - MAXH)); hs = hs.slice(from, from + MAXH); }
+  const items = (r.hist.length > hs.length && hs[0]!==r.hist[0] ? '… ' : '') + hs.map(x => `<span class="${x.id===r.id?'c':''}">${fmtDM(x.fecha)} <span class="h${x.cat}">${r.kind==='rmd' ? fmtN(x.score,1)+'★' : x.score} ${sc[x.cat]}</span></span>`).join(' → ');
+  return `<div><span class="badge b-rep" title="${r.kind==='rmd'?'Calificaciones detractoras de este cliente':'Encuestas respondidas por este cliente'}">${r.kind==='rmd'?'REPITE DETRACTORA':'REPITE'} ${r.repIdx}/${r.repTot}</span></div><div class="hist">${items}</div>`;
+}
+function rowHtml(r){
+  const kind = r.kind; const sg = segOf(kind, r.id) || {};
+  const sm = semaforo(r); const req = r.cat==='D';
+  const venc = sg.fc && sg.fc < todayISO() && !CERRADOS.includes(sg.status);
+  const catTxt = KIND[kind].cats[r.cat];
+  let left;
+  const cliente = `<td style="min-width:200px"><b>${esc(r.nombre)}</b>${r.fant?`<div class="muted" style="font-size:11px">${esc(r.fant)}</div>`:''}
+      <div class="who">${r.cod?'Cód. '+esc(r.cod):''}${r.ruta?' · Ruta '+esc(r.ruta):''}${r.sub?' · '+esc(r.sub):''}${r.loc?' · '+esc(r.loc):''}</div>
+      ${r.anu?'<span class="badge b-anu">ANULADO</span>':''}${kind==='rmd' && r.match==='amb'?'<span class="badge b-venc" title="Hay más de un cliente con ese nombre en Chess. Resolvé en ANALISTA → Cruce">CÓDIGO DUDOSO</span>':''}${!r.enChess?'<span class="badge b-venc">SIN CRUCE CHESS</span>':''}
+      ${histHtml(r)}</td>`;
+  const vend = `<td style="min-width:130px">${esc(r.vend?r.vend+' · ':'')}${esc(r.vendNom)}<div class="who">${esc(r.sup)}</div></td>`;
+  if (kind==='nps'){
+    const drv = r.drivers.map(d => `<span class="drv"><b>${esc(d[0])}</b>${d[1] && d[1]!=='Ninguno' ? ' › '+esc(d[1]) : ''}</span>`).join('');
+    left = cliente + vend +
+      `<td class="nowrap"><span class="score">${r.score}</span><br><span class="cat cat-${r.cat}">${catTxt}</span>${req?'<div class="who" style="color:var(--det)">obligatorio</div>':''}</td>
+       <td style="min-width:220px">${drv}</td><td class="cm">${r.cmt?esc(r.cmt):'<span class="muted">—</span>'}</td>`;
+  } else {
+    left = cliente + vend +
+      `<td class="nowrap"><span class="score">${fmtN(r.score,1)}</span> <span class="stars">${stars(r.score)}</span><br><span class="cat cat-${r.cat}">${catTxt}</span>${req?'<div class="who" style="color:var(--det)">obligatorio</div>':''}</td>
+       <td style="min-width:160px;font-size:12px">${r.p} calificación${r.p>1?'es':''}${r.d?` · <b style="color:var(--det)">${r.d} detractora${r.d>1?'s':''}</b>`:''}${r.mo.length?'<div style="margin-top:3px">'+r.mo.map(m=>`<span class="drv">• ${esc(m)}</span>`).join('')+'</div>':''}</td>`;
+  }
+  return `<tr data-id="${r.id}" class="r-${sm}">
+    <td class="sem sem-${sm}" title="${sm}"></td>
+    <td class="nowrap">${fmtDate(r.fecha)}<div class="who">${mesLbl(r.mes)}</div></td>
+    ${left}
+    <td><textarea data-f="cmt" placeholder="Qué pasó / qué se averiguó">${esc(sg.cmt||'')}</textarea></td>
+    <td><textarea data-f="plan" placeholder="${req?'Obligatorio':'Opcional'}">${esc(sg.plan||'')}</textarea></td>
+    <td><select data-f="sector"><option value=""></option>${SECTORES.map(s=>`<option${sg.sector===s?' selected':''}>${s}</option>`).join('')}</select></td>
+    <td><select data-f="resp">${respOptions(sg.sector, sg.resp)}</select></td>
+    <td><input type="date" data-f="fc" value="${esc(sg.fc||'')}">${venc?'<span class="badge b-venc">VENCIDO</span>':''}</td>
+    <td><select data-f="status"><option value=""></option>${STATUS.map(s=>`<option${sg.status===s?' selected':''}>${s}</option>`).join('')}</select></td>
+    <td class="who nowrap">${sg.u?esc(sg.u)+'<br>'+fmtTs(sg.t):''}${sg.cu && sg.cu!==sg.u?`<br>alta: ${esc(sg.cu)}`:''}</td>
+  </tr>`;
+}
+function renderRev(kind){
+  const list = filtered(kind); const all = KIND[kind].rows();
+  const show = list.slice(0, LIM[kind]);
+  const ncol = kind==='nps' ? 14 : 13;
+  $(`#${kind}-tbl tbody`).innerHTML = show.length ? show.map(rowHtml).join('') :
+    `<tr><td colspan="${ncol}" class="muted" style="padding:30px;text-align:center">${all.length ? 'No hay registros con estos filtros. Probá Período = “Todo el año” o “Limpiar”.' : 'Todavía no hay base cargada. Cargala desde la pestaña ANALISTA.'}</td></tr>`;
+  $(`#${kind}-more`).innerHTML = list.length > show.length ? `<button class="btn sec">Mostrar más (${show.length} de ${list.length})</button>` : '';
+  $(`#${kind}-count`).textContent = `${list.length} registros con estos filtros · ${all.length} en total`;
+  renderRevKpis(kind, list);
+  if (kind==='rmd') rmdCoverageWarn($('#rmd-warn'));
+}
+function renderRevKpis(kind, list){
+  const c = {rojo:0,naranja:0,amarillo:0,verde:0,gris:0}; list.forEach(r => c[semaforo(r)]++);
+  const det = list.filter(r=>r.cat==='D'); const comp = det.filter(r=>isComplete(segOf(kind,r.id))).length;
+  const sem = fval(kind,'sem'); const repOn = fval(kind,'rep');
+  const reps = list.filter(r=>r.repTot>1).length;
+  const k = (v,l,col,key,sel) => `<div class="kpi ${key?'click':''} ${sel?'sel':''}" ${key?`data-k="${key}"`:''} style="${col?`border-left:5px solid ${col}`:''}"><div class="v">${v}</div><div class="l">${l}</div></div>`;
+  const first = kind==='nps' ? k(npsPill(npsOf(list).nps),'NPS filtrado') : k(objPill(rmdOf(list).avg, S.cfg.objRmd, 2),'RMD filtrado');
+  $(`#${kind}-kpis`).innerHTML =
+    k(list.length, kind==='nps'?'Encuestas':'Calificaciones') + first +
+    k(det.length ? Math.round(comp/det.length*100)+'%' : '–', `${kind==='nps'?'Detractores':'Detractoras'} completos (${comp}/${det.length})`) +
+    k(c.rojo,'Falta completar','var(--s-rojo)','sem:rojo',sem==='rojo') + k(c.naranja,'Vencidos','var(--s-naranja)','sem:naranja',sem==='naranja') +
+    k(c.amarillo,'En curso','var(--s-amarillo)','sem:amarillo',sem==='amarillo') + k(c.verde,'Cerrados','var(--s-verde)','sem:verde',sem==='verde') +
+    k(c.gris,'Opcional sin carga','var(--s-gris)','sem:gris',sem==='gris') + k(reps,'Repitentes','#7b4fd6','rep:1',repOn);
+}
+function patchRow(kind, id){
+  const tr = document.querySelector(`#${kind}-tbl tr[data-id="${CSS.escape(id)}"]`); if (!tr) return;
+  const r = KIND[kind].rows().find(x=>x.id===id); if (!r) return;
+  if (tr.contains(document.activeElement)){ const sm = semaforo(r); tr.className = 'r-'+sm; tr.firstElementChild.className = 'sem sem-'+sm; return; }
+  tr.outerHTML = rowHtml(r);
+}
+async function saveField(kind, id, f, val){
+  if (!S.user){ askUser(); return; }
+  const store = S.segs[KIND[kind].seg]; const cur = store[id] || {};
+  const upd = {[f]: val, u: S.user, t: Date.now()};
+  if (f==='sector' && cur.resp){ const rp = responsables().find(x=>x.n===cur.resp); if (rp && rp.s!==val) upd.resp = ''; }
+  if (!cur.cu){ upd.cu = S.user; upd.ct = Date.now(); }
+  store[id] = Object.assign({}, cur, upd);
+  try{ await DB.update(`${KIND[kind].seg}/${id}`, upd); toast('Guardado ✓'); } catch(e){ console.error(e); toast('⚠ Error al guardar'); }
+  patchRow(kind, id); renderRevKpis(kind, filtered(kind));
+}
+
+/* ===================== NPS RESUMEN ===================== */
+function bars(arr, top, empty){
+  if (!arr.length) return `<p class="muted">${empty}</p>`; const mx = arr[0][1];
+  return '<table><tr><th>Concepto</th><th></th><th class="r">Cant.</th></tr>' + arr.slice(0,top).map(([k,v]) => `<tr><td style="width:55%">${esc(k)}</td><td><div class="hbar" style="width:${v/mx*100}%"></div></td><td class="r" style="width:40px"><b>${v}</b></td></tr>`).join('') + '</table>';
+}
+function planesHtml(kind, list){
+  const conSeg = list.filter(r => anyData(segOf(kind, r.id)));
+  const by = fn => { const m={}; conSeg.forEach(r => { const k = fn(segOf(kind,r.id)) || '(sin dato)'; m[k]=(m[k]||0)+1; }); return m; };
+  const sm = {rojo:0,naranja:0,amarillo:0,verde:0,gris:0}; list.forEach(r=>sm[semaforo(r)]++);
+  const tb = (title, m) => `<div><h3>${title}</h3><table><tr><th>${title.replace('Por ','')}</th><th class="r">Cant.</th></tr>${Object.entries(m).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<tr><td>${esc(k)}</td><td class="r"><b>${v}</b></td></tr>`).join('') || '<tr><td class="muted">Sin cargas</td></tr>'}</table></div>`;
+  return `<div class="legend" style="margin-bottom:12px">
+    <span><i class="sq" style="background:var(--s-rojo)"></i>Falta completar: <b>${sm.rojo}</b></span><span><i class="sq" style="background:var(--s-naranja)"></i>Vencidos: <b>${sm.naranja}</b></span>
+    <span><i class="sq" style="background:var(--s-amarillo)"></i>En curso: <b>${sm.amarillo}</b></span><span><i class="sq" style="background:var(--s-verde)"></i>Cerrados: <b>${sm.verde}</b></span></div>
+    <div class="grid2" style="gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">${tb('Por status',by(s=>s.status))}${tb('Por sector',by(s=>s.sector))}${tb('Por responsable',by(s=>s.resp))}</div>`;
+}
+function supSelect(sel, rows, key){
+  const sv = sel.value || ls.get(key,''); sel.innerHTML = '<option value="">Todos</option>' + [...new Set(rows.map(r=>r.sup))].sort().map(s=>`<option>${esc(s)}</option>`).join('');
+  sel.value = [...sel.options].some(o=>o.value===sv) ? sv : '';
+}
+function renderNpsRes(){
+  fillPeriodo($('#nr-per'), S.npsRows, $('#nr-per').value || ls.get('nps_nrPer','ini'));
+  supSelect($('#nr-sup'), S.npsRows, 'nps_nrSup');
+  const per = $('#nr-per').value, sup = $('#nr-sup').value;
+  const base = S.npsRows.filter(r => !sup || r.sup===sup);
+  const list = base.filter(r => inPeriodo(r.mes, per));
+  const o = S.cfg.objetivo;
+  $('#nr-obj').innerHTML = (o!=null && o!=='') ? `Objetivo NPS: <b>${o}</b> (verde ≥ objetivo)` : 'Sin objetivo NPS cargado (se carga en ANALISTA)';
+  const n = npsOf(list); const det = list.filter(r=>r.cat==='D'); const comp = det.filter(r=>isComplete(segOf('nps',r.id))).length;
+  const k = (v,l) => `<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`;
+  $('#nr-kpis').innerHTML = k(npsPill(n.nps),'NPS') + k(n.n,'Encuestas') + k(new Set(list.map(r=>r.cod)).size,'Clientes') +
+    k(`<span style="color:var(--prom)">${n.n?Math.round(n.P/n.n*100):0}%</span>`, `Promotores (${n.P})`) +
+    k(`<span style="color:var(--neu)">${n.n?Math.round(n.N/n.n*100):0}%</span>`, `Neutros (${n.N})`) +
+    k(`<span style="color:var(--det)">${n.n?Math.round(n.D/n.n*100):0}%</span>`, `Detractores (${n.D})`) +
+    k(det.length?Math.round(comp/det.length*100)+'%':'–', `Detractores con plan (${comp}/${det.length})`);
+  const ms = [...new Set(base.map(r=>r.mes))].sort();
+  let h = '<tr><th>Mes</th><th class="r">Enc.</th><th class="r">Prom.</th><th class="r">Neu.</th><th class="r">Det.</th><th>Mix</th><th class="r">NPS</th><th class="r">Det. con plan</th></tr>';
+  ms.forEach(m => {
+    const l = base.filter(r=>r.mes===m), x = npsOf(l); const d = l.filter(r=>r.cat==='D'); const c = d.filter(r=>isComplete(segOf('nps',r.id))).length;
+    h += `<tr><td class="nowrap"><b>${mesLbl(m)}</b></td><td class="r">${x.n}</td><td class="r">${x.P}</td><td class="r">${x.N}</td><td class="r">${x.D}</td>
+      <td><div class="bar"><div style="width:${x.P/x.n*100}%;background:var(--prom)"></div><div style="width:${x.N/x.n*100}%;background:var(--neu)"></div><div style="width:${x.D/x.n*100}%;background:var(--det)"></div></div></td>
+      <td class="r">${npsPill(x.nps)}</td><td class="r">${pctPill(c,d.length,m < S.cfg.inicio)}</td></tr>`;
+  });
+  const t = npsOf(base);
+  h += `<tr style="background:#f6f7f9"><td><b>Total año</b></td><td class="r"><b>${t.n}</b></td><td class="r">${t.P}</td><td class="r">${t.N}</td><td class="r">${t.D}</td><td></td><td class="r">${npsPill(t.nps)}</td><td></td></tr>`;
+  $('#nr-mes').innerHTML = h;
+  h = '<tr><th>Supervisor</th><th class="r">Enc.</th><th class="r">P</th><th class="r">N</th><th class="r">D</th><th class="r">NPS</th><th class="r">Det. con plan</th></tr>';
+  [...new Set(list.map(r=>r.sup))].sort().forEach(s => { const l = list.filter(r=>r.sup===s), x=npsOf(l), d=l.filter(r=>r.cat==='D'), c=d.filter(r=>isComplete(segOf('nps',r.id))).length;
+    h += `<tr><td>${esc(s)}</td><td class="r">${x.n}</td><td class="r">${x.P}</td><td class="r">${x.N}</td><td class="r">${x.D}</td><td class="r">${npsPill(x.nps)}</td><td class="r">${pctPill(c,d.length)}</td></tr>`; });
+  $('#nr-sup-t').innerHTML = h;
+  const vs = {}; list.forEach(r => (vs[r.vend||'-'] ||= []).push(r));
+  h = '<tr><th>Vendedor</th><th>Supervisor</th><th class="r">Enc.</th><th class="r">P</th><th class="r">N</th><th class="r">D</th><th class="r">NPS</th><th class="r">Det. con plan</th></tr>';
+  Object.values(vs).sort((a,b)=> (npsOf(a).nps??999)-(npsOf(b).nps??999) || b.length-a.length).forEach(l => {
+    const x=npsOf(l), d=l.filter(r=>r.cat==='D'), c=d.filter(r=>isComplete(segOf('nps',r.id))).length;
+    h += `<tr><td>${esc(l[0].vend?l[0].vend+' · ':'')}${esc(l[0].vendNom)}</td><td class="muted">${esc(l[0].sup)}</td><td class="r">${x.n}</td><td class="r">${x.P}</td><td class="r">${x.N}</td><td class="r">${x.D}</td><td class="r">${npsPill(x.nps)}</td><td class="r">${pctPill(c,d.length)}</td></tr>`; });
+  $('#nr-ven').innerHTML = h;
+  const cnt = fn => { const m={}; det.forEach(r => new Set(r.drivers.map(fn).filter(x=>x && x!=='Ninguno')).forEach(x => m[x]=(m[x]||0)+1)); return Object.entries(m).sort((a,b)=>b[1]-a[1]); };
+  $('#nr-dp').innerHTML = bars(cnt(d=>d[0]), 20, 'Sin detractores en el período.');
+  $('#nr-ds').innerHTML = bars(cnt(d=>d[1]), 12, 'Sin detractores en el período.');
+  $('#nr-planes').innerHTML = planesHtml('nps', list);
+}
+$('#nr-per').onchange = () => { ls.set('nps_nrPer', $('#nr-per').value); renderNpsRes(); };
+$('#nr-sup').onchange = () => { ls.set('nps_nrSup', $('#nr-sup').value); renderNpsRes(); };
+
+/* ===================== RMD RESUMEN ===================== */
+function rmdCoverageWarn(el){
+  const dias = Object.keys(S.rmdDia||{}).length; const conDet = new Set(S.rmdRows.map(r=>r.fecha)).size;
+  const sinCruce = S.rmdRows.filter(r=>!r.enChess || r.match==='amb').length;
+  let h = '';
+  if (dias && conDet < dias*0.8) h += `<div class="warn" style="margin-bottom:12px">⚠ La base RMD trae totales de <b>${dias} días</b> pero detalle por cliente de solo <b>${conDet} día${conDet===1?'':'s'}</b>. Para ver todos los clientes hay que exportar la matriz con <b>“Expandir todo un nivel hacia abajo”</b> (ver pasos en INFO).</div>`;
+  if (sinCruce) h += `<div class="warn" style="margin-bottom:12px">${sinCruce} calificación(es) sin cruce seguro con Chess (se resuelven en ANALISTA → Cruce RMD ↔ Chess).</div>`;
+  el.innerHTML = h;
+}
+function diaList(per){
+  return Object.entries(S.rmdDia||{}).map(([k,v]) => ({ f:`${k.slice(1,5)}-${k.slice(5,7)}-${k.slice(7,9)}`, ...v })).map(x => ({...x, mes:x.f.slice(0,7)})).filter(x => inPeriodo(x.mes, per));
+}
+function aggDia(list){
+  const e = list.reduce((a,x)=>a+(x.e||0),0), p = list.reduce((a,x)=>a+(x.p||0),0), d = list.reduce((a,x)=>a+(x.d||0),0), w = list.reduce((a,x)=>a+(x.s||0)*(x.p||0),0);
+  return { e, p, d, avg: p ? w/p : null, resp: pct(p,e), pdet: pct(d,p) };
+}
+function renderRmdRes(){
+  fillPeriodo($('#rr-per'), S.rmdRows.concat(diaList('all').map(x=>({mes:x.mes}))), $('#rr-per').value || ls.get('nps_rrPer','ini'));
+  supSelect($('#rr-sup'), S.rmdRows, 'nps_rrSup');
+  const per = $('#rr-per').value, sup = $('#rr-sup').value;
+  const oR = S.cfg.objRmd, oP = S.cfg.objResp;
+  $('#rr-obj').innerHTML = [ (oR!=null&&oR!=='') ? `Objetivo RMD: <b>${oR}</b>` : 'Sin objetivo RMD', (oP!=null&&oP!=='') ? `Objetivo % respuesta: <b>${oP}%</b>` : 'sin objetivo de % respuesta' ].join(' · ');
+  rmdCoverageWarn($('#rr-warn'));
+  const tot = aggDia(diaList(per));
+  const base = S.rmdRows.filter(r => !sup || r.sup===sup);
+  const list = base.filter(r => inPeriodo(r.mes, per));
+  const det = list.filter(r=>r.cat==='D'); const comp = det.filter(r=>isComplete(segOf('rmd',r.id))).length;
+  const k = (v,l) => `<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`;
+  $('#rr-kpis').innerHTML = k(objPill(tot.avg, oR, 2),'RMD promedio') + k(tot.e.toLocaleString('es-AR'),'RMD enviadas') + k(tot.p.toLocaleString('es-AR'),'RMD puntuadas') + k(new Set(list.map(r=>r.cod||r.nombre)).size.toLocaleString('es-AR'),'Clientes que calificaron') +
+    k(objPill(tot.resp, oP, 1, '%'),'% respuesta') + k(`<span style="color:var(--det)">${tot.d}</span>`, `Detractoras (${fmtN(tot.pdet,1)}% de puntuadas)`) +
+    k(det.length?Math.round(comp/det.length*100)+'%':'–', `Detractoras con plan (${comp}/${det.length})${sup?' · '+esc(sup):''}`);
+  // por mes (totales)
+  const all = diaList('all'); const ms = [...new Set(all.map(x=>x.mes))].sort();
+  let h = '<tr><th>Mes</th><th class="r">Enviadas</th><th class="r">Puntuadas</th><th class="r">% Resp.</th><th class="r">RMD prom.</th><th class="r">Detractoras</th><th class="r">% Det.</th><th class="r">Det. con plan</th></tr>';
+  ms.forEach(m => { const a = aggDia(all.filter(x=>x.mes===m)); const d = base.filter(r=>r.mes===m && r.cat==='D'); const c = d.filter(r=>isComplete(segOf('rmd',r.id))).length;
+    h += `<tr><td><b>${mesLbl(m)}</b></td><td class="r">${a.e.toLocaleString('es-AR')}</td><td class="r">${a.p.toLocaleString('es-AR')}</td><td class="r">${objPill(a.resp,oP,1,'%')}</td><td class="r">${objPill(a.avg,oR,2)}</td><td class="r">${a.d}</td><td class="r">${fmtN(a.pdet,1)}%</td><td class="r">${pctPill(c,d.length,m < S.cfg.inicio)}</td></tr>`; });
+  const ta = aggDia(all);
+  h += `<tr style="background:#f6f7f9"><td><b>Total año</b></td><td class="r"><b>${ta.e.toLocaleString('es-AR')}</b></td><td class="r"><b>${ta.p.toLocaleString('es-AR')}</b></td><td class="r">${objPill(ta.resp,oP,1,'%')}</td><td class="r">${objPill(ta.avg,oR,2)}</td><td class="r">${ta.d}</td><td class="r">${fmtN(ta.pdet,1)}%</td><td></td></tr>`;
+  $('#rr-mes').innerHTML = ms.length ? h : '<tr><td class="muted">Sin base RMD cargada.</td></tr>';
+  // por supervisor / vendedor (detalle)
+  const grp = (keyFn) => { const g={}; list.forEach(r => (g[keyFn(r)] ||= []).push(r)); return g; };
+  const envP = S.rmdEnv.filter(x => inPeriodo(x.mes, per) && (!sup || x.sup===sup));
+  const envBy = fn => { const m={}; envP.forEach(x => { const k=fn(x); const t = m[k] ||= {e:0,p:0}; t.e+=x.e; t.p+=x.p; }); return m; };
+  const eSup = envBy(x=>x.sup), eVen = envBy(x=>x.vend||'-');
+  h = '<tr><th>Supervisor</th><th class="r">Enviadas</th><th class="r">% Resp.</th><th class="r">Calificaciones</th><th class="r">RMD prom.</th><th class="r">Detractoras</th><th class="r">Det. con plan</th></tr>';
+  const supKeys = [...new Set(Object.keys(eSup).concat(list.map(r=>r.sup)))].sort();
+  supKeys.forEach(s => { const l = list.filter(r=>r.sup===s); const x = rmdOf(l); const d=l.filter(r=>r.cat==='D'); const c=d.filter(r=>isComplete(segOf('rmd',r.id))).length; const ev = eSup[s]||{e:0,p:0};
+    h += `<tr><td>${esc(s)}</td><td class="r">${ev.e.toLocaleString('es-AR')}</td><td class="r">${objPill(pct(ev.p,ev.e),oP,1,'%')}</td><td class="r">${x.cal.toLocaleString('es-AR')}</td><td class="r">${objPill(x.avg,oR,2)}</td><td class="r">${d.length}</td><td class="r">${pctPill(c,d.length)}</td></tr>`; });
+  $('#rr-sup-t').innerHTML = supKeys.length ? h : '<tr><td class="muted">Sin detalle por cliente en el período.</td></tr>';
+  h = '<tr><th>Vendedor</th><th>Supervisor</th><th class="r">Enviadas</th><th class="r">% Resp.</th><th class="r">Calificaciones</th><th class="r">RMD prom.</th><th class="r">Detractoras</th><th class="r">Det. con plan</th></tr>';
+  const gv = grp(r=>r.vend||'-');
+  Object.values(gv).sort((a,b)=> b.filter(r=>r.cat==='D').length - a.filter(r=>r.cat==='D').length || (rmdOf(a).avg??9)-(rmdOf(b).avg??9)).forEach(l => { const x = rmdOf(l); const d=l.filter(r=>r.cat==='D'); const c=d.filter(r=>isComplete(segOf('rmd',r.id))).length; const ev = eVen[l[0].vend||'-']||{e:0,p:0};
+    h += `<tr><td>${esc(l[0].vend?l[0].vend+' · ':'')}${esc(l[0].vendNom)}</td><td class="muted">${esc(l[0].sup)}</td><td class="r">${ev.e.toLocaleString('es-AR')}</td><td class="r">${objPill(pct(ev.p,ev.e),oP,1,'%')}</td><td class="r">${x.cal.toLocaleString('es-AR')}</td><td class="r">${objPill(x.avg,oR,2)}</td><td class="r">${d.length}</td><td class="r">${pctPill(c,d.length)}</td></tr>`; });
+  $('#rr-ven').innerHTML = list.length ? h : '<tr><td class="muted">Sin detalle por cliente en el período.</td></tr>';
+  const mot = {}; det.forEach(r => r.mo.forEach(m => mot[m]=(mot[m]||0)+1));
+  $('#rr-mot').innerHTML = bars(Object.entries(mot).sort((a,b)=>b[1]-a[1]), 15, 'La base no trae motivos. Exportá con el nivel “Motivo Puntuación” para verlos acá.');
+  const top = {}; det.forEach(r => { const k = r.nombre + (r.cod?` (${r.cod})`:''); top[k]=(top[k]||0)+1; });
+  $('#rr-top').innerHTML = bars(Object.entries(top).sort((a,b)=>b[1]-a[1]), 12, 'Sin calificaciones detractoras en el período.');
+  $('#rr-planes').innerHTML = planesHtml('rmd', list);
+}
+$('#rr-per').onchange = () => { ls.set('nps_rrPer', $('#rr-per').value); renderRmdRes(); };
+$('#rr-sup').onchange = () => { ls.set('nps_rrSup', $('#rr-sup').value); renderRmdRes(); };
+
+/* ===================== INFO ===================== */
+function renderInfo(){
+  $('#lnkTablero').href = S.cfg.link || '#';
+  $('#lnkTableroRmd').href = S.cfg.rmdLink || S.cfg.link || '#';
+  $('#infoDescarga').textContent = S.cfg.descarga || '';
+  $('#infoRmd').textContent = S.cfg.rmdInfo || '';
+  $('#infoDescargaRmd').textContent = S.cfg.rmdDesc || '';
+  const m = S.meta || {};
+  $('#infoMeta').innerHTML = [m.nps ? `Base NPS: ${m.nps.enc} encuestas (${fmtDate(m.nps.desde)} al ${fmtDate(m.nps.hasta)}), cargada ${fmtTs(m.nps.t)}.` : 'Base NPS sin cargar.',
+    m.rmd ? `Base RMD: ${m.rmd.cal} calificaciones con detalle, ${m.rmd.dias} días con totales (${fmtDate(m.rmd.desde)} al ${fmtDate(m.rmd.hasta)}), cargada ${fmtTs(m.rmd.t)}.` : 'Base RMD sin cargar.'].join('<br>');
+  const parts = [`Objetivo de seguimiento: <b>100% de detractores (NPS) y calificaciones detractoras (RMD) con plan completo desde ${mesLbl(S.cfg.inicio)}</b>.`];
+  if (S.cfg.objetivo!=null && S.cfg.objetivo!=='') parts.push(`Objetivo NPS: <b>${S.cfg.objetivo}</b>`);
+  if (S.cfg.objRmd!=null && S.cfg.objRmd!=='') parts.push(`Objetivo RMD: <b>${S.cfg.objRmd}</b>`);
+  $('#infoObj').innerHTML = parts.join(' · ');
+}
+
+/* ===================== ANALISTA ===================== */
+function compTable(kind, el){
+  const rows = KIND[kind].rows(); const det = rows.filter(r=>r.cat==='D');
+  const sups = [...new Set(rows.map(r=>r.sup))].sort();
+  if (!rows.length){ el.innerHTML = '<tr><td class="muted">Sin base cargada.</td></tr>'; return; }
+  let h = '<tr><th>Mes</th>' + sups.map(s=>`<th class="r">${esc(s)}</th>`).join('') + '<th class="r">TOTAL</th></tr>';
+  const line = (lbl, l, prev, bg) => `<tr${bg?' style="background:#f6f7f9"':''}><td class="nowrap ${prev?'prev':''}"><b>${lbl}</b>${prev?' <span class="who">previo</span>':''}</td>` +
+    sups.map(s => { const d = l.filter(r=>r.sup===s); return `<td class="r">${pctPill(d.filter(r=>isComplete(segOf(kind,r.id))).length, d.length, prev)}</td>`; }).join('') +
+    `<td class="r">${pctPill(l.filter(r=>isComplete(segOf(kind,r.id))).length, l.length, prev)}</td></tr>`;
+  h += line('Desde inicio', det.filter(r=>r.mes >= S.cfg.inicio), false, true);
+  [...new Set(rows.map(r=>r.mes))].sort().reverse().forEach(m => { h += line(mesLbl(m), det.filter(r=>r.mes===m), m < S.cfg.inicio); });
+  el.innerHTML = h;
+}
+function renderAdm(){
+  $('#admLock').style.display = S.admin ? 'none' : '';
+  $('#admBody').style.display = S.admin ? '' : 'none';
+  if (!S.admin) return;
+  $$('.iniTxt').forEach(e => e.textContent = mesLbl(S.cfg.inicio));
+  const ae = document.activeElement; const editing = ae && ae.closest && ae.closest('#t-adm') && ae.matches('input,textarea,select');
+  if (!editing){
+    $('#cfgObj').value = S.cfg.objetivo ?? ''; $('#cfgObjRmd').value = S.cfg.objRmd ?? ''; $('#cfgObjResp').value = S.cfg.objResp ?? '';
+    $('#cfgIni').value = S.cfg.inicio || ''; $('#cfgLink').value = S.cfg.link || ''; $('#cfgDesc').value = S.cfg.descarga || '';
+    $('#cfgSup').value = S.cfg.supMap || ''; $('#cfgRmdInfo').value = S.cfg.rmdInfo || ''; $('#cfgRmdDesc').value = S.cfg.rmdDesc || ''; $('#cfgRmdLink').value = S.cfg.rmdLink || '';
+  }
+  $('#admRmdInfo').textContent = S.cfg.rmdInfo || '';
+  compTable('nps', $('#comp-nps')); compTable('rmd', $('#comp-rmd'));
+  const rs = responsables();
+  $('#tblResp').innerHTML = '<tr><th>Nombre</th><th>Sector</th><th></th></tr>' + (rs.length ? rs.map(r => `<tr><td>${esc(r.n)}</td>
+    <td><select data-rk="${r.k}">${SECTORES.map(s=>`<option${r.s===s?' selected':''}>${s}</option>`).join('')}</select></td>
+    <td><button class="btn sec" data-del="${r.k}">✕</button></td></tr>`).join('') : '<tr><td colspan="3" class="muted">Sin responsables cargados todavía.</td></tr>');
+  // cruce
+  if (!editing || !ae.closest('#cruce')){
+    $('#cruce').innerHTML = !S.cruce.length ? '<p class="okbox">✓ Todos los clientes del RMD cruzan con Chess.</p>' :
+      `<div class="tblwrap free" style="max-height:420px"><table><tr><th>Nombre en RMD</th><th>Situación</th><th>Candidatos en Chess</th><th class="r">Calif.</th><th>Código Chess</th></tr>` +
+      S.cruce.map(c => `<tr><td><b>${esc(c.n)}</b></td><td>${c.st==='amb'?'<span class="badge b-venc">HOMÓNIMOS</span>':'<span class="badge b-anu">NO CRUZA</span>'}</td>
+        <td style="font-size:12px">${c.cands.map(cd => { const x = S.cli['c'+cd]||{}; return `${cd} · ${esc(x.rs||'')} · vend ${esc(x.v??'')} ${x.an?'(ANULADO)':''}`; }).join('<br>') || '<span class="muted">—</span>'}</td>
+        <td class="r">${c.veces}</td><td><div class="row" style="gap:6px"><input data-ck="${c.k}" placeholder="código" style="width:100px" value="${c.st==='amb'?'':''}"><button class="btn sec" data-cs="${c.k}">Guardar</button></div></td></tr>`).join('') + '</table></div>';
+  }
+  const m = S.meta||{};
+  $('#admMeta').innerHTML = `<p>Modo: <b>${DB.mode==='firebase'?'Firebase':'LOCAL (configurá Firebase en el código)'}</b></p>` +
+    `<p>Base NPS: ${m.nps ? `${m.nps.enc} encuestas / ${m.nps.cli} clientes · ${fmtDate(m.nps.desde)} al ${fmtDate(m.nps.hasta)} · cargada ${fmtTs(m.nps.t)} por ${esc(m.nps.u)}` : 'sin cargar'}</p>` +
+    `<p>Base RMD: ${m.rmd ? `${m.rmd.cal} calificaciones con detalle · ${m.rmd.dias} días con totales · ${fmtDate(m.rmd.desde)} al ${fmtDate(m.rmd.hasta)} · cargada ${fmtTs(m.rmd.t)} por ${esc(m.rmd.u)}` : 'sin cargar'}</p>` +
+    `<p>Base clientes: ${m.cli ? `${m.cli.n} clientes · cargada ${fmtTs(m.cli.t)} por ${esc(m.cli.u)}` : 'sin cargar'}</p>` +
+    `<p>Seguimientos cargados: NPS ${Object.keys(S.segs.seg||{}).length} · RMD ${Object.keys(S.segs.segRmd||{}).length}</p>`;
+}
+$('#admGo').onclick = () => { if ($('#admPass').value===ADMIN_PASS){ S.admin=true; try{sessionStorage.setItem('nps_admin','1');}catch(e){} $('#admErr').style.display='none'; renderAdm(); } else $('#admErr').style.display=''; };
+$('#admPass').addEventListener('keydown', e => { if (e.key==='Enter') $('#admGo').click(); });
+const numOrNull = v => v.trim()==='' ? null : +v;
+$('#cfgSave').onclick = async () => {
+  await DB.update('config', { objetivo: numOrNull($('#cfgObj').value), objRmd: numOrNull($('#cfgObjRmd').value), objResp: numOrNull($('#cfgObjResp').value),
+    inicio: $('#cfgIni').value || '2026-11', link: $('#cfgLink').value.trim(), descarga: $('#cfgDesc').value });
+  toast('Configuración guardada ✓');
+};
+$('#cfgRmdSave').onclick = async () => { await DB.update('config', { rmdInfo: $('#cfgRmdInfo').value, rmdDesc: $('#cfgRmdDesc').value, rmdLink: $('#cfgRmdLink').value.trim() }); toast('Textos RMD guardados ✓'); };
+$('#supSave').onclick = async () => { await DB.update('config', { supMap: $('#cfgSup').value }); toast('Mapa de supervisores guardado ✓'); };
+$('#addResp').onclick = async () => {
+  const n = $('#newRespName').value.trim(); if (!n) return;
+  await DB.update('config/responsables', { ['r'+Date.now()]: { n, s: $('#newRespSec').value } });
+  $('#newRespName').value=''; toast('Responsable agregado ✓');
+};
+$('#tblResp').addEventListener('change', async e => { const k = e.target.dataset.rk; if (k){ await DB.update('config/responsables/'+k, { s: e.target.value }); toast('Actualizado ✓'); } });
+$('#tblResp').addEventListener('click', async e => { const k = e.target.dataset.del; if (k && confirm('¿Quitar este responsable? Los seguimientos que ya lo tienen lo conservan.')) await DB.set('config/responsables/'+k, null); });
+$('#cruce').addEventListener('click', async e => {
+  const k = e.target.dataset.cs; if (!k) return;
+  const v = String(parseInt(document.querySelector(`#cruce input[data-ck="${CSS.escape(k)}"]`).value)); if (v==='NaN') return toast('Código inválido');
+  if (!S.cli['c'+v] && !confirm(`El código ${v} no está en la base de clientes. ¿Guardarlo igual?`)) return;
+  await DB.update('config/rmdMap', { [k]: v }); toast('Cruce guardado ✓');
+});
+
+/* ---------- lectura de Excel ---------- */
+function readSheet(file){
+  if (typeof XLSX === 'undefined') return Promise.reject(new Error('No cargó la librería de Excel (cdnjs.cloudflare.com). Revisá internet o si la red de la empresa la bloquea.'));
+  return new Promise((ok,ko) => {
+    const fr = new FileReader();
+    fr.onload = () => { try{
+      const wb = XLSX.read(new Uint8Array(fr.result), {type:'array'});
+      const raw = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], {defval:null, raw:true});
+      ok(raw.map(o => { const n={}; for (const k in o) n[norm(k)] = o[k]; return n; }));
+    }catch(e){ ko(e); } };
+    fr.onerror = ko; fr.readAsArrayBuffer(file);
+  });
+}
+function excelToISO(v){
+  if (typeof v==='number'){ const d = new Date(Math.round((v - 25569) * 86400) * 1000);
+    return `${d.getUTCFullYear()}-${pad(d.getUTCMonth()+1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`; }
+  if (typeof v==='string'){
+    let m = v.match(/^(\d{4})-(\d{2})-(\d{2})(?:[ T](\d{2}):(\d{2})(?::(\d{2}))?)?/); if (m) return `${m[1]}-${m[2]}-${m[3]} ${m[4]||'00'}:${m[5]||'00'}:${m[6]||'00'}`;
+    m = v.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?/); if (m) return `${m[3]}-${pad(m[2])}-${pad(m[1])} ${pad(m[4]||0)}:${m[5]||'00'}:${m[6]||'00'}`;
+  }
+  return null;
+}
+function codFromDist(v){
+  let s = String(v ?? '').trim().replace(/\.0+$/,''); if (!s) return null;
+  if (/e\+/i.test(s)) s = String(Math.round(Number(v)));
+  if (s.startsWith(DIST_PREFIX) && s.length > DIST_PREFIX.length) s = s.slice(DIST_PREFIX.length);
+  const n = parseInt(s, 10); return isNaN(n) ? null : String(n);
+}
+const catFrom = (c, score) => { const x = norm(c); if (x.startsWith('PROMO')) return 'P'; if (x.startsWith('DETRA')) return 'D'; if (x.startsWith('PASSI')||x.startsWith('NEUT')) return 'N'; return score>=9 ? 'P' : score>=7 ? 'N' : 'D'; };
+const findKey = (row, ...pats) => Object.keys(row).find(k => pats.every(p => k.includes(p)));
+const num = v => v==null || v==='' ? 0 : +v || 0;
+
+$('#upNps').onchange = async e => {
+  const f = e.target.files[0]; if (!f) return; const msg = $('#upNpsMsg'); msg.innerHTML = 'Leyendo…';
+  try{
+    const rows = await readSheet(f);
+    const miss = ['FECHA ENC','COD CLIENTE DIST','SCORE','CATEGORIA','DRIVER PRIMARIO'].filter(k => !(k in (rows[0]||{})));
+    if (miss.length) throw new Error('No parece la BASE DISTRI de NPS. Faltan columnas: ' + miss.join(', '));
+    const enc = {}; let skip = 0;
+    rows.forEach(r => {
+      const fe = excelToISO(r['FECHA ENC']); const cod = codFromDist(r['COD CLIENTE DIST']);
+      if (!fe || !cod || isNaN(Number(r['SCORE'])) || r['SCORE']===null){ skip++; return; }
+      const id = 'e' + cod + '_' + fe.replace(/\D/g,''); const score = Number(r['SCORE']);
+      const x = enc[id] ||= { c: cod, n: String(r['NOMBRE CLIENTE']||'').trim(), f: fe, s: score, k: catFrom(r['CATEGORIA'], score), dr: [], cm: '' };
+      const dp = String(r['DRIVER PRIMARIO']||'').trim(), ds = String(r['DRIVER SECUNDARIO']||'').trim();
+      if (dp && !x.dr.some(d=>d[0]===dp && d[1]===ds)) x.dr.push([dp, ds]);
+      const cm = String(r['COMENTARIO']||'').trim();
+      if (cm && norm(cm)!=='SIN COMENTARIO' && !x.cm.includes(cm)) x.cm = x.cm ? x.cm + ' | ' + cm : cm;
+    });
+    const list = Object.values(enc); if (!list.length) throw new Error('No se encontraron encuestas válidas.');
+    const fs = list.map(x=>x.f).sort(); const nx = {P:0,N:0,D:0}; list.forEach(x=>nx[x.k]++);
+    const meta = { enc: list.length, cli: new Set(list.map(x=>x.c)).size, desde: fs[0], hasta: fs.at(-1), t: Date.now(), u: S.user || 'ANALISTA' };
+    await DB.set('base/encuestas', enc); await DB.update('meta', { nps: meta });
+    msg.innerHTML = `<div class="okbox">✓ Cargada: <b>${list.length}</b> encuestas de <b>${meta.cli}</b> clientes · ${fmtDate(fs[0])} al ${fmtDate(fs.at(-1))}<br>P ${nx.P} · N ${nx.N} · D ${nx.D} · NPS ${fmtN((nx.P-nx.D)/list.length*100)}</div>`;
+  }catch(err){ msg.innerHTML = `<div class="warn">${esc(err.message)}</div>`; }
+  e.target.value = '';
+};
+$('#upRmd').onchange = async e => {
+  const f = e.target.files[0]; if (!f) return; const msg = $('#upRmdMsg'); msg.innerHTML = 'Leyendo…';
+  try{
+    const rows = await readSheet(f); const r0 = rows[0] || {};
+    const K = { f: findKey(r0,'FECHA'), n: findKey(r0,'NOMBRE'), s: Object.keys(r0).find(k=>k==='#RMD') || findKey(r0,'RMD','PROM') || Object.keys(r0).find(k=>k.replace(/\W/g,'')==='RMD'),
+      d: findKey(r0,'DETRACT'), e: findKey(r0,'ENVIAD'), p: findKey(r0,'PUNTUAD'), mo: findKey(r0,'MOTIVO'), c: Object.keys(r0).find(k => k.includes('COD') && k.includes('CLIENTE')) };
+    const miss = ['f','n','s','p'].filter(k => !K[k]);
+    if (miss.length) throw new Error('No parece la base RMD. Columnas encontradas: ' + Object.keys(r0).join(', '));
+    // Hoja con apertura (Código → Nombre → Motivo → Fecha, o Fecha → Nombre). Se toman solo las filas con FECHA válida:
+    //  - Nombre = Total  → total del día (formato viejo)
+    //  - resto           → fila hoja: una calificación (o envío sin respuesta) de un cliente en un día
+    const det = {}, dia = {}, env = {}; let diaTot = false;
+    rows.forEach(r => {
+      const fe = excelToISO(r[K.f]); if (!fe) return;
+      const fd = fe.slice(0,10); const dk = 'd' + fd.replace(/-/g,'');
+      const nombre = String(r[K.n] ?? '').trim();
+      const vals = { s: num(r[K.s]), d: K.d ? num(r[K.d]) : 0, e: K.e ? num(r[K.e]) : 0, p: num(r[K.p]) };
+      if (!nombre || norm(nombre)==='TOTAL'){ dia[dk] = vals; diaTot = true; return; }
+      const cod = K.c ? codFromDist(r[K.c]) : null;
+      const ck = cod ? 'c'+cod : 'n'+nameKey(nombre);
+      // envíos por cliente y mes (para % de respuesta por vendedor/supervisor)
+      const ek = ck + '_' + fd.slice(0,7).replace('-','');
+      const ev = env[ek] ||= { e:0, p:0 }; ev.e += vals.e; ev.p += vals.p;
+      if (vals.p <= 0) return;                                                    // envío sin respuesta
+      const id = 'r' + ck.slice(1) + '_' + fd.replace(/-/g,'');
+      const mot = K.mo ? String(r[K.mo] ?? '').trim() : '';
+      const x = det[id] ||= { f: fd, n: nombre, s: 0, d: 0, e: 0, p: 0 };
+      if (cod) x.c = cod;
+      x.s = (x.s*x.p + vals.s*vals.p) / ((x.p+vals.p)||1); x.p += vals.p; x.d += vals.d; x.e += vals.e;
+      if (mot && norm(mot)!=='TOTAL' && vals.s < 5){ (x.mo ||= []); if (!x.mo.includes(mot)) x.mo.push(mot); }
+    });
+    if (!diaTot){ // armar totales diarios con las filas hoja
+      rows.forEach(r => { const fe = excelToISO(r[K.f]); const nombre = String(r[K.n] ?? '').trim(); if (!fe || !nombre || norm(nombre)==='TOTAL') return;
+        const dk = 'd'+fe.slice(0,10).replace(/-/g,''); const t = dia[dk] ||= {s:0,d:0,e:0,p:0}; const s=num(r[K.s]), p=num(r[K.p]);
+        t.s = (t.s*t.p + s*p)/((t.p+p)||1); t.p += p; t.d += K.d ? num(r[K.d]) : 0; t.e += K.e ? num(r[K.e]) : 0; });
+    }
+    Object.values(det).forEach(x => { x.s = Math.round(x.s*100)/100; });
+    const puntuadas = det;
+    const list = Object.values(puntuadas); const dias = Object.keys(dia).sort();
+    if (!list.length && !dias.length) throw new Error('No se encontraron datos válidos.');
+    const fechas = dias.map(k=>`${k.slice(1,5)}-${k.slice(5,7)}-${k.slice(7,9)}`);
+    const diasDet = new Set(Object.values(det).map(x=>x.f)).size;
+    const meta = { cal: list.length, det: list.filter(x=>x.d>0 || x.s<=3).length, dias: dias.length, diasDet, desde: fechas[0], hasta: fechas.at(-1), t: Date.now(), u: S.user || 'ANALISTA' };
+    meta.conCod = !!K.c; meta.clientes = new Set(Object.keys(env).map(k=>k.split('_')[0])).size;
+    await DB.set('base/rmd', puntuadas); await DB.set('base/rmdDia', dia); await DB.set('base/rmdEnv', env); await DB.update('meta', { rmd: meta });
+    msg.innerHTML = `<div class="okbox">✓ Cargada: totales de <b>${dias.length}</b> días (${fmtDate(fechas[0])} al ${fmtDate(fechas.at(-1))}) · detalle por cliente de <b>${diasDet}</b> día(s): <b>${list.length}</b> calificaciones respondidas, <b>${meta.det}</b> detractoras${K.mo?' · con motivos':''}.</div>` +
+      (diasDet < dias.length*0.8 ? `<div class="warn" style="margin-top:6px">El detalle por cliente vino solo para ${diasDet} día(s). Para seguir a todos los clientes exportá la matriz con <b>“Expandir todo un nivel hacia abajo”</b>.</div>` : '');
+  }catch(err){ msg.innerHTML = `<div class="warn">${esc(err.message)}</div>`; }
+  e.target.value = '';
+};
+$('#upCli').onchange = async e => {
+  const f = e.target.files[0]; if (!f) return; const msg = $('#upCliMsg'); msg.innerHTML = 'Leyendo… (puede tardar unos segundos)';
+  try{
+    const rows = await readSheet(f);
+    const K = { cod:'CLIENTE', rs:'RAZON SOCIAL', fa:'NOMBRE DE FANTASIA', lo:'DESCRIPCION LOCALIDAD', sc:'DESCRIPCION SUBCANAL', an:'ANULADO',
+      r:'FUERZA DE VENTA 1 RUTA DE VENTA', v:'FUERZA DE VENTA 1 PERSONAL COMERCIAL', vn:'FUERZA DE VENTA 1 DESCRIPCION PERSONAL COMERCIAL' };
+    const miss = ['cod','rs','v'].filter(k => !(K[k] in (rows[0]||{})));
+    if (miss.length) throw new Error('No parece la base de clientes de Chess. Faltan: ' + miss.map(k=>K[k]).join(', '));
+    const cli = {};
+    rows.forEach(r => { const c = parseInt(r[K.cod]); if (isNaN(c)) return;
+      const o = { rs: String(r[K.rs]||'').trim() };
+      if (r[K.fa]) o.fa = String(r[K.fa]).trim(); if (r[K.lo]) o.lo = String(r[K.lo]).trim(); if (r[K.sc]) o.sc = String(r[K.sc]).trim();
+      if (norm(r[K.an])==='SI') o.an = 1; if (r[K.r]!=null) o.r = String(r[K.r]); if (r[K.v]!=null && !isNaN(parseInt(r[K.v]))) o.v = parseInt(r[K.v]); if (r[K.vn]) o.vn = String(r[K.vn]).trim();
+      cli['c'+c] = o; });
+    const n = Object.keys(cli).length; if (!n) throw new Error('No se encontraron clientes.');
+    await DB.set('base/clientes', cli); await DB.update('meta', { cli: { n, t: Date.now(), u: S.user || 'ANALISTA' } });
+    msg.innerHTML = `<div class="okbox">✓ Cargada: <b>${n}</b> clientes.</div>`;
+  }catch(err){ msg.innerHTML = `<div class="warn">${esc(err.message)}</div>`; }
+  e.target.value = '';
+};
+function exportRows(kind, list){
+  const segCols = sg => ({ 'Comentario seguimiento': sg.cmt||'', 'Plan de acción': sg.plan||'', 'Sector': sg.sector||'', 'Responsable': sg.resp||'', 'Fecha compromiso': sg.fc||'',
+    'Status': sg.status||'', 'Completo': isComplete(sg) ? 'SI' : 'NO', 'Última carga por': sg.u||'', 'Última carga': sg.t ? new Date(sg.t).toLocaleString('es-AR') : '', 'Creado por': sg.cu||'' });
+  const cliCols = r => ({ 'Cód. cliente': r.cod ? +r.cod : '', 'Cliente': r.nombre, 'Nombre fantasía': r.fant, 'Ruta': r.ruta, 'Subcanal': r.sub, 'Localidad': r.loc, 'Vendedor': r.vend ? +r.vend : '', 'Nombre vendedor': r.vendNom, 'Supervisor': r.sup });
+  if (kind==='nps') return list.map(r => { const sg = segOf('nps',r.id)||{}; return { 'Fecha encuesta': r.fecha, 'Mes': mesLbl(r.mes), ...cliCols(r), 'Score': r.score, 'Categoría': KIND.nps.cats[r.cat],
+    'Repite': r.repTot>1 ? `${r.repIdx}/${r.repTot}` : '', 'Drivers primarios': [...new Set(r.drivers.map(d=>d[0]))].join(' | '), 'Drivers secundarios': r.drivers.map(d=>d[1]).filter(x=>x && x!=='Ninguno').join(' | '),
+    'Comentario cliente': r.cmt, 'Semáforo': semaforo(r), ...segCols(sg) }; });
+  return list.map(r => { const sg = segOf('rmd',r.id)||{}; return { 'Fecha': r.fecha, 'Mes': mesLbl(r.mes), ...cliCols(r), 'Cruce Chess': r.match, 'RMD': r.score, 'Calificaciones': r.p, 'Detractoras': r.d,
+    'Categoría': KIND.rmd.cats[r.cat], 'Motivos': r.mo.join(' | '), 'Repite': r.repTot>1 ? `${r.repIdx}/${r.repTot}` : '', 'Semáforo': semaforo(r), ...segCols(sg) }; });
+}
+function sheetFrom(data){ const ws = XLSX.utils.json_to_sheet(data.length ? data : [{ 'Sin datos':'' }]);
+  if (data.length) ws['!cols'] = Object.keys(data[0]).map(k => ({ wch: Math.min(45, Math.max(10, k.length+2, ...data.slice(0,200).map(r => String(r[k]??'').length))) }));
+  return ws; }
+function exportRev(kind){
+  if (typeof XLSX==='undefined') return toast('No cargó la librería de Excel');
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, sheetFrom(exportRows(kind, filtered(kind))), kind==='nps' ? 'Revisión NPS' : 'Revisión RMD');
+  XLSX.writeFile(wb, `${kind.toUpperCase()}_Revision_${todayISO()}.xlsx`);
+}
+function exportRes(kind){
+  if (typeof XLSX==='undefined') return toast('No cargó la librería de Excel');
+  const wb = XLSX.utils.book_new(); const used = new Set();
+  const kp = $(`#${kind==='nps'?'nr':'rr'}-kpis`);
+  const kpis = [...kp.querySelectorAll('.kpi')].map(k => ({ Indicador: k.querySelector('.l').textContent, Valor: k.querySelector('.v').textContent }));
+  XLSX.utils.book_append_sheet(wb, sheetFrom(kpis), 'Indicadores');
+  $$(`#t-${kind}-res .card`).forEach(card => {
+    card.querySelectorAll('table').forEach(t => {
+      if (t.closest('table')!==t) return;
+      const h3 = t.parentElement.querySelector(':scope > h3');
+      let name = ((h3 ? 'Planes ' + h3.textContent.toLowerCase() : card.querySelector('h2')?.textContent) || 'Tabla').replace(/[\\/?*\[\]:]/g,'').slice(0,28); let n = name, i = 2;
+      while (used.has(n)) n = name.slice(0,26) + ' ' + (i++); used.add(n);
+      XLSX.utils.book_append_sheet(wb, XLSX.utils.table_to_sheet(t, { raw:false }), n);
+    });
+  });
+  XLSX.writeFile(wb, `${kind.toUpperCase()}_Resumen_${todayISO()}.xlsx`);
+}
+$('#btnExport').onclick = () => {
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, sheetFrom(exportRows('nps', S.npsRows)), 'NPS');
+  XLSX.utils.book_append_sheet(wb, sheetFrom(exportRows('rmd', S.rmdRows)), 'RMD');
+  XLSX.writeFile(wb, `Seguimiento_NPS_RMD_${todayISO()}.xlsx`);
+};
+
+/* ===================== usuario ===================== */
+function askUser(){
+  if (document.querySelector('.overlay')) return;
+  const ov = document.createElement('div'); ov.className = 'overlay';
+  ov.innerHTML = `<div class="modal"><h2>¿Quién sos?</h2><p class="muted" style="margin-top:-6px">Queda registrado en cada carga.</p>
+    <select id="uSel" style="width:100%;margin-bottom:8px">${supervisores().map(s=>`<option>${esc(s)}</option>`).join('')}<option>ANALISTA</option><option value="__otro">Otro…</option></select>
+    <input id="uOtro" placeholder="Nombre y apellido" style="width:100%;display:none;margin-bottom:8px">
+    <div class="row" style="justify-content:flex-end"><button class="btn" id="uOk">Entrar</button></div></div>`;
+  document.body.appendChild(ov);
+  const sel = ov.querySelector('#uSel'), otro = ov.querySelector('#uOtro');
+  if (S.user && [...sel.options].some(o=>o.value===S.user)) sel.value = S.user;
+  sel.onchange = () => otro.style.display = sel.value==='__otro' ? '' : 'none';
+  ov.querySelector('#uOk').onclick = () => {
+    const u = sel.value==='__otro' ? otro.value.trim().toUpperCase() : sel.value; if (!u) return;
+    S.user = u; ls.set('nps_user', u); $('#userChip').textContent = '👤 ' + u; ov.remove();
+    if (!ls.get('nps_filtros_init', false) && supervisores().includes(u)){ FST.nps.sup = u; FST.rmd.sup = u; ls.set('nps_f_nps', FST.nps); ls.set('nps_f_rmd', FST.rmd); ls.set('nps_filtros_init', true); renderAll(); }
+  };
+}
+$('#userChip').onclick = askUser;
+
+/* ===================== navegación y arranque ===================== */
+let curTab = ls.get('nps_tab2', 'info');
+function showTab(t){
+  curTab = t; ls.set('nps_tab2', t);
+  $$('#nav button').forEach(b => b.classList.toggle('on', b.dataset.t===t));
+  $$('.tab').forEach(s => s.classList.toggle('on', s.id==='t-'+t));
+  renderTab();
+}
+$$('#nav button').forEach(b => b.onclick = () => showTab(b.dataset.t));
+function renderTab(){
+  if (curTab==='info') renderInfo();
+  if (curTab==='nps-rev'){ refreshFilters('nps'); renderRev('nps'); }
+  if (curTab==='nps-res') renderNpsRes();
+  if (curTab==='rmd-rev'){ refreshFilters('rmd'); renderRev('rmd'); }
+  if (curTab==='rmd-res') renderRmdRes();
+  if (curTab==='adm') renderAdm();
+}
+function renderHeader(){
+  const ne = Object.keys(S.enc||{}).length, nr = Object.keys(S.rmd||{}).length, nd = Object.keys(S.rmdDia||{}).length, nc = Object.keys(S.cli||{}).length;
+  const red = t => `<span style="color:#ff8a80">${t}</span>`;
+  $('#baseInfo').innerHTML = `📋 NPS: ${ne ? ne+' enc.' : red('sin base')} · RMD: ${nd ? nr+' calif.' : red('sin base')} · Clientes: ${nc ? nc : red('sin base')}`;
+}
+let rT = null;
+function renderAll(){ clearTimeout(rT); rT = setTimeout(() => { buildRows(); renderHeader(); renderTab(); }, 30); }
+
+(async function start(){
+  buildFilterBar('nps'); buildFilterBar('rmd');
+  await DB.init();
+  const ready = { seg:false, segRmd:false };
+  DB.on('config', v => { S.cfg = Object.assign({}, DEFAULT_CFG, v||{}); if (!S.cfg.responsables) S.cfg.responsables = {}; if (!S.cfg.rmdMap) S.cfg.rmdMap = {}; renderAll(); });
+  DB.on('meta', v => { S.meta = v||{}; renderAll(); });
+  DB.on('base/encuestas', v => { S.enc = v||{}; renderAll(); });
+  DB.on('base/rmd', v => { S.rmd = v||{}; renderAll(); });
+  DB.on('base/rmdDia', v => { S.rmdDia = v||{}; renderAll(); });
+  DB.on('base/rmdEnv', v => { S.rmdEnvRaw = v||{}; renderAll(); });
+  DB.on('base/clientes', v => { S.cli = v||{}; renderAll(); });
+  ['seg','segRmd'].forEach(key => DB.on(key, v => {
+    const old = S.segs[key]; S.segs[key] = v||{};
+    const kind = key==='seg' ? 'nps' : 'rmd';
+    if (curTab===kind+'-rev' && ready[key]){
+      new Set([...Object.keys(old), ...Object.keys(S.segs[key])]).forEach(id => { if (JSON.stringify(old[id])!==JSON.stringify(S.segs[key][id])) patchRow(kind, id); });
+      renderRevKpis(kind, filtered(kind));
+    } else renderAll();
+    ready[key] = true;
+  }));
+  $('#userChip').textContent = '👤 ' + (S.user || 'elegir usuario');
+  showTab(curTab);
+  if (!S.user) setTimeout(askUser, 400);
+})();
+</script>
+</body>
+</html>
