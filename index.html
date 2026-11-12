@@ -121,6 +121,7 @@ td.prev{color:#a0a7b4}
   <button data-t="info">INFO</button>
   <div class="grp"><span>NPS</span><button data-t="nps-rev">Revisión</button><button data-t="nps-res">Resumen</button></div>
   <div class="grp"><span>RMD</span><button data-t="rmd-rev">Revisión</button><button data-t="rmd-res">Resumen</button></div>
+  <div class="grp"><span>BEES CARE</span><button data-t="care-rev">Revisión</button><button data-t="care-res">Resumen</button></div>
   <button data-t="adm">ANALISTA 🔒</button>
 </nav>
 <div id="banner" style="display:none;background:#fde2e2;color:#8a1c1c;padding:10px 20px;font-weight:600"></div>
@@ -154,23 +155,31 @@ td.prev{color:#a0a7b4}
       <h3>Cómo descargar la base RMD</h3>
       <div class="steps" id="infoDescargaRmd"></div>
     </div>
+    <div class="card">
+      <div class="sect">BEES CARE</div>
+      <h2>¿Qué es BEES Care?</h2>
+      <div class="steps" id="infoCare"></div>
+      <p style="margin-top:12px"><a id="lnkTableroCare" class="btn acc" target="_blank" rel="noopener" href="#">📊 Abrir tablero BEES Care (Power BI)</a></p>
+      <h3>Cómo descargar la base BEES Care</h3>
+      <div class="steps" id="infoDescargaCare"></div>
+    </div>
   </div>
   <div class="grid2">
     <div class="card">
-      <h2>Escala de colores (Revisión NPS y RMD)</h2>
+      <h2>Escala de colores (Revisión NPS, RMD y BEES Care)</h2>
       <table>
-        <tr><td class="sem sem-rojo"></td><td><b>Rojo – Falta completar.</b> Detractor (NPS) o calificación detractora (RMD) sin plan completo. <b>Obligatorio.</b></td></tr>
+        <tr><td class="sem sem-rojo"></td><td><b>Rojo – Falta completar.</b> Detractor (NPS), calificación detractora (RMD) o ticket fuera de SLA (BEES Care) sin plan completo. <b>Obligatorio.</b></td></tr>
         <tr><td class="sem sem-naranja"></td><td><b>Naranja – Compromiso vencido.</b> Tiene plan, la fecha compromiso pasó y sigue abierto.</td></tr>
         <tr><td class="sem sem-amarillo"></td><td><b>Amarillo – En curso.</b> Plan cargado en Pendiente / En gestión dentro de fecha (o carga opcional incompleta).</td></tr>
         <tr><td class="sem sem-verde"></td><td><b>Verde – Cerrado.</b> Status Resuelto o Sin solución.</td></tr>
-        <tr><td class="sem sem-gris"></td><td><b>Gris – Opcional.</b> Neutros, promotores o calificaciones positivas sin carga.</td></tr>
+        <tr><td class="sem sem-gris"></td><td><b>Gris – Opcional.</b> Neutros, promotores, calificaciones positivas o tickets en SLA sin carga.</td></tr>
       </table>
       <p class="muted" style="margin-top:10px">Un plan está <b>completo</b> con: Plan de acción, Sector, Responsable, Status y Fecha compromiso (la fecha no hace falta si el status es Resuelto o Sin solución).</p>
     </div>
     <div class="card">
       <h2>Cómo se trabaja</h2>
       <ol>
-        <li>Entrá a <b>Revisión</b> de NPS o RMD y filtrá por tu supervisor.</li>
+        <li>Entrá a <b>Revisión</b> de NPS, RMD o BEES Care y filtrá por tu supervisor.</li>
         <li>Prioridad: filas en <b style="color:var(--s-rojo)">rojo</b>.</li>
         <li>Si el cliente figura <span class="badge b-rep">REPITE</span>, abajo de su nombre ves todas sus respuestas (la actual subrayada).</li>
         <li>Cargá Comentario, Plan de acción, Sector (Ventas / Logística), Responsable, Fecha compromiso y Status. Se guarda solo al salir de cada campo.</li>
@@ -212,6 +221,7 @@ td.prev{color:#a0a7b4}
     <div class="card"><h2>Drivers primarios en detractores</h2><p class="muted" style="margin-top:-4px">Encuestas detractoras que marcaron cada driver</p><div id="nr-dp"></div></div>
     <div class="card"><h2>Top motivos (driver secundario) en detractores</h2><div id="nr-ds"></div></div>
   </div>
+  <div class="card"><h2>Driver principal por mes</h2><p class="muted" style="margin-top:-4px">Encuestas detractoras + neutras de cada mes que marcaron cada driver primario (más oscuro = más casos). La columna “Principal” de las tablas muestra el driver más repetido en detractores.</p><div class="tblwrap free"><table id="nr-dmes"></table></div></div>
   <div class="card"><h2>NPS por vendedor</h2><p class="muted" style="margin-top:-4px">Ojo con pocos casos: con 2 o 3 encuestas un solo detractor mueve mucho el NPS.</p><div class="tblwrap free"><table id="nr-ven"></table></div></div>
 </section>
 
@@ -247,6 +257,38 @@ td.prev{color:#a0a7b4}
     <div class="card"><h2>Clientes con más calificaciones detractoras</h2><div id="rr-top"></div></div>
   </div>
   <div class="card"><h2>RMD por vendedor</h2><p class="muted" style="margin-top:-4px">Ordenado por cantidad de calificaciones detractoras</p><div class="tblwrap free"><table id="rr-ven"></table></div></div>
+  <div class="card"><h2>RMD por cliente</h2><p class="muted" style="margin-top:-4px">Clientes que calificaron en el período, ordenados por calificaciones detractoras y peor promedio.</p>
+    <div class="row" style="margin-bottom:8px"><input type="search" id="rr-cli-q" placeholder="Buscar cliente o código…" style="min-width:260px"><label class="f" style="flex-direction:row;align-items:center;gap:6px;text-transform:none;font-size:12px"><input type="checkbox" id="rr-cli-det" checked> Solo con detractoras</label></div>
+    <div class="tblwrap" style="max-height:620px"><table id="rr-cli"></table></div><div class="more" id="rr-cli-more"></div></div>
+</section>
+
+<!-- ================= BEES CARE REVISIÓN ================= -->
+<section class="tab" id="t-care-rev">
+  <div class="kpis" id="care-kpis"></div>
+  <div class="card" style="padding:12px 14px"><div class="filters" id="care-filters"></div></div>
+  <div class="tblwrap"><table class="rev" id="care-tbl"><thead></thead><tbody></tbody></table><div class="more" id="care-more"></div></div>
+  <p class="muted" id="care-count"></p>
+</section>
+
+<!-- ================= BEES CARE RESUMEN ================= -->
+<section class="tab" id="t-care-res">
+  <div class="card" style="padding:12px 14px"><div class="filters">
+    <label class="f">Período<select id="cr-per"></select></label>
+    <label class="f">Supervisor<select id="cr-sup"></select></label>
+    <span class="muted" id="cr-obj" style="font-size:12px"></span>
+    <button class="btn acc" style="margin-left:auto" onclick="exportRes('care')">⬇ Excel del resumen</button>
+  </div></div>
+  <div class="kpis" id="cr-kpis"></div>
+  <div class="card"><h2>Reclamos por mes</h2><div class="tblwrap free"><table id="cr-mes"></table></div></div>
+  <div class="card"><h2>Motivos con mayor demora</h2><p class="muted" style="margin-top:-4px">Ordenado por días promedio de resolución (fecha solución − fecha creación)</p><div class="tblwrap free"><table id="cr-mot"></table></div></div>
+  <div class="grid2">
+    <div class="card"><h2>Submotivos más frecuentes</h2><div id="cr-sub"></div></div>
+    <div class="card"><h2>Submotivos que más se van de SLA</h2><div id="cr-subf"></div></div>
+  </div>
+  <div class="card"><h2>Clientes con más reclamos</h2><p class="muted" style="margin-top:-4px">Top 40 del período</p><div class="tblwrap free"><table id="cr-cli"></table></div></div>
+  <div class="card"><h2>Reclamos por supervisor</h2><div class="tblwrap free"><table id="cr-sup-t"></table></div></div>
+  <div class="card"><h2>Estado de los planes de acción</h2><div id="cr-planes"></div><h3 style="margin-top:18px">¿Sirvieron las intervenciones?</h3><div id="cr-efecto" style="max-width:520px"></div></div>
+  <div class="card"><h2>Reclamos por vendedor</h2><div class="tblwrap free"><table id="cr-ven"></table></div></div>
 </section>
 
 <!-- ================= ANALISTA ================= -->
@@ -260,6 +302,7 @@ td.prev{color:#a0a7b4}
     <div class="grid2">
       <div class="card"><h2>NPS · % detractores con plan completo</h2><p class="muted" style="margin-top:-4px">Objetivo 100% desde <b class="iniTxt"></b>. Meses previos como referencia.</p><div class="tblwrap free"><table id="comp-nps"></table></div></div>
       <div class="card"><h2>RMD · % calificaciones detractoras con plan completo</h2><p class="muted" style="margin-top:-4px">Objetivo 100% desde <b class="iniTxt"></b>.</p><div class="tblwrap free"><table id="comp-rmd"></table></div></div>
+      <div class="card"><h2>BEES CARE · % tickets fuera de SLA con plan completo</h2><p class="muted" style="margin-top:-4px">Objetivo 100% desde <b class="iniTxt"></b>.</p><div class="tblwrap free"><table id="comp-care"></table></div></div>
     </div>
 
     <div class="grid2">
@@ -276,7 +319,13 @@ td.prev{color:#a0a7b4}
         <div id="upRmdMsg" style="margin-top:8px"></div>
       </div>
       <div class="card">
-        <h2>3 · Cargar TOTAL CLIENTES (Chess)</h2>
+        <h2>3 · Cargar BEES CARE</h2>
+        <p class="muted">Excel “BEES CARE” del tablero (un ticket por fila, año completo, distribuidor 473112). Reemplaza la base anterior; los seguimientos se conservan (atados al N° de ticket).</p>
+        <input type="file" id="upCare" accept=".xlsx,.xls">
+        <div id="upCareMsg" style="margin-top:8px"></div>
+      </div>
+      <div class="card">
+        <h2>4 · Cargar TOTAL CLIENTES (Chess)</h2>
         <p class="muted">Bajada “Total Clientes” de Chess (activos y anulados, como Clientes_8.xlsx). Da vendedor, ruta, subcanal y localidad de cada cliente; los anulados se marcan con la etiqueta ANULADO.</p>
         <input type="file" id="upCli" accept=".xlsx,.xls">
         <div id="upCliMsg" style="margin-top:8px"></div>
@@ -308,6 +357,29 @@ td.prev{color:#a0a7b4}
     </div>
 
     <div class="card">
+      <div class="sect">BEES CARE</div>
+      <h2>¿Qué es BEES Care y cómo se usa en este archivo?</h2>
+      <div class="grid2">
+        <div>
+          <div class="steps" id="admCareInfo"></div>
+          <h3>Cómo lee el archivo la base BEES Care</h3>
+          <ul class="muted" style="line-height:1.55">
+            <li>Cada fila es un <b>ticket</b> (N° de ticket único). Columnas usadas: Fecha creación, Fecha solución, ID Cliente, Estado, SLA, Motivo y Submotivo.</li>
+            <li><b>Días de resolución</b> = fecha solución − fecha creación (la base trae solo el día, sin hora). Si sigue abierto se muestra “abierto hace X días”.</li>
+            <li>Es <b>obligatorio</b> cargar plan en los tickets <b>Cerrado fuera del SLA</b> y <b>Pendiente vencido</b>. Los pendientes dentro del SLA y los cerrados dentro del SLA son opcionales.</li>
+            <li>“Repite” = el cliente abrió más de un ticket en el año. En la fila con plan se ve si después <b>volvió a reclamar</b>.</li>
+          </ul>
+        </div>
+        <div style="display:grid;gap:10px">
+          <label class="f">Texto “¿Qué es BEES Care?” (se muestra en INFO)<textarea id="cfgCareInfo" rows="10"></textarea></label>
+          <label class="f">Pasos para descargar la base BEES Care<textarea id="cfgCareDesc" rows="6"></textarea></label>
+          <label class="f">Link al tablero BEES Care<input type="url" id="cfgCareLink"></label>
+          <div><button class="btn" id="cfgCareSave">Guardar textos BEES Care</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
       <h2>Cruce RMD ↔ Chess</h2>
       <p class="muted" style="margin-top:-4px">Clientes del RMD que no cruzaron por nombre o que tienen más de un código en Chess. Escribí el código de Chess correcto y guardá (queda guardado para siempre para ese nombre).</p>
       <div id="cruce"></div>
@@ -315,12 +387,13 @@ td.prev{color:#a0a7b4}
 
     <div class="grid2">
       <div class="card">
-        <h2>4 · Configuración general</h2>
+        <h2>5 · Configuración general</h2>
         <div style="display:grid;gap:10px">
           <div class="row">
             <label class="f">Objetivo NPS<input type="number" id="cfgObj" step="0.1" style="width:120px"></label>
             <label class="f">Objetivo RMD (prom.)<input type="number" id="cfgObjRmd" step="0.01" style="width:120px"></label>
             <label class="f">Objetivo % respuesta RMD<input type="number" id="cfgObjResp" step="1" style="width:120px"></label>
+            <label class="f">Objetivo % tickets en SLA<input type="number" id="cfgObjSla" step="1" style="width:120px"></label>
           </div>
           <p class="muted" style="margin:0;font-size:12px">Vacío = sin objetivo (no se pinta verde/rojo).</p>
           <label class="f">Inicio del seguimiento (mes desde el que se exige 100%)<input type="month" id="cfgIni" style="max-width:180px"></label>
@@ -330,7 +403,7 @@ td.prev{color:#a0a7b4}
         </div>
       </div>
       <div class="card">
-        <h2>5 · Responsables</h2>
+        <h2>6 · Responsables</h2>
         <p class="muted" style="margin-top:-4px">Opciones del desplegable “Responsable” según el sector elegido.</p>
         <table id="tblResp"></table>
         <div class="row" style="margin-top:10px">
@@ -342,14 +415,14 @@ td.prev{color:#a0a7b4}
     </div>
     <div class="grid2">
       <div class="card">
-        <h2>6 · Vendedor → Supervisor</h2>
+        <h2>7 · Vendedor → Supervisor</h2>
         <p class="muted" style="margin-top:-4px">Una línea por vendedor: <code>número;SUPERVISOR</code>. Los que no estén quedan “Sin supervisor”.</p>
         <textarea id="cfgSup" rows="12" style="width:100%;font-family:Consolas,monospace"></textarea>
         <div style="margin-top:8px"><button class="btn" id="supSave">Guardar</button></div>
       </div>
       <div class="card">
-        <h2>7 · Exportar y estado</h2>
-        <p><button class="btn acc" id="btnExport">⬇ Descargar Excel con seguimiento (NPS + RMD)</button></p>
+        <h2>8 · Exportar y estado</h2>
+        <p><button class="btn acc" id="btnExport">⬇ Descargar Excel con todo el seguimiento (NPS + RMD + BEES Care)</button></p>
         <div id="admMeta" class="muted"></div>
       </div>
     </div>
@@ -422,9 +495,24 @@ const DEFAULT_SUP = `1;CORSINO PEDRO
 98;SECO ROBERTO ENRIQUE`;
 
 const DEFAULT_CFG = {
-  objetivo: null, objRmd: null, objResp: null,
+  objetivo: null, objRmd: null, objResp: null, objSla: null,
   inicio: '2026-11',
-  link: TABLERO, rmdLink: TABLERO,
+  link: TABLERO, rmdLink: TABLERO, careLink: TABLERO,
+  careInfo: `BEES Care es el canal de atención de BEES: cada reclamo o consulta que hace el cliente (app, WhatsApp, teléfono) genera un TICKET con un motivo y un submotivo.
+
+Cada ticket tiene un SLA: el tiempo máximo (en horas) que tenemos para resolverlo según el tipo de caso.
+• Cerrado dentro del SLA: se resolvió a tiempo.
+• Cerrado fuera del SLA: se resolvió, pero tarde.
+• Pendiente dentro del SLA: abierto y todavía en plazo.
+• Pendiente vencido: abierto y ya fuera de plazo.
+
+Objetivo del seguimiento: que los tickets se resuelvan dentro del SLA, entender por qué se vencen (motivos con más demora) y actuar sobre los clientes que reclaman seguido.
+
+(Texto editable desde ANALISTA.)`,
+  careDesc: `1. Abrir el tablero (botón de arriba) e ir a la página de BEES CARE.
+2. Filtros: AÑO = año actual · COD_DISTRIBUIDOR = 473112.
+3. En la tabla de tickets: “...” → Exportar datos → .xlsx.
+4. Cargarlo en ANALISTA → 3 · Cargar BEES CARE.`,
   descarga: `1. Abrir el tablero NPS de Power BI (botón de arriba).
 2. Ir a la página de la base por distribuidor (BASE DISTRI).
 3. Filtros: DISTRIBUIDOR = LOGISTICA TOTAL SRL · AÑO = año actual completo · CD/DISTRI = DISTRI.
@@ -521,14 +609,15 @@ function setConn(s){
 
 /* ===================== estado ===================== */
 const S = {
-  enc:{}, rmd:{}, rmdDia:{}, rmdEnvRaw:{}, rmdEnv:[], cli:{}, segs:{seg:{}, segRmd:{}}, cfg:{...DEFAULT_CFG}, meta:{},
+  enc:{}, rmd:{}, rmdDia:{}, rmdEnvRaw:{}, rmdEnv:[], care:{}, careRows:[], cli:{}, segs:{seg:{}, segRmd:{}, segCare:{}}, cfg:{...DEFAULT_CFG}, meta:{},
   npsRows:[], rmdRows:[], supMap:{}, user: ls.get('nps_user', null), admin:false, cruce:[]
 };
 try{ S.admin = sessionStorage.getItem('nps_admin')==='1'; }catch(e){}
 
 const KIND = {
   nps: { seg:'seg', rows:()=>S.npsRows, cats:{D:'DETRACTOR',N:'NEUTRO',P:'PROMOTOR'}, catShort:{D:'Det',N:'Neu',P:'Pro'} },
-  rmd: { seg:'segRmd', rows:()=>S.rmdRows, cats:{D:'DETRACTORA',P:'POSITIVA'}, catShort:{D:'Det',P:'OK'} }
+  rmd: { seg:'segRmd', rows:()=>S.rmdRows, cats:{D:'DETRACTORA',P:'POSITIVA'}, catShort:{D:'Det',P:'OK'} },
+  care: { seg:'segCare', rows:()=>S.careRows, cats:{D:'FUERA DE SLA',N:'PENDIENTE',P:'EN SLA'}, catShort:{D:'Fuera SLA',N:'Pend.',P:'En SLA'} }
 };
 const segOf = (kind,id) => S.segs[KIND[kind].seg][id];
 
@@ -612,6 +701,18 @@ function buildRows(){
   S.rmdEnv = Object.entries(S.rmdEnvRaw||{}).map(([k,v]) => { const [ck, ym] = k.split('_'); const cod = ck[0]==='c' ? ck.slice(1) : null;
     return { cod, mes: `${ym.slice(0,4)}-${ym.slice(4,6)}`, e:v.e||0, p:v.p||0, ...cliInfo(cod) }; });
   linkCliente(S.rmdRows, r => r.cod || ('n'+nameKey(r.nombre)));
+  // BEES CARE
+  const hoy = todayISO();
+  S.careRows = Object.entries(S.care||{}).map(([id,x]) => {
+    const ci = cliInfo(x.c); const es = norm(x.es);
+    const cat = (es.includes('FUERA') || es.includes('VENCID')) ? 'D' : es.includes('PEND') ? 'N' : 'P';
+    const dias = x.fs ? Math.round((Date.parse(x.fs) - Date.parse(x.f))/864e5) : null;
+    return { id, kind:'care', cod:x.c, nombre: ci.rs || ('Cliente '+x.c), fecha:x.f, mes:x.f.slice(0,7), sol:x.fs||'', dias, abierto: x.fs ? null : Math.round((Date.parse(hoy) - Date.parse(x.f))/864e5),
+      est:x.es||'', sla:x.sla, mo:x.mo||'', sm:x.sm||'', tk:x.tk, cat, ...ci };
+  });
+  addRepit(S.careRows, r => r.cod);
+  linkCliente(S.careRows, r => r.cod);
+  S.careRows.sort((a,b)=> b.fecha.localeCompare(a.fecha) || String(b.tk).localeCompare(String(a.tk)));
   S.rmdRows.sort((a,b)=> b.fecha.localeCompare(a.fecha) || a.nombre.localeCompare(b.nombre));
   S.cruce = Object.entries(cruce).map(([k,v])=>({k,...v})).sort((a,b)=> a.st.localeCompare(b.st) || a.n.localeCompare(b.n));
 }
@@ -638,6 +739,12 @@ function rmdOf(list){
   const p = list.reduce((a,r)=>a+r.p,0), w = list.reduce((a,r)=>a+r.score*r.p,0), d = list.reduce((a,r)=>a+(r.d|| (r.cat==='D'?1:0)),0);
   return { cal:p, avg: p ? w/p : null, det:d, filas:list.length };
 }
+function careOf(list){
+  const n = list.length, fuera = list.filter(r=>r.cat==='D').length, pend = list.filter(r=>!r.sol).length;
+  const cerr = list.filter(r=>r.dias!=null); const ds = cerr.map(r=>r.dias).sort((a,b)=>a-b);
+  return { n, fuera, pend, dentro: n - fuera, pctSla: n ? (n-fuera)/n*100 : null, prom: ds.length ? ds.reduce((a,b)=>a+b,0)/ds.length : null, med: ds.length ? ds[Math.floor(ds.length/2)] : null, max: ds.length ? ds.at(-1) : null };
+}
+function topOf(arr){ const m = {}; arr.filter(Boolean).forEach(x => m[x]=(m[x]||0)+1); const e = Object.entries(m).sort((a,b)=>b[1]-a[1]); return e.length ? e[0] : null; }
 function objPill(v, obj, dec=1, suf=''){
   if (v==null || isNaN(v)) return '<span class="pill-off">–</span>';
   if (obj==null || obj==='' || isNaN(+obj)) return `<b>${fmtN(v,dec)}${suf}</b>`;
@@ -673,8 +780,12 @@ const FDEF = {
     ['sup','Supervisor','sel'],['ven','Vendedor','sel'],['sem','Semáforo','sel'],['st','Status','sel'],['sec','Sector','sel'],['q','Buscar','q'],['rep','Solo repitentes','chk']
   ]
 };
-const FST = { nps: ls.get('nps_f_nps', {}), rmd: ls.get('nps_f_rmd', { cat:'D' }) };
-const LIM = { nps: LIMIT, rmd: LIMIT };
+FDEF.care = [
+    ['per','Período','sel'],['cat','Estado SLA','sel'],['mot','Motivo','sel'],['smo','Submotivo','sel'],
+    ['sup','Supervisor','sel'],['ven','Vendedor','sel'],['sem','Semáforo','sel'],['st','Status','sel'],['sec','Sector','sel'],['q','Buscar','q'],['rep','Solo repitentes','chk']
+];
+const FST = { nps: ls.get('nps_f_nps', {}), rmd: ls.get('nps_f_rmd', { cat:'D' }), care: ls.get('nps_f_care', {}) };
+const LIM = { nps: LIMIT, rmd: LIMIT, care: LIMIT };
 const fid = (kind,k) => `${kind}-f-${k}`;
 const fval = (kind,k) => { const el = document.getElementById(fid(kind,k)); return !el ? '' : el.type==='checkbox' ? el.checked : el.value; };
 
@@ -690,7 +801,7 @@ function buildFilterBar(kind){
     el.addEventListener(t==='q' ? 'input' : 'change', () => {
       FDEF[kind].forEach(([kk]) => FST[kind][kk] = fval(kind,kk)); ls.set('nps_f_'+kind, FST[kind]);
       LIM[kind] = LIMIT;
-      if (['dp','sup'].includes(k)) refreshFilters(kind);
+      if (['dp','sup'].includes(k) || (kind==='care' && k==='mot')) refreshFilters(kind);
       renderRev(kind);
     });
   });
@@ -698,6 +809,7 @@ function buildFilterBar(kind){
   // tabla
   const hd = kind==='nps'
     ? ['','Fecha','Cliente','Vendedor / Sup.','Score','Drivers (primario › secundario)','Comentario del cliente']
+    : kind==='care' ? ['','Creación','Cliente','Vendedor / Sup.','Estado / SLA','Motivo › Submotivo']
     : ['','Fecha','Cliente','Vendedor / Sup.','Calificación','Detalle'];
   $(`#${kind}-tbl thead`).innerHTML = '<tr>' + hd.concat(['Comentario seguimiento','Plan de acción','Sector','Responsable','Fecha compr.','Status','Última carga']).map(h=>`<th>${h}</th>`).join('') + '</tr>';
   $(`#${kind}-tbl`).addEventListener('change', e => {
@@ -726,6 +838,11 @@ function refreshFilters(kind){
     setOpts(g('dp'), [...new Set(rows.flatMap(r=>r.drivers.map(d=>d[0])))].filter(Boolean).sort(), 'Todos', F.dp);
     const dp = g('dp').value;
     setOpts(g('ds'), [...new Set(rows.flatMap(r=>r.drivers.filter(d=>!dp || d[0]===dp).map(d=>d[1])))].filter(x=>x && x!=='Ninguno').sort(), 'Todos', F.ds);
+  } else if (kind==='care'){
+    setOpts(g('cat'), [{v:'D',l:'Fuera de SLA / vencido'},{v:'N',l:'Pendiente en SLA'},{v:'P',l:'Cerrado en SLA'},{v:'DN',l:'Fuera de SLA + pendientes'}], 'Todos', F.cat);
+    setOpts(g('mot'), [...new Set(rows.map(r=>r.mo))].filter(Boolean).sort(), 'Todos', F.mot);
+    const mo = g('mot').value;
+    setOpts(g('smo'), [...new Set(rows.filter(r=>!mo || r.mo===mo).map(r=>r.sm))].filter(Boolean).sort(), 'Todos', F.smo);
   } else {
     setOpts(g('cat'), [{v:'D',l:'Detractora (1-3 ★)'},{v:'P',l:'Positiva'}], 'Todas', F.cat);
     const mots = [...new Set(rows.flatMap(r=>r.mo))].filter(Boolean).sort();
@@ -745,11 +862,12 @@ function refreshFilters(kind){
 function filtered(kind){
   const v = k => fval(kind,k);
   const per=v('per'), cat=v('cat'), sup=v('sup'), ven=v('ven'), sem=v('sem'), st=v('st'), sec=v('sec'), rep=v('rep'), q=norm(v('q'));
-  const dp=v('dp'), ds=v('ds'), mot=v('mot'), cru=v('cru');
+  const dp=v('dp'), ds=v('ds'), mot=v('mot'), cru=v('cru'), smo=v('smo');
   return KIND[kind].rows().filter(r => {
     if (!inPeriodo(r.mes, per)) return false;
     if (cat){ if (cat==='DN' ? r.cat==='P' : r.cat!==cat) return false; }
     if (kind==='nps' && (dp || ds) && !r.drivers.some(d => (!dp || d[0]===dp) && (!ds || d[1]===ds))) return false;
+    if (kind==='care'){ if (mot && r.mo!==mot) return false; if (smo && r.sm!==smo) return false; }
     if (kind==='rmd'){
       if (mot && !r.mo.includes(mot)) return false;
       if (cru==='ok' && !(r.enChess && r.match!=='amb')) return false;
@@ -762,7 +880,7 @@ function filtered(kind){
     if (sec){ if (sec==='-' ? sg.sector : sg.sector!==sec) return false; }
     if (rep && r.repTot<2) return false;
     if (sem && semaforo(r)!==sem) return false;
-    if (q){ const hay = norm([r.cod,r.nombre,r.fant,r.cmt,r.vendNom,sg.cmt,sg.plan,sg.resp,(r.drivers||[]).flat().join(' '),(r.mo||[]).join(' ')].join(' ')); if (!hay.includes(q)) return false; }
+    if (q){ const hay = norm([r.cod,r.nombre,r.fant,r.cmt,r.vendNom,sg.cmt,sg.plan,sg.resp,(r.drivers||[]).flat().join(' '),[].concat(r.mo||[]).join(' '),r.sm||'',r.tk||''].join(' ')); if (!hay.includes(q)) return false; }
     return true;
   });
 }
@@ -783,16 +901,21 @@ function linkCliente(rows, keyFn){
 const RANK = { D:0, N:1, P:2 };
 const hasPlan = (kind,r) => { const sg = segOf(kind, r.id); return !!(sg && (sg.plan || sg.status)); };
 function despues(r){ return r.cli.filter(x => x.fecha > r.fecha); }
+function efectoCare(r){ const af = despues(r); return af.length ? { st:'reclamo', af } : { st:'sinreclamo', af }; }
 function efecto(r){   // solo para filas con intervención
   const af = despues(r); if (!af.length) return null;
+  if (r.kind==='care') return { st: 'reclamo', af };
   if (r.kind==='nps'){ const nx = af[0]; const d = RANK[nx.cat] - RANK[r.cat]; return { st: d>0 ? 'mejoro' : d<0 ? 'empeoro' : 'igual', af }; }
   const det = af.filter(x=>x.cat==='D').length; return { st: det ? 'repitio' : 'mejoro', af, det, avg: rmdOf(af).avg };
 }
-const EF_TXT = { mejoro:['✅ MEJORÓ','pill-ok'], igual:['➖ SIGUE IGUAL','pill-mid'], empeoro:['⚠ EMPEORÓ','pill-bad'], repitio:['⚠ VOLVIÓ A CALIFICAR MAL','pill-bad'] };
+const EF_TXT = { mejoro:['✅ MEJORÓ','pill-ok'], igual:['➖ SIGUE IGUAL','pill-mid'], empeoro:['⚠ EMPEORÓ','pill-bad'], repitio:['⚠ VOLVIÓ A CALIFICAR MAL','pill-bad'], reclamo:['⚠ VOLVIÓ A RECLAMAR','pill-bad'], sinreclamo:['✅ NO VOLVIÓ A RECLAMAR','pill-ok'] };
 function intervHtml(r){
   const sc = KIND[r.kind].catShort; let h = '';
   // 1) esta fila tiene plan → qué respondió después
-  if (hasPlan(r.kind, r)){
+  if (hasPlan(r.kind, r) && r.kind==='care'){
+    const ef = efectoCare(r);
+    h += `<div class="hist" style="background:#eef6ff">🛠 Después de la intervención: ${ef.af.length ? ef.af.length+' ticket'+(ef.af.length>1?'s':'')+' nuevo'+(ef.af.length>1?'s':'')+' ('+ef.af.slice(0,3).map(x=>fmtDM(x.fecha)+' '+esc(x.sm)).join(' · ')+')' : 'sin tickets nuevos'} <span class="${EF_TXT[ef.st][1]}">${EF_TXT[ef.st][0]}</span></div>`;
+  } else if (hasPlan(r.kind, r)){
     const ef = efecto(r);
     if (!ef) h += `<div class="hist" style="background:#eef6ff">🛠 Con intervención · <span class="muted">todavía no volvió a responder</span></div>`;
     else if (r.kind==='nps') h += `<div class="hist" style="background:#eef6ff">🛠 Después de la intervención respondió: ${ef.af.slice(0,3).map(x=>`${fmtDM(x.fecha)} <span class="h${x.cat}">${x.score} ${sc[x.cat]}</span>`).join(' → ')} <span class="${EF_TXT[ef.st][1]}">${EF_TXT[ef.st][0]}</span></div>`;
@@ -802,17 +925,19 @@ function intervHtml(r){
   const prev = r.cli.filter(x => x.fecha < r.fecha && hasPlan(r.kind, x));
   if (prev.length){
     const last = prev.at(-1); const sg = segOf(r.kind, last.id) || {};
-    const tip = prev.map(x => { const g = segOf(r.kind,x.id)||{}; return `${fmtDate(x.fecha)} (${r.kind==='rmd'?fmtN(x.score,1)+'★':x.score}): ${g.plan||'(sin plan)'} · ${g.status||'sin status'}${g.resp?' · '+g.resp:''}`; }).join('\n');
+    const tip = prev.map(x => { const g = segOf(r.kind,x.id)||{}; return `${fmtDate(x.fecha)} (${r.kind==='rmd'?fmtN(x.score,1)+'★':r.kind==='care'?x.sm:x.score}): ${g.plan||'(sin plan)'} · ${g.status||'sin status'}${g.resp?' · '+g.resp:''}`; }).join('\n');
     h += `<div class="hist" style="background:#fff4e5" title="${esc(tip)}">🛠 <b>Ya tuvo ${prev.length} intervención${prev.length>1?'es':''}</b> · última ${fmtDM(last.fecha)}: <i>${esc((sg.plan||'').slice(0,90))}${(sg.plan||'').length>90?'…':''}</i> <span class="muted">(${esc(sg.status||'sin status')})</span></div>`;
   }
   return h;
 }
 function efectoTabla(kind, list){
   const iv = list.filter(r => hasPlan(kind, r));
-  const c = { mejoro:0, igual:0, empeoro:0, repitio:0, sin:0 };
-  iv.forEach(r => { const e = efecto(r); c[e ? e.st : 'sin']++; });
+  const c = { mejoro:0, igual:0, empeoro:0, repitio:0, sin:0, reclamo:0, sinreclamo:0 };
+  iv.forEach(r => { const e = kind==='care' ? efectoCare(r) : efecto(r); c[e ? e.st : 'sin']++; });
   const row = (l,v,cls) => `<tr><td>${l}</td><td class="r"><span class="${cls}">${v}</span></td></tr>`;
   if (!iv.length) return '<p class="muted">Todavía no hay intervenciones cargadas en el período.</p>';
+  if (kind==='care') return `<table><tr><th>Después de la intervención…</th><th class="r">Tickets</th></tr>` + row('✅ No volvió a reclamar', c.sinreclamo, 'pill-ok') + row('⚠ Volvió a abrir otro ticket', c.reclamo, 'pill-bad') +
+    `<tr style="background:#f6f7f9"><td><b>Total intervenidos</b></td><td class="r"><b>${iv.length}</b></td></tr></table>`;
   return `<table><tr><th>${kind==='nps'?'Después de la intervención, la siguiente respuesta…':'Después de la intervención…'}</th><th class="r">Clientes</th></tr>` +
     row('✅ Mejoró' + (kind==='rmd'?' (no volvió a calificar mal)':' de categoría'), c.mejoro, 'pill-ok') +
     (kind==='nps' ? row('➖ Siguió igual', c.igual, 'pill-mid') + row('⚠ Empeoró', c.empeoro, 'pill-bad') : row('⚠ Volvió a calificar mal', c.repitio, 'pill-bad')) +
@@ -823,8 +948,10 @@ function histHtml(r){
   const sc = KIND[r.kind].catShort;
   const MAXH = 8; let hs = r.hist;
   if (hs.length > MAXH){ const i = hs.indexOf(r); const from = Math.max(0, Math.min(i - 4, hs.length - MAXH)); hs = hs.slice(from, from + MAXH); }
-  const items = (r.hist.length > hs.length && hs[0]!==r.hist[0] ? '… ' : '') + hs.map(x => `<span class="${x.id===r.id?'c':''}">${fmtDM(x.fecha)} <span class="h${x.cat}">${r.kind==='rmd' ? fmtN(x.score,1)+'★' : x.score} ${sc[x.cat]}</span></span>`).join(' → ');
-  return `<div><span class="badge b-rep" title="${r.kind==='rmd'?'Calificaciones detractoras de este cliente':'Encuestas respondidas por este cliente'}">${r.kind==='rmd'?'REPITE DETRACTORA':'REPITE'} ${r.repIdx}/${r.repTot}</span></div><div class="hist">${items}</div>`;
+  const lbl = x => r.kind==='rmd' ? fmtN(x.score,1)+'★ '+sc[x.cat] : r.kind==='care' ? esc(x.sm.length>28 ? x.sm.slice(0,27)+'…' : x.sm) : x.score+' '+sc[x.cat];
+  const items = (r.hist.length > hs.length && hs[0]!==r.hist[0] ? '… ' : '') + hs.map(x => `<span class="${x.id===r.id?'c':''}">${fmtDM(x.fecha)} <span class="h${x.cat}">${lbl(x)}</span></span>`).join(' → ');
+  const bt = r.kind==='rmd' ? ['Calificaciones detractoras de este cliente','REPITE DETRACTORA'] : r.kind==='care' ? ['Tickets BEES Care de este cliente en el año','RECLAMA SEGUIDO'] : ['Encuestas respondidas por este cliente','REPITE'];
+  return `<div><span class="badge b-rep" title="${bt[0]}">${bt[1]} ${r.repIdx}/${r.repTot}</span></div><div class="hist">${items}</div>`;
 }
 function rowHtml(r){
   const kind = r.kind; const sg = segOf(kind, r.id) || {};
@@ -842,6 +969,12 @@ function rowHtml(r){
     left = cliente + vend +
       `<td class="nowrap"><span class="score">${r.score}</span><br><span class="cat cat-${r.cat}">${catTxt}</span>${req?'<div class="who" style="color:var(--det)">obligatorio</div>':''}</td>
        <td style="min-width:220px">${drv}</td><td class="cm">${r.cmt?esc(r.cmt):'<span class="muted">—</span>'}</td>`;
+  } else if (kind==='care'){
+    const tiempo = r.sol ? `Resuelto en <b>${r.dias}</b> día${r.dias===1?'':'s'} <span class="who">(${fmtDate(r.sol)})</span>` : `<b style="color:var(--det)">Abierto hace ${r.abierto} día${r.abierto===1?'':'s'}</b>`;
+    left = cliente + vend +
+      `<td style="min-width:150px;font-size:12px"><span class="cat cat-${r.cat}">${catTxt}</span>${req?'<div class="who" style="color:var(--det)">obligatorio</div>':''}
+        <div style="margin-top:4px">${esc(r.est)}</div><div>SLA ${r.sla!=null?r.sla+' hs':'–'} · ${tiempo}</div><div class="who">Ticket N° ${esc(r.tk)}</div></td>
+       <td style="min-width:200px;font-size:12px"><b>${esc(r.mo)}</b><div>› ${esc(r.sm)}</div></td>`;
   } else {
     left = cliente + vend +
       `<td class="nowrap"><span class="score">${fmtN(r.score,1)}</span> <span class="stars">${stars(r.score)}</span><br><span class="cat cat-${r.cat}">${catTxt}</span>${req?'<div class="who" style="color:var(--det)">obligatorio</div>':''}</td>
@@ -877,10 +1010,11 @@ function renderRevKpis(kind, list){
   const sem = fval(kind,'sem'); const repOn = fval(kind,'rep');
   const reps = list.filter(r=>r.repTot>1).length;
   const k = (v,l,col,key,sel) => `<div class="kpi ${key?'click':''} ${sel?'sel':''}" ${key?`data-k="${key}"`:''} style="${col?`border-left:5px solid ${col}`:''}"><div class="v">${v}</div><div class="l">${l}</div></div>`;
-  const first = kind==='nps' ? k(npsPill(npsOf(list).nps),'NPS filtrado') : k(objPill(rmdOf(list).avg, S.cfg.objRmd, 2),'RMD filtrado');
+  const first = kind==='nps' ? k(npsPill(npsOf(list).nps),'NPS filtrado') : kind==='care' ? k(objPill(careOf(list).pctSla, S.cfg.objSla, 1, '%'),'% en SLA') : k(objPill(rmdOf(list).avg, S.cfg.objRmd, 2),'RMD filtrado');
+  const nm = { nps:['Encuestas','Detractores'], rmd:['Calificaciones','Detractoras'], care:['Tickets','Fuera de SLA'] }[kind];
   $(`#${kind}-kpis`).innerHTML =
-    k(list.length, kind==='nps'?'Encuestas':'Calificaciones') + first +
-    k(det.length ? Math.round(comp/det.length*100)+'%' : '–', `${kind==='nps'?'Detractores':'Detractoras'} completos (${comp}/${det.length})`) +
+    k(list.length, nm[0]) + first +
+    k(det.length ? Math.round(comp/det.length*100)+'%' : '–', `${nm[1]} completos (${comp}/${det.length})`) +
     k(c.rojo,'Falta completar','var(--s-rojo)','sem:rojo',sem==='rojo') + k(c.naranja,'Vencidos','var(--s-naranja)','sem:naranja',sem==='naranja') +
     k(c.amarillo,'En curso','var(--s-amarillo)','sem:amarillo',sem==='amarillo') + k(c.verde,'Cerrados','var(--s-verde)','sem:verde',sem==='verde') +
     k(c.gris,'Opcional sin carga','var(--s-gris)','sem:gris',sem==='gris') + k(reps,'Repitentes','#7b4fd6','rep:1',repOn);
@@ -938,25 +1072,31 @@ function renderNpsRes(){
     k(`<span style="color:var(--det)">${n.n?Math.round(n.D/n.n*100):0}%</span>`, `Detractores (${n.D})`) +
     k(det.length?Math.round(comp/det.length*100)+'%':'–', `Detractores con plan (${comp}/${det.length})`);
   const ms = [...new Set(base.map(r=>r.mes))].sort();
-  let h = '<tr><th>Mes</th><th class="r">Enc.</th><th class="r">Prom.</th><th class="r">Neu.</th><th class="r">Det.</th><th>Mix</th><th class="r">NPS</th><th class="r">Det. con plan</th></tr>';
+  const princ = l => { const t = topOf(l.filter(r=>r.cat==='D').flatMap(r=>[...new Set(r.drivers.map(d=>d[0]))])); return t ? `${esc(t[0])} <span class="muted">(${t[1]})</span>` : '<span class="muted">—</span>'; };
+  let h = '<tr><th>Mes</th><th class="r">Enc.</th><th class="r">Prom.</th><th class="r">Neu.</th><th class="r">Det.</th><th>Mix</th><th class="r">NPS</th><th>Driver principal (det.)</th><th class="r">Det. con plan</th></tr>';
   ms.forEach(m => {
     const l = base.filter(r=>r.mes===m), x = npsOf(l); const d = l.filter(r=>r.cat==='D'); const c = d.filter(r=>isComplete(segOf('nps',r.id))).length;
     h += `<tr><td class="nowrap"><b>${mesLbl(m)}</b></td><td class="r">${x.n}</td><td class="r">${x.P}</td><td class="r">${x.N}</td><td class="r">${x.D}</td>
       <td><div class="bar"><div style="width:${x.P/x.n*100}%;background:var(--prom)"></div><div style="width:${x.N/x.n*100}%;background:var(--neu)"></div><div style="width:${x.D/x.n*100}%;background:var(--det)"></div></div></td>
-      <td class="r">${npsPill(x.nps)}</td><td class="r">${pctPill(c,d.length,m < S.cfg.inicio)}</td></tr>`;
+      <td class="r">${npsPill(x.nps)}</td><td style="font-size:12px">${princ(l)}</td><td class="r">${pctPill(c,d.length,m < S.cfg.inicio)}</td></tr>`;
   });
   const t = npsOf(base);
-  h += `<tr style="background:#f6f7f9"><td><b>Total año</b></td><td class="r"><b>${t.n}</b></td><td class="r">${t.P}</td><td class="r">${t.N}</td><td class="r">${t.D}</td><td></td><td class="r">${npsPill(t.nps)}</td><td></td></tr>`;
+  h += `<tr style="background:#f6f7f9"><td><b>Total año</b></td><td class="r"><b>${t.n}</b></td><td class="r">${t.P}</td><td class="r">${t.N}</td><td class="r">${t.D}</td><td></td><td class="r">${npsPill(t.nps)}</td><td style="font-size:12px">${princ(base)}</td><td></td></tr>`;
+  // matriz driver x mes (det + neutros)
+  const dn = base.filter(r=>r.cat!=='P'); const drvs = Object.entries(dn.flatMap(r=>[...new Set(r.drivers.map(d=>d[0]))]).reduce((m,x)=>(m[x]=(m[x]||0)+1,m),{})).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);
+  let mx = 0; const cell = {}; drvs.forEach(dv => ms.forEach(m => { const v = dn.filter(r=>r.mes===m && r.drivers.some(d=>d[0]===dv)).length; cell[dv+'|'+m]=v; mx=Math.max(mx,v); }));
+  $('#nr-dmes').innerHTML = drvs.length ? '<tr><th>Driver primario</th>' + ms.map(m=>`<th class="r">${mesLbl(m)}</th>`).join('') + '<th class="r">Total</th></tr>' +
+    drvs.map(dv => `<tr><td>${esc(dv)}</td>` + ms.map(m => { const v = cell[dv+'|'+m]; return `<td class="r" style="${v?`background:rgba(214,69,69,${(0.12+0.7*v/mx).toFixed(2)});color:${v/mx>0.55?'#fff':'inherit'};font-weight:600`:'color:#c3c9d3'}">${v||'·'}</td>`; }).join('') + `<td class="r"><b>${ms.reduce((a,m)=>a+cell[dv+'|'+m],0)}</b></td></tr>`).join('') : '<tr><td class="muted">Sin datos.</td></tr>';
   $('#nr-mes').innerHTML = h;
-  h = '<tr><th>Supervisor</th><th class="r">Enc.</th><th class="r">P</th><th class="r">N</th><th class="r">D</th><th class="r">NPS</th><th class="r">Det. con plan</th></tr>';
+  h = '<tr><th>Supervisor</th><th class="r">Enc.</th><th class="r">P</th><th class="r">N</th><th class="r">D</th><th class="r">NPS</th><th>Principal (det.)</th><th class="r">Det. con plan</th></tr>';
   [...new Set(list.map(r=>r.sup))].sort().forEach(s => { const l = list.filter(r=>r.sup===s), x=npsOf(l), d=l.filter(r=>r.cat==='D'), c=d.filter(r=>isComplete(segOf('nps',r.id))).length;
-    h += `<tr><td>${esc(s)}</td><td class="r">${x.n}</td><td class="r">${x.P}</td><td class="r">${x.N}</td><td class="r">${x.D}</td><td class="r">${npsPill(x.nps)}</td><td class="r">${pctPill(c,d.length)}</td></tr>`; });
+    h += `<tr><td>${esc(s)}</td><td class="r">${x.n}</td><td class="r">${x.P}</td><td class="r">${x.N}</td><td class="r">${x.D}</td><td class="r">${npsPill(x.nps)}</td><td style="font-size:12px">${princ(l)}</td><td class="r">${pctPill(c,d.length)}</td></tr>`; });
   $('#nr-sup-t').innerHTML = h;
   const vs = {}; list.forEach(r => (vs[r.vend||'-'] ||= []).push(r));
-  h = '<tr><th>Vendedor</th><th>Supervisor</th><th class="r">Enc.</th><th class="r">P</th><th class="r">N</th><th class="r">D</th><th class="r">NPS</th><th class="r">Det. con plan</th></tr>';
+  h = '<tr><th>Vendedor</th><th>Supervisor</th><th class="r">Enc.</th><th class="r">P</th><th class="r">N</th><th class="r">D</th><th class="r">NPS</th><th>Principal (det.)</th><th class="r">Det. con plan</th></tr>';
   Object.values(vs).sort((a,b)=> (npsOf(a).nps??999)-(npsOf(b).nps??999) || b.length-a.length).forEach(l => {
     const x=npsOf(l), d=l.filter(r=>r.cat==='D'), c=d.filter(r=>isComplete(segOf('nps',r.id))).length;
-    h += `<tr><td>${esc(l[0].vend?l[0].vend+' · ':'')}${esc(l[0].vendNom)}</td><td class="muted">${esc(l[0].sup)}</td><td class="r">${x.n}</td><td class="r">${x.P}</td><td class="r">${x.N}</td><td class="r">${x.D}</td><td class="r">${npsPill(x.nps)}</td><td class="r">${pctPill(c,d.length)}</td></tr>`; });
+    h += `<tr><td>${esc(l[0].vend?l[0].vend+' · ':'')}${esc(l[0].vendNom)}</td><td class="muted">${esc(l[0].sup)}</td><td class="r">${x.n}</td><td class="r">${x.P}</td><td class="r">${x.N}</td><td class="r">${x.D}</td><td class="r">${npsPill(x.nps)}</td><td style="font-size:12px">${princ(l)}</td><td class="r">${pctPill(c,d.length)}</td></tr>`; });
   $('#nr-ven').innerHTML = h;
   const cnt = fn => { const m={}; det.forEach(r => new Set(r.drivers.map(fn).filter(x=>x && x!=='Ninguno')).forEach(x => m[x]=(m[x]||0)+1)); return Object.entries(m).sort((a,b)=>b[1]-a[1]); };
   $('#nr-dp').innerHTML = bars(cnt(d=>d[0]), 20, 'Sin detractores en el período.');
@@ -1024,8 +1164,80 @@ function renderRmdRes(){
   $('#rr-mot').innerHTML = bars(Object.entries(mot).sort((a,b)=>b[1]-a[1]), 15, 'La base no trae motivos. Exportá con el nivel “Motivo Puntuación” para verlos acá.');
   const top = {}; det.forEach(r => { const k = r.nombre + (r.cod?` (${r.cod})`:''); top[k]=(top[k]||0)+1; });
   $('#rr-top').innerHTML = bars(Object.entries(top).sort((a,b)=>b[1]-a[1]), 12, 'Sin calificaciones detractoras en el período.');
+  renderRmdCli(list, envP);
   $('#rr-planes').innerHTML = planesHtml('rmd', list); $('#rr-efecto').innerHTML = efectoTabla('rmd', list);
 }
+let rrCliLim = 100;
+function renderRmdCli(list, envP){
+  const L = list || renderRmdCli._l, E = envP || renderRmdCli._e; renderRmdCli._l = L; renderRmdCli._e = E;
+  const q = norm($('#rr-cli-q').value), soloDet = $('#rr-cli-det').checked;
+  const eCli = {}; E.forEach(x => { if (!x.cod) return; const t = eCli[x.cod] ||= {e:0,p:0}; t.e+=x.e; t.p+=x.p; });
+  const g = {}; L.forEach(r => (g[r.cod || r.nombre] ||= []).push(r));
+  let arr = Object.values(g).map(l => { const x = rmdOf(l); const d = l.filter(r=>r.cat==='D'); return { r:l[0], x, d, c: d.filter(r=>isComplete(segOf('rmd',r.id))).length, ev: eCli[l[0].cod]||{e:0,p:0}, mot: topOf(d.flatMap(r=>r.mo)) }; });
+  if (soloDet) arr = arr.filter(o => o.d.length);
+  if (q) arr = arr.filter(o => norm(o.r.nombre+' '+o.r.cod+' '+o.r.fant).includes(q));
+  arr.sort((a,b)=> b.d.length - a.d.length || (a.x.avg??9) - (b.x.avg??9));
+  const oR = S.cfg.objRmd, oP = S.cfg.objResp;
+  $('#rr-cli').innerHTML = arr.length ? '<tr><th>Cliente</th><th>Vendedor</th><th>Supervisor</th><th class="r">Enviadas</th><th class="r">% Resp.</th><th class="r">Calif.</th><th class="r">RMD prom.</th><th class="r">Detractoras</th><th>Motivo principal</th><th class="r">Det. con plan</th></tr>' +
+    arr.slice(0, rrCliLim).map(o => `<tr><td><b>${esc(o.r.nombre)}</b><div class="who">Cód. ${esc(o.r.cod||'')}</div></td><td>${esc(o.r.vend?o.r.vend+' · ':'')}${esc(o.r.vendNom)}</td><td class="muted">${esc(o.r.sup)}</td>
+      <td class="r">${o.ev.e}</td><td class="r">${objPill(pct(o.ev.p,o.ev.e),oP,1,'%')}</td><td class="r">${o.x.cal}</td><td class="r">${objPill(o.x.avg,oR,2)}</td><td class="r">${o.d.length||''}</td>
+      <td style="font-size:12px">${o.mot?esc(o.mot[0])+' <span class="muted">('+o.mot[1]+')</span>':'<span class="muted">—</span>'}</td><td class="r">${pctPill(o.c,o.d.length)}</td></tr>`).join('') : '<tr><td class="muted">Sin clientes con estos filtros.</td></tr>';
+  $('#rr-cli-more').innerHTML = arr.length > rrCliLim ? `<button class="btn sec">Mostrar más (${rrCliLim} de ${arr.length})</button>` : `<span class="muted">${arr.length} clientes</span>`;
+}
+$('#rr-cli-q').addEventListener('input', () => { rrCliLim = 100; renderRmdCli(); });
+$('#rr-cli-det').addEventListener('change', () => { rrCliLim = 100; renderRmdCli(); });
+$('#rr-cli-more').addEventListener('click', e => { if (e.target.matches('button')){ rrCliLim += 200; renderRmdCli(); } });
+
+/* ===================== BEES CARE RESUMEN ===================== */
+function renderCareRes(){
+  fillPeriodo($('#cr-per'), S.careRows, $('#cr-per').value || ls.get('nps_crPer','ini'));
+  supSelect($('#cr-sup'), S.careRows, 'nps_crSup');
+  const per = $('#cr-per').value, sup = $('#cr-sup').value, oS = S.cfg.objSla;
+  $('#cr-obj').innerHTML = (oS!=null && oS!=='') ? `Objetivo % en SLA: <b>${oS}%</b>` : 'Sin objetivo de % en SLA (se carga en ANALISTA)';
+  const base = S.careRows.filter(r => !sup || r.sup===sup);
+  const list = base.filter(r => inPeriodo(r.mes, per));
+  const t = careOf(list); const det = list.filter(r=>r.cat==='D'); const comp = det.filter(r=>isComplete(segOf('care',r.id))).length;
+  const k = (v,l) => `<div class="kpi"><div class="v">${v}</div><div class="l">${l}</div></div>`;
+  $('#cr-kpis').innerHTML = k(t.n,'Tickets') + k(new Set(list.map(r=>r.cod)).size,'Clientes que reclamaron') + k(objPill(t.pctSla, oS, 1, '%'),'% en SLA') +
+    k(`<span style="color:var(--det)">${t.fuera}</span>`,'Fuera de SLA / vencidos') + k(t.pend,'Pendientes') + k(fmtN(t.prom,1),'Días prom. resolución') + k(t.med ?? '–','Mediana días') +
+    k(det.length?Math.round(comp/det.length*100)+'%':'–', `Fuera de SLA con plan (${comp}/${det.length})`);
+  const mot = l => { const x = topOf(l.map(r=>r.mo)); return x ? `${esc(x[0])} <span class="muted">(${x[1]})</span>` : '—'; };
+  // por mes
+  const ms = [...new Set(base.map(r=>r.mes))].sort();
+  let h = '<tr><th>Mes</th><th class="r">Tickets</th><th class="r">En SLA</th><th class="r">Fuera SLA</th><th class="r">Pend.</th><th class="r">% en SLA</th><th class="r">Días prom.</th><th>Motivo principal</th><th class="r">Fuera SLA con plan</th></tr>';
+  ms.forEach(m => { const l = base.filter(r=>r.mes===m), x = careOf(l), d = l.filter(r=>r.cat==='D'), c = d.filter(r=>isComplete(segOf('care',r.id))).length;
+    h += `<tr><td><b>${mesLbl(m)}</b></td><td class="r">${x.n}</td><td class="r">${x.dentro}</td><td class="r">${x.fuera}</td><td class="r">${x.pend}</td><td class="r">${objPill(x.pctSla,oS,1,'%')}</td><td class="r">${fmtN(x.prom,1)}</td><td style="font-size:12px">${mot(l)}</td><td class="r">${pctPill(c,d.length,m < S.cfg.inicio)}</td></tr>`; });
+  const ta = careOf(base);
+  h += `<tr style="background:#f6f7f9"><td><b>Total año</b></td><td class="r"><b>${ta.n}</b></td><td class="r">${ta.dentro}</td><td class="r">${ta.fuera}</td><td class="r">${ta.pend}</td><td class="r">${objPill(ta.pctSla,oS,1,'%')}</td><td class="r">${fmtN(ta.prom,1)}</td><td style="font-size:12px">${mot(base)}</td><td></td></tr>`;
+  $('#cr-mes').innerHTML = ms.length ? h : '<tr><td class="muted">Sin base BEES Care cargada.</td></tr>';
+  // motivos con mayor demora
+  const gm = {}; list.forEach(r => (gm[r.mo] ||= []).push(r));
+  const mots = Object.entries(gm).map(([m,l]) => ({ m, l, x: careOf(l) })).sort((a,b)=> (b.x.prom??-1)-(a.x.prom??-1));
+  const mxp = Math.max(1, ...mots.map(o=>o.x.prom||0));
+  $('#cr-mot').innerHTML = mots.length ? '<tr><th>Motivo</th><th class="r">Tickets</th><th class="r">Fuera SLA</th><th class="r">% fuera SLA</th><th style="width:22%">Días prom.</th><th class="r">Mediana</th><th class="r">Máx.</th><th>Submotivo más frecuente</th></tr>' +
+    mots.map(o => `<tr><td><b>${esc(o.m)}</b></td><td class="r">${o.x.n}</td><td class="r">${o.x.fuera}</td><td class="r">${fmtN(100-(o.x.pctSla??100),0)}%</td>
+      <td><div class="row" style="gap:6px;flex-wrap:nowrap"><div class="hbar" style="width:${(o.x.prom||0)/mxp*100}%;background:var(--s-naranja)"></div><b>${fmtN(o.x.prom,1)}</b></div></td><td class="r">${o.x.med??'–'}</td><td class="r">${o.x.max??'–'}</td>
+      <td style="font-size:12px">${(()=>{ const s = topOf(o.l.map(r=>r.sm)); return s ? esc(s[0])+' <span class="muted">('+s[1]+')</span>' : '—'; })()}</td></tr>`).join('') : '<tr><td class="muted">Sin tickets en el período.</td></tr>';
+  const cnt = arr => Object.entries(arr.reduce((m,x)=>(m[x]=(m[x]||0)+1,m),{})).sort((a,b)=>b[1]-a[1]);
+  $('#cr-sub').innerHTML = bars(cnt(list.map(r=>r.sm)), 15, 'Sin tickets en el período.');
+  $('#cr-subf').innerHTML = bars(cnt(det.map(r=>r.sm)), 15, 'Sin tickets fuera de SLA en el período.');
+  // clientes con más reclamos
+  const gc = {}; list.forEach(r => (gc[r.cod] ||= []).push(r));
+  const cl = Object.values(gc).sort((a,b)=> b.length-a.length || b.filter(r=>r.cat==='D').length - a.filter(r=>r.cat==='D').length).slice(0,40);
+  $('#cr-cli').innerHTML = cl.length ? '<tr><th>Cliente</th><th>Vendedor</th><th>Supervisor</th><th class="r">Tickets</th><th class="r">Fuera SLA</th><th class="r">Pend.</th><th class="r">Días prom.</th><th>Motivo principal</th><th>Último ticket</th></tr>' +
+    cl.map(l => { const x = careOf(l), r = l[0], last = l.slice().sort((a,b)=>b.fecha.localeCompare(a.fecha))[0];
+      return `<tr><td><b>${esc(r.nombre)}</b><div class="who">Cód. ${esc(r.cod)}</div></td><td>${esc(r.vend?r.vend+' · ':'')}${esc(r.vendNom)}</td><td class="muted">${esc(r.sup)}</td><td class="r"><b>${x.n}</b></td><td class="r">${x.fuera}</td><td class="r">${x.pend}</td><td class="r">${fmtN(x.prom,1)}</td><td style="font-size:12px">${mot(l)}</td><td style="font-size:12px">${fmtDate(last.fecha)} · ${esc(last.sm)}</td></tr>`; }).join('') : '<tr><td class="muted">Sin tickets en el período.</td></tr>';
+  // supervisor / vendedor
+  const tbl = (keyFn, lbl, withSup) => { const g = {}; list.forEach(r => (g[keyFn(r)] ||= []).push(r));
+    return `<tr><th>${lbl}</th>${withSup?'<th>Supervisor</th>':''}<th class="r">Tickets</th><th class="r">Clientes</th><th class="r">Fuera SLA</th><th class="r">% en SLA</th><th class="r">Días prom.</th><th>Motivo principal</th><th class="r">Fuera SLA con plan</th></tr>` +
+      Object.values(g).sort((a,b)=>b.length-a.length).map(l => { const x = careOf(l), d = l.filter(r=>r.cat==='D'), c = d.filter(r=>isComplete(segOf('care',r.id))).length, r = l[0];
+        return `<tr><td>${withSup ? esc(r.vend?r.vend+' · ':'')+esc(r.vendNom) : esc(r.sup)}</td>${withSup?`<td class="muted">${esc(r.sup)}</td>`:''}<td class="r">${x.n}</td><td class="r">${new Set(l.map(r=>r.cod)).size}</td><td class="r">${x.fuera}</td><td class="r">${objPill(x.pctSla,oS,1,'%')}</td><td class="r">${fmtN(x.prom,1)}</td><td style="font-size:12px">${mot(l)}</td><td class="r">${pctPill(c,d.length)}</td></tr>`; }).join(''); };
+  $('#cr-sup-t').innerHTML = list.length ? tbl(r=>r.sup, 'Supervisor', false) : '<tr><td class="muted">Sin tickets.</td></tr>';
+  $('#cr-ven').innerHTML = list.length ? tbl(r=>r.vend||'-', 'Vendedor', true) : '<tr><td class="muted">Sin tickets.</td></tr>';
+  $('#cr-planes').innerHTML = planesHtml('care', list); $('#cr-efecto').innerHTML = efectoTabla('care', list);
+}
+$('#cr-per').onchange = () => { ls.set('nps_crPer', $('#cr-per').value); renderCareRes(); };
+$('#cr-sup').onchange = () => { ls.set('nps_crSup', $('#cr-sup').value); renderCareRes(); };
 $('#rr-per').onchange = () => { ls.set('nps_rrPer', $('#rr-per').value); renderRmdRes(); };
 $('#rr-sup').onchange = () => { ls.set('nps_rrSup', $('#rr-sup').value); renderRmdRes(); };
 
@@ -1036,10 +1248,12 @@ function renderInfo(){
   $('#infoDescarga').textContent = S.cfg.descarga || '';
   $('#infoRmd').textContent = S.cfg.rmdInfo || '';
   $('#infoDescargaRmd').textContent = S.cfg.rmdDesc || '';
+  $('#infoCare').textContent = S.cfg.careInfo || ''; $('#infoDescargaCare').textContent = S.cfg.careDesc || ''; $('#lnkTableroCare').href = S.cfg.careLink || S.cfg.link || '#';
   const m = S.meta || {};
   $('#infoMeta').innerHTML = [m.nps ? `Base NPS: ${m.nps.enc} encuestas (${fmtDate(m.nps.desde)} al ${fmtDate(m.nps.hasta)}), cargada ${fmtTs(m.nps.t)}.` : 'Base NPS sin cargar.',
+    m.care ? `Base BEES Care: ${m.care.n} tickets (${fmtDate(m.care.desde)} al ${fmtDate(m.care.hasta)}), cargada ${fmtTs(m.care.t)}.` : 'Base BEES Care sin cargar.',
     m.rmd ? `Base RMD: ${m.rmd.cal} calificaciones con detalle, ${m.rmd.dias} días con totales (${fmtDate(m.rmd.desde)} al ${fmtDate(m.rmd.hasta)}), cargada ${fmtTs(m.rmd.t)}.` : 'Base RMD sin cargar.'].join('<br>');
-  const parts = [`Objetivo de seguimiento: <b>100% de detractores (NPS) y calificaciones detractoras (RMD) con plan completo desde ${mesLbl(S.cfg.inicio)}</b>.`];
+  const parts = [`Objetivo de seguimiento: <b>100% de detractores (NPS), calificaciones detractoras (RMD) y tickets fuera de SLA (BEES Care) con plan completo desde ${mesLbl(S.cfg.inicio)}</b>.`];
   if (S.cfg.objetivo!=null && S.cfg.objetivo!=='') parts.push(`Objetivo NPS: <b>${S.cfg.objetivo}</b>`);
   if (S.cfg.objRmd!=null && S.cfg.objRmd!=='') parts.push(`Objetivo RMD: <b>${S.cfg.objRmd}</b>`);
   $('#infoObj').innerHTML = parts.join(' · ');
@@ -1067,10 +1281,11 @@ function renderAdm(){
   if (!editing){
     $('#cfgObj').value = S.cfg.objetivo ?? ''; $('#cfgObjRmd').value = S.cfg.objRmd ?? ''; $('#cfgObjResp').value = S.cfg.objResp ?? '';
     $('#cfgIni').value = S.cfg.inicio || ''; $('#cfgLink').value = S.cfg.link || ''; $('#cfgDesc').value = S.cfg.descarga || '';
-    $('#cfgSup').value = S.cfg.supMap || ''; $('#cfgRmdInfo').value = S.cfg.rmdInfo || ''; $('#cfgRmdDesc').value = S.cfg.rmdDesc || ''; $('#cfgRmdLink').value = S.cfg.rmdLink || '';
+    $('#cfgSup').value = S.cfg.supMap || ''; $('#cfgRmdInfo').value = S.cfg.rmdInfo || ''; $('#cfgCareInfo').value = S.cfg.careInfo || ''; $('#cfgCareDesc').value = S.cfg.careDesc || ''; $('#cfgCareLink').value = S.cfg.careLink || ''; $('#cfgObjSla').value = S.cfg.objSla ?? ''; $('#cfgRmdDesc').value = S.cfg.rmdDesc || ''; $('#cfgRmdLink').value = S.cfg.rmdLink || '';
   }
   $('#admRmdInfo').textContent = S.cfg.rmdInfo || '';
-  compTable('nps', $('#comp-nps')); compTable('rmd', $('#comp-rmd'));
+  compTable('nps', $('#comp-nps')); compTable('rmd', $('#comp-rmd')); compTable('care', $('#comp-care'));
+  $('#admCareInfo').textContent = S.cfg.careInfo || '';
   const rs = responsables();
   $('#tblResp').innerHTML = '<tr><th>Nombre</th><th>Sector</th><th></th></tr>' + (rs.length ? rs.map(r => `<tr><td>${esc(r.n)}</td>
     <td><select data-rk="${r.k}">${SECTORES.map(s=>`<option${r.s===s?' selected':''}>${s}</option>`).join('')}</select></td>
@@ -1087,17 +1302,19 @@ function renderAdm(){
   $('#admMeta').innerHTML = `<p>Modo: <b>${DB.mode==='firebase'?'Firebase':'LOCAL (configurá Firebase en el código)'}</b></p>` +
     `<p>Base NPS: ${m.nps ? `${m.nps.enc} encuestas / ${m.nps.cli} clientes · ${fmtDate(m.nps.desde)} al ${fmtDate(m.nps.hasta)} · cargada ${fmtTs(m.nps.t)} por ${esc(m.nps.u)}` : 'sin cargar'}</p>` +
     `<p>Base RMD: ${m.rmd ? `${m.rmd.cal} calificaciones con detalle · ${m.rmd.dias} días con totales · ${fmtDate(m.rmd.desde)} al ${fmtDate(m.rmd.hasta)} · cargada ${fmtTs(m.rmd.t)} por ${esc(m.rmd.u)}` : 'sin cargar'}</p>` +
+    `<p>Base BEES Care: ${m.care ? `${m.care.n} tickets · ${fmtDate(m.care.desde)} al ${fmtDate(m.care.hasta)} · cargada ${fmtTs(m.care.t)} por ${esc(m.care.u)}` : 'sin cargar'}</p>` +
     `<p>Base clientes: ${m.cli ? `${m.cli.n} clientes · cargada ${fmtTs(m.cli.t)} por ${esc(m.cli.u)}` : 'sin cargar'}</p>` +
-    `<p>Seguimientos cargados: NPS ${Object.keys(S.segs.seg||{}).length} · RMD ${Object.keys(S.segs.segRmd||{}).length}</p>`;
+    `<p>Seguimientos cargados: NPS ${Object.keys(S.segs.seg||{}).length} · RMD ${Object.keys(S.segs.segRmd||{}).length} · BEES Care ${Object.keys(S.segs.segCare||{}).length}</p>`;
 }
 $('#admGo').onclick = () => { if ($('#admPass').value===ADMIN_PASS){ S.admin=true; try{sessionStorage.setItem('nps_admin','1');}catch(e){} $('#admErr').style.display='none'; renderAdm(); } else $('#admErr').style.display=''; };
 $('#admPass').addEventListener('keydown', e => { if (e.key==='Enter') $('#admGo').click(); });
 const numOrNull = v => v.trim()==='' ? null : +v;
 $('#cfgSave').onclick = async () => {
-  await DB.update('config', { objetivo: numOrNull($('#cfgObj').value), objRmd: numOrNull($('#cfgObjRmd').value), objResp: numOrNull($('#cfgObjResp').value),
+  await DB.update('config', { objetivo: numOrNull($('#cfgObj').value), objRmd: numOrNull($('#cfgObjRmd').value), objResp: numOrNull($('#cfgObjResp').value), objSla: numOrNull($('#cfgObjSla').value),
     inicio: $('#cfgIni').value || '2026-11', link: $('#cfgLink').value.trim(), descarga: $('#cfgDesc').value });
   toast('Configuración guardada ✓');
 };
+$('#cfgCareSave').onclick = async () => { await DB.update('config', { careInfo: $('#cfgCareInfo').value, careDesc: $('#cfgCareDesc').value, careLink: $('#cfgCareLink').value.trim() }); toast('Textos BEES Care guardados ✓'); };
 $('#cfgRmdSave').onclick = async () => { await DB.update('config', { rmdInfo: $('#cfgRmdInfo').value, rmdDesc: $('#cfgRmdDesc').value, rmdLink: $('#cfgRmdLink').value.trim() }); toast('Textos RMD guardados ✓'); };
 $('#supSave').onclick = async () => { await DB.update('config', { supMap: $('#cfgSup').value }); toast('Mapa de supervisores guardado ✓'); };
 $('#addResp').onclick = async () => {
@@ -1221,6 +1438,33 @@ $('#upRmd').onchange = async e => {
   }catch(err){ msg.innerHTML = `<div class="warn">${esc(err.message)}</div>`; }
   e.target.value = '';
 };
+$('#upCare').onchange = async e => {
+  const f = e.target.files[0]; if (!f) return; const msg = $('#upCareMsg'); msg.innerHTML = 'Leyendo…';
+  try{
+    const rows = await readSheet(f); const r0 = rows[0] || {}; const ks = Object.keys(r0);
+    const K = { cr: findKey(r0,'CREACION'), so: findKey(r0,'SOLUCION'), c: ks.find(k=>k.includes('CLIENTE')), tk: findKey(r0,'TICKET'), es: ks.find(k=>k==='ESTADO'),
+      sla: ks.find(k=>k==='SLA'), mo: ks.find(k=>k==='MOTIVO'), sm: ks.find(k=>k==='SUBMOTIVO'), dist: ks.find(k=>k.includes('DISTRIBUIDOR') && k.includes('COD')) };
+    const miss = ['cr','c','tk','es','mo'].filter(k => !K[k]);
+    if (miss.length) throw new Error('No parece la base BEES CARE. Columnas encontradas: ' + ks.join(', '));
+    const care = {}; let otros = 0;
+    rows.forEach(r => {
+      const fc = excelToISO(r[K.cr]); const tk = String(r[K.tk] ?? '').trim().replace(/\.0+$/,''); if (!fc || !tk) return;
+      const raw = String(r[K.c] ?? '').trim().replace(/\.0+$/,'');
+      if (raw && /^\d{9,}$/.test(raw) && !raw.startsWith(DIST_PREFIX)){ otros++; return; }
+      const cod = codFromDist(r[K.c]); if (!cod) return;
+      const o = { c: cod, f: fc.slice(0,10), tk, es: String(r[K.es] ?? '').trim(), mo: String(r[K.mo] ?? '').trim(), sm: K.sm ? String(r[K.sm] ?? '').trim() : '' };
+      const fs = K.so ? excelToISO(r[K.so]) : null; if (fs) o.fs = fs.slice(0,10);
+      if (K.sla && r[K.sla]!=null && !isNaN(+r[K.sla])) o.sla = +r[K.sla];
+      care['t' + tk.replace(/[^0-9A-Za-z]/g,'')] = o;
+    });
+    const list = Object.values(care); if (!list.length) throw new Error('No se encontraron tickets válidos.');
+    const fs = list.map(x=>x.f).sort(); const fuera = list.filter(x => /FUERA|VENCID/i.test(norm(x.es))).length;
+    const meta = { n: list.length, cli: new Set(list.map(x=>x.c)).size, fuera, desde: fs[0], hasta: fs.at(-1), t: Date.now(), u: S.user || 'ANALISTA' };
+    await DB.set('base/care', care); await DB.update('meta', { care: meta });
+    msg.innerHTML = `<div class="okbox">✓ Cargada: <b>${list.length}</b> tickets de <b>${meta.cli}</b> clientes · ${fmtDate(fs[0])} al ${fmtDate(fs.at(-1))} · ${fuera} fuera de SLA / vencidos${otros?` · ${otros} de otros distribuidores descartados`:''}</div>`;
+  }catch(err){ msg.innerHTML = `<div class="warn">${esc(err.message)}</div>`; }
+  e.target.value = '';
+};
 $('#upCli').onchange = async e => {
   const f = e.target.files[0]; if (!f) return; const msg = $('#upCliMsg'); msg.innerHTML = 'Leyendo… (puede tardar unos segundos)';
   try{
@@ -1245,6 +1489,9 @@ function exportRows(kind, list){
   const segCols = sg => ({ 'Comentario seguimiento': sg.cmt||'', 'Plan de acción': sg.plan||'', 'Sector': sg.sector||'', 'Responsable': sg.resp||'', 'Fecha compromiso': sg.fc||'',
     'Status': sg.status||'', 'Completo': isComplete(sg) ? 'SI' : 'NO', 'Última carga por': sg.u||'', 'Última carga': sg.t ? new Date(sg.t).toLocaleString('es-AR') : '', 'Creado por': sg.cu||'' });
   const cliCols = r => ({ 'Cód. cliente': r.cod ? +r.cod : '', 'Cliente': r.nombre, 'Nombre fantasía': r.fant, 'Ruta': r.ruta, 'Subcanal': r.sub, 'Localidad': r.loc, 'Vendedor': r.vend ? +r.vend : '', 'Nombre vendedor': r.vendNom, 'Supervisor': r.sup });
+  if (kind==='care') return list.map(r => { const sg = segOf('care',r.id)||{}; return { 'Fecha creación': r.fecha, 'Fecha solución': r.sol, 'Mes': mesLbl(r.mes), 'N° ticket': r.tk, ...cliCols(r),
+    'Estado': r.est, 'SLA (hs)': r.sla ?? '', 'Días resolución': r.dias ?? '', 'Días abierto': r.abierto ?? '', 'Motivo': r.mo, 'Submotivo': r.sm, 'Categoría': KIND.care.cats[r.cat],
+    'Reclamos del cliente en el año': r.repTot, 'Semáforo': semaforo(r), ...segCols(sg) }; });
   if (kind==='nps') return list.map(r => { const sg = segOf('nps',r.id)||{}; return { 'Fecha encuesta': r.fecha, 'Mes': mesLbl(r.mes), ...cliCols(r), 'Score': r.score, 'Categoría': KIND.nps.cats[r.cat],
     'Repite': r.repTot>1 ? `${r.repIdx}/${r.repTot}` : '', 'Drivers primarios': [...new Set(r.drivers.map(d=>d[0]))].join(' | '), 'Drivers secundarios': r.drivers.map(d=>d[1]).filter(x=>x && x!=='Ninguno').join(' | '),
     'Comentario cliente': r.cmt, 'Semáforo': semaforo(r), ...segCols(sg) }; });
@@ -1257,13 +1504,13 @@ function sheetFrom(data){ const ws = XLSX.utils.json_to_sheet(data.length ? data
 function exportRev(kind){
   if (typeof XLSX==='undefined') return toast('No cargó la librería de Excel');
   const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb, sheetFrom(exportRows(kind, filtered(kind))), kind==='nps' ? 'Revisión NPS' : 'Revisión RMD');
+  XLSX.utils.book_append_sheet(wb, sheetFrom(exportRows(kind, filtered(kind))), ({nps:'Revisión NPS', rmd:'Revisión RMD', care:'Revisión BEES Care'})[kind]);
   XLSX.writeFile(wb, `${kind.toUpperCase()}_Revision_${todayISO()}.xlsx`);
 }
 function exportRes(kind){
   if (typeof XLSX==='undefined') return toast('No cargó la librería de Excel');
   const wb = XLSX.utils.book_new(); const used = new Set();
-  const kp = $(`#${kind==='nps'?'nr':'rr'}-kpis`);
+  const kp = $(`#${({nps:'nr',rmd:'rr',care:'cr'})[kind]}-kpis`);
   const kpis = [...kp.querySelectorAll('.kpi')].map(k => ({ Indicador: k.querySelector('.l').textContent, Valor: k.querySelector('.v').textContent }));
   XLSX.utils.book_append_sheet(wb, sheetFrom(kpis), 'Indicadores');
   $$(`#t-${kind}-res .card`).forEach(card => {
@@ -1281,6 +1528,7 @@ $('#btnExport').onclick = () => {
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, sheetFrom(exportRows('nps', S.npsRows)), 'NPS');
   XLSX.utils.book_append_sheet(wb, sheetFrom(exportRows('rmd', S.rmdRows)), 'RMD');
+  XLSX.utils.book_append_sheet(wb, sheetFrom(exportRows('care', S.careRows)), 'BEES Care');
   XLSX.writeFile(wb, `Seguimiento_NPS_RMD_${todayISO()}.xlsx`);
 };
 
@@ -1337,30 +1585,33 @@ function renderTab(){
   if (curTab==='nps-res') renderNpsRes();
   if (curTab==='rmd-rev'){ refreshFilters('rmd'); renderRev('rmd'); }
   if (curTab==='rmd-res') renderRmdRes();
+  if (curTab==='care-rev'){ refreshFilters('care'); renderRev('care'); }
+  if (curTab==='care-res') renderCareRes();
   if (curTab==='adm') renderAdm();
 }
 function renderHeader(){
-  const ne = Object.keys(S.enc||{}).length, nr = Object.keys(S.rmd||{}).length, nd = Object.keys(S.rmdDia||{}).length, nc = Object.keys(S.cli||{}).length;
+  const ne = Object.keys(S.enc||{}).length, nr = Object.keys(S.rmd||{}).length, nd = Object.keys(S.rmdDia||{}).length, nc = Object.keys(S.cli||{}).length, nt = Object.keys(S.care||{}).length;
   const red = t => `<span style="color:#ff8a80">${t}</span>`;
-  $('#baseInfo').innerHTML = `📋 NPS: ${ne ? ne+' enc.' : red('sin base')} · RMD: ${nd ? nr+' calif.' : red('sin base')} · Clientes: ${nc ? nc : red('sin base')}`;
+  $('#baseInfo').innerHTML = `📋 NPS: ${ne ? ne+' enc.' : red('sin base')} · RMD: ${nd ? nr+' calif.' : red('sin base')} · Care: ${nt ? nt+' tickets' : red('sin base')} · Clientes: ${nc ? nc : red('sin base')}`;
 }
 let rT = null;
 function renderAll(){ clearTimeout(rT); rT = setTimeout(() => { buildRows(); renderHeader(); renderTab(); const ov=document.querySelector('.overlay'); if (ov && ov._fill) ov._fill(); }, 30); }
 
 (async function start(){
-  buildFilterBar('nps'); buildFilterBar('rmd');
+  buildFilterBar('nps'); buildFilterBar('rmd'); buildFilterBar('care');
   await DB.init();
-  const ready = { seg:false, segRmd:false };
+  const ready = { seg:false, segRmd:false, segCare:false };
   DB.on('config', v => { S.cfg = Object.assign({}, DEFAULT_CFG, v||{}); if (!S.cfg.responsables) S.cfg.responsables = {}; if (!S.cfg.rmdMap) S.cfg.rmdMap = {}; renderAll(); });
   DB.on('meta', v => { S.meta = v||{}; renderAll(); });
   DB.on('base/encuestas', v => { S.enc = v||{}; renderAll(); });
   DB.on('base/rmd', v => { S.rmd = v||{}; renderAll(); });
   DB.on('base/rmdDia', v => { S.rmdDia = v||{}; renderAll(); });
   DB.on('base/rmdEnv', v => { S.rmdEnvRaw = v||{}; renderAll(); });
+  DB.on('base/care', v => { S.care = v||{}; renderAll(); });
   DB.on('base/clientes', v => { S.cli = v||{}; renderAll(); });
-  ['seg','segRmd'].forEach(key => DB.on(key, v => {
+  ['seg','segRmd','segCare'].forEach(key => DB.on(key, v => {
     const old = S.segs[key]; S.segs[key] = v||{};
-    const kind = key==='seg' ? 'nps' : 'rmd';
+    const kind = ({seg:'nps', segRmd:'rmd', segCare:'care'})[key];
     if (curTab===kind+'-rev' && ready[key]){
       new Set([...Object.keys(old), ...Object.keys(S.segs[key])]).forEach(id => { if (JSON.stringify(old[id])!==JSON.stringify(S.segs[key][id])) patchClient(kind, id); });
       renderRevKpis(kind, filtered(kind));
